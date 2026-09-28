@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP Cover Calculator (inches and mm) — AuthorKit</title>
+<meta name="description" content="Full KDP paperback cover size, spine width and interior gutter for your trim, paper and page count, in inches and millimetres. Every number cites KDP.">
+<link rel="canonical" href="https://resources.authorkit.pro/cover-calculator/">
+<link rel="stylesheet" href="/shared/style.css">
+</head>
+<body>
+<header class="masthead">
+  <div class="wrap wrap--wide masthead__inner">
+    <a class="masthead__brand" href="https://authorkit.pro">AuthorKit</a>
+    <nav class="masthead__nav" aria-label="Resources"><a href="/">All resources</a></nav>
+  </div>
+</header>
+<main>
+<div class="wrap wrap--wide">
+  <header class="hero">
+    <h1>KDP cover calculator</h1>
+    <p class="ak-prose">A KDP paperback cover is one PDF: back, spine and front, with 0.125″ of bleed on every outside edge. Its size depends on your trim, your paper and your page count. Pick them below. The interior margins for the same page count are shown too, so the cover and the inside of the book agree.</p>
+  </header>
+
+  <section class="ak-section">
+    <div class="ak-grid-2">
+      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" class="ak-input"></select></div>
+      <div class="ak-field"><label for="trim">Trim size</label><select id="trim" class="ak-input"></select></div>
+      <div class="ak-field"><label for="pages">Page count</label><input id="pages" class="ak-input" type="number" inputmode="numeric" value="300"></div>
+    </div>
+  </section>
+
+  <section class="ak-section" aria-live="polite">
+    <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+    <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
+    <table id="results" class="ak-table">
+      <tbody>
+        <tr><th scope="row">Full cover, width</th><td id="wrap-w"></td></tr>
+        <tr><th scope="row">Full cover, height</th><td id="wrap-h"></td></tr>
+        <tr><th scope="row">Spine width</th><td id="spine"></td></tr>
+        <tr><th scope="row">Front and back, each</th><td id="panel"></td></tr>
+        <tr><th scope="row">Spine text</th><td id="spine-text"></td></tr>
+        <tr><th scope="row">Barcode area (back cover)</th><td id="barcode"></td></tr>
+        <tr><th scope="row">Interior gutter (inside margin)</th><td id="gutter"></td></tr>
+        <tr><th scope="row">Interior outside margin, minimum</th><td id="outside"></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="ak-section ak-prose">
+    <h2>How the full cover is measured</h2>
+    <p>Width = bleed + back + spine + front + bleed. Height = bleed + trim height + bleed. KDP prints even page counts, so an odd count is rounded up before the spine is measured. Spine text is allowed only on books with more than 79 pages.</p>
+  </section>
+
+  <nav class="related" aria-label="Related resources">
+    <h2>Related</h2>
+    <ul>
+      <li><a href="https://kdp.amazon.com/cover-calculator">KDP's cover calculator</a> — downloads a cover template to design on</li>
+      <li><a href="https://kdp.amazon.com/royalty-calculator">KDP's printing cost and royalty calculator</a></li>
+      <li><a href="/">All AuthorKit resources</a></li>
+    </ul>
+  </nav>
+
+  <section class="ak-sources">
+    <p>Sources (last verified <span data-verified="2026-09-28">2026-09-28</span>):</p>
+    <ul>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201953020">KDP: Create a paperback cover</a> — full-cover size, spine text</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G5HDYGP4BXLX4RUW">KDP: Barcodes</a> — barcode area (2″ × 1.2″)</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201857950">KDP: Paperback submission guidelines</a> — spine width per page, page counts</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6">KDP: Trim, bleed and margins</a> — trims, page limits, gutter</li>
+    </ul>
+    <p>These are the same numbers AuthorKit Studio uses.</p>
+  </section>
+</div>
+</main>
+<footer class="colophon">
+  <div class="wrap colophon__inner"><span>© 2026 AuthorKit · Not affiliated with Amazon</span></div>
+</footer>
+<script type="module">
+import { INK_ALL, INK_LABELS, trimsFor, trimId } from '/shared/kdp.js';
+import { coverResult, pickTrim, fmt } from '/cover-calculator/cover.js';
+
+const $ = (id) => document.getElementById(id);
+const ink = $('ink'), trim = $('trim'), pages = $('pages');
+
+for (const i of INK_ALL) ink.add(new Option(INK_LABELS[i], i));
+
+function fillTrims() {
+  const keep = pickTrim(ink.value, trim.value);
+  trim.replaceChildren(...trimsFor(ink.value).map((t) => new Option(`${t[0]}″ × ${t[1]}″`, trimId(t))));
+  trim.value = keep;
+}
+
+function render() {
+  const r = coverResult(ink.value, trim.value, pages.value);
+  $('error').hidden = !r.error;
+  $('results').hidden = !!r.error;
+  $('rounded').hidden = !!r.error || !r.rounded;
+  if (r.error) { $('error').textContent = r.error; return; }
+  $('rounded').textContent = `KDP prints ${r.pages} pages (odd counts are rounded up), so the spine is measured for ${r.pages}.`;
+  $('wrap-w').textContent = fmt(r.wrap[0]);
+  $('wrap-h').textContent = fmt(r.wrap[1]);
+  $('spine').textContent = fmt(r.spine);
+  $('panel').textContent = `${fmt(r.trim[0])} × ${fmt(r.trim[1])}`;
+  $('spine-text').textContent = r.spineText ? 'Allowed (more than 79 pages)' : 'Not allowed (79 pages or fewer)';
+  $('barcode').textContent = `${fmt(r.barcode[0])} × ${fmt(r.barcode[1])}, kept clear by KDP`;
+  $('gutter').textContent = fmt(r.gutter);
+  $('outside').textContent = `${fmt(r.outside[0])} without bleed, ${fmt(r.outside[1])} with bleed`;
+}
+
+ink.addEventListener('change', () => { fillTrims(); render(); });
+trim.addEventListener('change', render);
+pages.addEventListener('input', render);
+fillTrims();
+trim.value = '6x9';
+render();
+</script>
+</body>
+</html>

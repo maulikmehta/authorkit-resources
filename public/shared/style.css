@@ -435,8 +435,3 @@ a:hover { text-decoration-thickness: 2px; }
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); border: 0;
 }
-
-/* ── Tables (simple data display) ───────────────────────── */
-.ak-table { width: 100%; border-collapse: collapse; }
-.ak-table th, .ak-table td { padding: .5rem .25rem; border-bottom: 1px solid currentColor; text-align: left; }
-.ak-table td { font-variant-numeric: tabular-nums; }

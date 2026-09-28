@@ -24,27 +24,41 @@
 
   <section class="ak-section">
     <div class="ak-grid-2">
-      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" class="ak-input"></select></div>
-      <div class="ak-field"><label for="trim">Trim size</label><select id="trim" class="ak-input"></select></div>
-      <div class="ak-field"><label for="pages">Page count</label><input id="pages" class="ak-input" type="number" inputmode="numeric" value="300"></div>
+      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink"></select></div>
+      <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
+      <div class="ak-field"><label for="pages">Page count</label><input id="pages" type="number" inputmode="numeric" value="300"></div>
     </div>
   </section>
 
   <section class="ak-section" aria-live="polite">
     <p id="error" class="ak-callout ak-callout-warn" hidden></p>
     <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
-    <table id="results" class="ak-table">
-      <tbody>
-        <tr><th scope="row">Full cover, width</th><td id="wrap-w"></td></tr>
-        <tr><th scope="row">Full cover, height</th><td id="wrap-h"></td></tr>
-        <tr><th scope="row">Spine width</th><td id="spine"></td></tr>
-        <tr><th scope="row">Front and back, each</th><td id="panel"></td></tr>
-        <tr><th scope="row">Spine text</th><td id="spine-text"></td></tr>
-        <tr><th scope="row">Barcode area (back cover)</th><td id="barcode"></td></tr>
-        <tr><th scope="row">Interior gutter (inside margin)</th><td id="gutter"></td></tr>
-        <tr><th scope="row">Interior outside margin, minimum</th><td id="outside"></td></tr>
-      </tbody>
-    </table>
+    <div id="results" class="ak-results">
+      <div class="ak-val ak-highlight">
+        <span class="ak-val__label">Full cover, width</span><span class="ak-val__num" id="wrap-w"></span>
+      </div>
+      <div class="ak-val ak-highlight">
+        <span class="ak-val__label">Full cover, height</span><span class="ak-val__num" id="wrap-h"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Spine width</span><span class="ak-val__num" id="spine"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Front and back, each</span><span class="ak-val__num" id="panel"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Spine text</span><span class="ak-val__num" id="spine-text"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Barcode area (back cover)</span><span class="ak-val__num" id="barcode"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Interior gutter (inside margin)</span><span class="ak-val__num" id="gutter"></span>
+      </div>
+      <div class="ak-val">
+        <span class="ak-val__label">Interior outside margin, minimum</span><span class="ak-val__num" id="outside"></span>
+      </div>
+    </div>
   </section>
 
   <section class="ak-section ak-prose">

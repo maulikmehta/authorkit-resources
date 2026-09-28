@@ -1,0 +1,437 @@
+/* authorkit.pro — shared styles for web tools.
+ *
+ * Matches the main site's literary, book-craft identity:
+ * Playfair Display + Source Serif 4, warm paper ground,
+ * monochrome palette, ruled sections, no border-radius cards.
+ *
+ * All colours use CSS custom properties so dark mode works.
+ */
+
+:root {
+  --black:   #000000;
+  --white:   #ffffff;
+  --stone:   #4a4845;
+  --rule:    #000000;
+  --rule-lt: rgba(0,0,0,.12);
+  --paper:   #F8F6F1;
+  --code-bg: #EFEDE8;
+
+  --font-head: 'Playfair Display', Georgia, serif;
+  --font-body: 'Source Serif 4', Georgia, serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --measure: 38rem;
+  --pad: clamp(1rem, 4vw, 2rem);
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --black:   #f0ece4;
+    --white:   #13120d;
+    --stone:   #9c968a;
+    --rule:    rgba(240,236,228,.25);
+    --rule-lt: rgba(240,236,228,.10);
+    --paper:   #13120d;
+    --code-bg: #1c1a14;
+  }
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  background: var(--paper);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--black);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+/* ── Layout ─────────────────────────────────────────────── */
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+/* Wider wrap for calculator pages — forms need more room */
+.wrap--wide { max-width: 48rem; }
+
+/* ── Masthead ───────────────────────────────────────────── */
+.masthead {
+  border-bottom: 1px solid var(--rule);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 20;
+}
+
+.masthead__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.2rem;
+}
+
+.masthead__brand {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.masthead__mark {
+  width: 30px;
+  height: 35px;
+  flex-shrink: 0;
+  fill: var(--black);
+}
+
+.masthead__name {
+  font-family: var(--font-head);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1;
+}
+
+.masthead__nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-body);
+  font-size: .85rem;
+}
+
+.masthead__nav a {
+  color: var(--stone);
+  text-decoration: none;
+  padding: .35rem;
+  margin: -.35rem;
+}
+.masthead__nav a:hover { color: var(--black); }
+.masthead__nav a[aria-current="page"] {
+  color: var(--black);
+  font-weight: 600;
+}
+.masthead__nav a:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 2px;
+}
+
+/* ── Hero / page heading ────────────────────────────────── */
+.hero {
+  padding-top: clamp(2.2rem, 5vw, 3.6rem);
+  padding-bottom: 1.1rem;
+}
+
+.hero h1 {
+  font-family: var(--font-head);
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.02em;
+  color: var(--black);
+  margin-bottom: .75rem;
+  text-wrap: balance;
+}
+
+.hero p {
+  font-size: 1rem;
+  color: var(--stone);
+  text-wrap: pretty;
+}
+
+/* ── Section heads (uppercase label + rule) ──────────────── */
+.section-head {
+  font-family: var(--font-body);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--stone);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .45rem;
+  margin-top: 2.2rem;
+  margin-bottom: .9rem;
+}
+
+/* ── Forms ───────────────────────────────────────────────── */
+.ak-field {
+  margin-bottom: 1.1rem;
+}
+
+.ak-field label {
+  display: block;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: .35rem;
+}
+
+.ak-field select,
+.ak-field input[type="number"],
+.ak-field input[type="text"] {
+  width: 100%;
+  padding: .5rem .65rem;
+  font-size: .95rem;
+  font-family: var(--font-body);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--black);
+}
+
+.ak-field select:focus,
+.ak-field input:focus {
+  outline: 2px solid var(--black);
+  outline-offset: 1px;
+}
+
+.ak-hint {
+  display: block;
+  font-size: .75rem;
+  color: var(--stone);
+  margin-top: .25rem;
+}
+
+.ak-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.ak-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .ak-grid-2, .ak-grid-3 { grid-template-columns: 1fr; }
+  .masthead__nav { gap: .75rem; font-size: .8rem; }
+}
+
+/* ── Results table ──────────────────────────────────────── */
+.ak-results {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.ak-results th,
+.ak-results td {
+  text-align: left;
+  padding: .55rem .5rem .55rem 0;
+  border-bottom: 1px solid var(--rule-lt);
+  vertical-align: baseline;
+}
+
+.ak-results th {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .72rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--stone);
+  border-bottom-color: var(--rule);
+  padding-bottom: .4rem;
+}
+
+.ak-val {
+  font-family: var(--font-mono);
+  font-size: .9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.ak-highlight td {
+  border-top: 1px solid var(--rule);
+  border-bottom-color: var(--rule);
+  padding-top: .7rem;
+  padding-bottom: .7rem;
+}
+
+.ak-muted td { color: var(--stone); }
+
+/* ── Ruled sections (instead of rounded cards) ───────────── */
+.ak-section {
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.ak-section h2 {
+  font-family: var(--font-body);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--stone);
+  margin-bottom: .9rem;
+}
+
+.ak-section h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.75rem;
+  margin-bottom: .6rem;
+}
+
+/* ── Callout boxes ──────────────────────────────────────── */
+.ak-callout {
+  border: 1px solid var(--rule);
+  padding: .9rem 1.1rem;
+  font-size: .95rem;
+  line-height: 1.6;
+  margin: 1.25rem 0;
+}
+
+.ak-callout strong {
+  display: block;
+  margin-bottom: .2rem;
+}
+
+/* Subtle left-accent variants */
+.ak-callout-info  { border-left-width: 3px; }
+.ak-callout-warn  { border-left-width: 3px; }
+.ak-callout-ok    { border-left-width: 3px; }
+
+/* ── Prose (guide pages) ────────────────────────────────── */
+.ak-prose h2 {
+  font-family: var(--font-body);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--stone);
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: .45rem;
+  margin-top: 2.2rem;
+  margin-bottom: .9rem;
+}
+
+.ak-prose h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: .5rem;
+}
+
+.ak-prose p  { margin-bottom: .85rem; }
+.ak-prose ul, .ak-prose ol {
+  margin-bottom: .85rem;
+  padding-left: 1.1rem;
+  color: var(--stone);
+}
+.ak-prose li { margin: .3rem 0; }
+.ak-prose a  { color: var(--black); }
+.ak-prose code {
+  font-family: var(--font-mono);
+  font-size: .85em;
+  background: var(--code-bg);
+  padding: .1em .3em;
+}
+
+/* Numbered steps */
+.ak-steps { counter-reset: step; list-style: none; padding-left: 0; }
+.ak-steps > li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 2.2rem;
+  margin-bottom: 1.1rem;
+  color: var(--stone);
+}
+.ak-steps > li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: .15em;
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 1px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: .75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+}
+.ak-steps > li strong { color: var(--black); }
+
+/* ── Sources / citations ────────────────────────────────── */
+.ak-sources {
+  font-size: .8rem;
+  color: var(--stone);
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-lt);
+}
+
+.ak-sources ul { padding-left: 1.1rem; }
+.ak-sources li { margin: .25rem 0; }
+.ak-sources a {
+  color: var(--stone);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 2px;
+  transition: all 0.2s;
+}
+.ak-sources a:hover {
+  color: var(--black);
+  text-decoration-color: var(--black);
+}
+.ak-sources a::after {
+  content: "↗";
+  font-size: 0.85em;
+  opacity: 0.7;
+  margin-left: 0.2em;
+  display: inline-block;
+}
+
+/* ── Colophon / footer ──────────────────────────────────── */
+.colophon {
+  margin-top: auto;
+  border-top: 1px solid var(--rule);
+  padding: 1.25rem 0 2rem;
+  font-size: .875rem;
+  color: var(--stone);
+}
+
+.colophon__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+}
+
+.colophon a { color: var(--stone); text-underline-offset: 2px; }
+.colophon a:hover { color: var(--black); }
+
+/* ── Utility ────────────────────────────────────────────── */
+.ak-sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); border: 0;
+}

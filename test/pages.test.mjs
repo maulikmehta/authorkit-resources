@@ -1,0 +1,86 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { readdirSync, readFileSync, existsSync, statSync } from 'node:fs';
+import { join, relative, dirname, resolve, sep } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const ROOT = fileURLToPath(new URL('../public/', import.meta.url));
+const SITE = 'https://resources.authorkit.pro/';
+
+const walk = (dir) => readdirSync(dir).flatMap((n) => {
+  const p = join(dir, n);
+  return statSync(p).isDirectory() ? walk(p) : [p];
+});
+const pages = walk(ROOT).filter((p) => p.endsWith('.html') && !p.endsWith('404.html'));
+
+// Cloudflare Pages pretty URLs: index.html -> /, x/index.html -> /x/, x.html -> /x
+function urlOf(file) {
+  const r = relative(ROOT, file).split(sep).join('/').replace(/\.html$/, '');
+  if (r === 'index') return SITE;
+  return SITE + r.replace(/\/index$/, '/');
+}
+
+// A local path resolves if the file, path.html or path/index.html exists.
+function target(fromFile, ref) {
+  const clean = ref.split(/[?#]/)[0];
+  const abs = clean.startsWith('/') ? join(ROOT, clean) : resolve(dirname(fromFile), clean);
+  return [abs, abs + '.html', join(abs, 'index.html')].find((p) => existsSync(p) && statSync(p).isFile());
+}
+
+// The tool folder a file belongs to ('' for the hub and shared files).
+const toolOf = (file) => {
+  const first = relative(ROOT, file).split(sep)[0];
+  return first.includes('.') || first === 'shared' ? '' : first;
+};
+
+test('a 404 page exists so unknown URLs are not served the hub', () => {
+  assert.ok(existsSync(join(ROOT, '404.html')));
+});
+
+for (const file of pages) {
+  const html = readFileSync(file, 'utf8');
+  const name = relative(ROOT, file);
+
+  test(`${name}: title, description, canonical`, () => {
+    assert.match(html, /<title>[^<]+<\/title>/);
+    assert.match(html, /<meta name="description" content="[^"]+"/);
+    const canon = html.match(/<link rel="canonical" href="([^"]+)"/);
+    assert.ok(canon, 'missing canonical');
+    assert.equal(canon[1], urlOf(file));
+  });
+
+  test(`${name}: local links and imports resolve`, () => {
+    const refs = [...html.matchAll(/(?:href|src)="([^"]+)"|from '([^']+)'/g)].map((m) => m[1] ?? m[2])
+      .filter((r) => !/^(https?:|mailto:|data:|#)/.test(r) && r.split(/[?#]/)[0]);
+    for (const r of refs) assert.ok(target(file, r), `broken link ${r}`);
+  });
+
+  test(`${name}: code comes only from its own folder and shared/`, () => {
+    // Links between resources are welcome; code imports across tool folders are not.
+    const code = [...html.matchAll(/src="([^"]+)"|from '([^']+)'/g)].map((m) => m[1] ?? m[2])
+      .filter((r) => !/^(https?:|data:)/.test(r));
+    const own = toolOf(file);
+    for (const r of code) {
+      const other = toolOf(target(file, r));
+      assert.ok(other === '' || other === own, `${r} imports code from another tool's folder`);
+    }
+  });
+
+  if (name !== 'index.html') {
+    test(`${name}: carries a last-verified date`, () => {
+      assert.match(html, /data-verified="\d{4}-\d{2}-\d{2}"/);
+    });
+
+    test(`${name}: has a Related section with at least one link`, () => {
+      const related = html.match(/<nav class="related"[^>]*>([\s\S]*?)<\/nav>/);
+      assert.ok(related, 'missing <nav class="related">');
+      assert.match(related[1], /<a href="[^"]+"/);
+    });
+  }
+}
+
+test('sitemap lists exactly the pages', () => {
+  const xml = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
+  const listed = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).sort();
+  assert.deepEqual(listed, pages.map(urlOf).sort());
+});

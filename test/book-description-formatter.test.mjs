@@ -62,3 +62,8 @@ test('mixed marks always produce well-nested tags', () => {
     assert.ok(wellFormed(formatDescription(s).html), s);
   }
 });
+
+test('chars counts the markup, like KDP does', () => {
+  assert.equal(formatDescription('test').chars, '<p>test</p>'.length);
+  assert.equal(formatDescription('**test**').chars, '<p><b>test</b></p>'.length);
+});

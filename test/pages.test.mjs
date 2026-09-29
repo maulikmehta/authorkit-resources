@@ -13,6 +13,9 @@ const walk = (dir) => readdirSync(dir).flatMap((n) => {
 });
 const pages = walk(ROOT).filter((p) => p.endsWith('.html') && !p.endsWith('404.html'));
 
+// Standard disclaimer appearing on every page (except 404).
+const DISCLAIMER = '<p class="ak-disclaimer">These tools and guides are for information only. Check requirements with KDP, and ask a qualified professional about tax or legal questions. AuthorKit is not affiliated with Amazon.</p>';
+
 // Cloudflare Pages pretty URLs: index.html -> /, x/index.html -> /x/, x.html -> /x
 function urlOf(file) {
   const r = relative(ROOT, file).split(sep).join('/').replace(/\.html$/, '');
@@ -102,6 +105,19 @@ for (const file of pages) {
       for (const [, f, attrs] of links) {
         assert.equal(/aria-current="page"/.test(attrs), f === own, `aria-current on ${f}`);
       }
+    });
+  }
+
+  test(`${name}: carries the standard disclaimer exactly once`, () => {
+    const matches = [...html.matchAll(new RegExp(DISCLAIMER.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'))];
+    assert.equal(matches.length, 1, `expected 1 disclaimer, found ${matches.length}`);
+  });
+
+  if (html.includes('ak-sources')) {
+    test(`${name}: disclaimer appears after sources`, () => {
+      const disclaimerIdx = html.indexOf(DISCLAIMER);
+      const sourcesIdx = html.indexOf('ak-sources');
+      assert.ok(disclaimerIdx > sourcesIdx, 'disclaimer should appear after sources');
     });
   }
 }

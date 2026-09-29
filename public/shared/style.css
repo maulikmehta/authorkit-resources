@@ -553,3 +553,14 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 @media (prefers-reduced-motion: reduce) {
   main a::after, .ak-sidebar a::after, .colophon a::after { transition: none; }
 }
+
+/* Standard disclaimer: last thing in the main column on every page. */
+.ak-disclaimer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule-lt);
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--stone);
+  max-width: 38rem;
+}

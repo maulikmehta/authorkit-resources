@@ -35,8 +35,10 @@ lives in `shared/style.css`:
 - In `main`: `header.hero` (h1 and one sentence), `section.ak-tool` (ruled
   box; `div.ak-tool__body` puts inputs beside the visual when there is room,
   then `table.ak-results`), then `section.ak-section.ak-prose` explainers,
-  then `section.ak-sources` with `data-verified`. `.ak-draft` marks a page
-  whose content is not final.
+  then `section.ak-sources` with `data-verified`. A standard disclaimer
+  paragraph (`p.ak-disclaimer`) is the last child of main on every page; the
+  test enforces the exact text. `.ak-draft` marks a page whose content is not
+  final.
 - The sidebar is `<nav class="related">` with two lists: "AuthorKit
   resources", linking every resource folder in the order of `RESOURCES` in
   `test/pages.test.mjs`, the current page with `aria-current="page"`; and

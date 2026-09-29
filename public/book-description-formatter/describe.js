@@ -3,6 +3,31 @@ export const MAX_CHARS = 4000;
 export const ALLOWED = ['p', 'br', 'b', 'i', 'em', 'u', 'h4', 'h5', 'h6', 'ol', 'ul', 'li'];
 
 /** @returns {{ html: string, chars: number, over: boolean }} chars counted the way KDP counts */
+// Tag stack check: every close matches the latest open, nothing left open.
+function balanced(html) {
+  const stack = [];
+  for (const [, close, name] of html.matchAll(/<(\/?)([a-z]+)>/g)) {
+    if (!close) stack.push(name);
+    else if (stack.pop() !== name) return false;
+  }
+  return stack.length === 0;
+}
+
+// Marks apply within one line only. A span is kept only if it has real text and
+// its tags nest cleanly; otherwise the asterisks stay literal.
+const wrap = (open, close) => (m, inner) =>
+  /[^*\s]/.test(inner) && balanced(inner) ? open + inner + close : m;
+
+function mark(line) {
+  return line
+    .replace(/\*\*\*([^\n]+?)\*\*\*/g, wrap('<b><i>', '</i></b>'))
+    .replace(/\*\*([^\n]+?)\*\*/g, wrap('<b>', '</b>'))
+    .replace(/(^|[^*])\*([^*\s][^*\n]*?)\*(?!\*)/g, (m, pre, inner) => {
+      const r = wrap('<i>', '</i>')(m.slice(pre.length), inner);
+      return r === m.slice(pre.length) ? m : pre + r;
+    });
+}
+
 export function formatDescription(text) {
   if (!text || !text.trim()) {
     return { html: '', chars: 0, over: false };
@@ -18,16 +43,10 @@ export function formatDescription(text) {
   };
   str = str.replace(/[&<>"]/g, c => escapeMap[c]);
   
-  str = str.replace(/\*\*\*(.+?)\*\*\*/g, '<b><i>$1</i></b>');
-  str = str.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-  // An italic span must not contain half of a bold pair, or the tags would overlap.
-  str = str.replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, (m, pre, inner) =>
-    inner.split('<b>').length === inner.split('</b>').length ? `${pre}<i>${inner}</i>` : m);
-  
   const blocks = str.split(/\n{2,}/);
   
   const formattedBlocks = blocks.map(block => {
-    const lines = block.split('\n');
+    const lines = block.split('\n').map(mark);
     if (lines.length > 0 && lines.every(line => line.startsWith('- '))) {
       const items = lines.map(line => `<li>${line.substring(2)}</li>`).join('');
       return `<ul>${items}</ul>`;

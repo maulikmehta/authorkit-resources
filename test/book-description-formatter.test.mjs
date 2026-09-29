@@ -67,3 +67,18 @@ test('chars counts the markup, like KDP does', () => {
   assert.equal(formatDescription('test').chars, '<p>test</p>'.length);
   assert.equal(formatDescription('**test**').chars, '<p><b>test</b></p>'.length);
 });
+
+test('marks never overlap or span blocks: seeded fuzz plus known bad cases', () => {
+  const known = ['*a\n\nb*', '*a\n- b\n- c*', '***aa**&\n\n******', '************', '**a\n\nb**', '- *a\n- b*'];
+  for (const s of known) assert.ok(wellFormed(formatDescription(s).html), JSON.stringify(s));
+  let seed = 12345;
+  const rnd = () => (seed = (seed * 1664525 + 1013904223) >>> 0) / 2 ** 32;
+  const alphabet = ['*', 'a', '\n', '-', ' ', '&', '<'];
+  for (let n = 0; n < 30000; n++) {
+    let s = '';
+    for (let i = 1 + Math.floor(rnd() * 14); i > 0; i--) s += alphabet[Math.floor(rnd() * alphabet.length)];
+    const { html } = formatDescription(s);
+    assert.ok(wellFormed(html), JSON.stringify(s) + ' -> ' + html);
+    for (const t of tags(html)) assert.ok(ALLOWED.includes(t), t);
+  }
+});

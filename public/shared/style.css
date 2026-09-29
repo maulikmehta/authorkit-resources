@@ -599,3 +599,31 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
   .ak-faq[open] .ak-faq-content { animation: ak-fade-in .2s ease; }
 }
 @keyframes ak-fade-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+
+/* ── Text output tools: checkbox rows, ISBN rows, generated text, button ── */
+.ak-field textarea {
+  width: 100%;
+  padding: .5rem .65rem;
+  font-size: .85rem;
+  line-height: 1.5;
+  font-family: var(--font-mono);
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--black);
+  resize: vertical;
+  min-height: 8rem;
+  field-sizing: content;
+}
+.ak-field textarea:focus { outline: 2px solid var(--black); outline-offset: 1px; }
+.ak-field--check label { display: flex; gap: .5rem; align-items: baseline; margin-bottom: 0; }
+.ak-isbn-row { display: grid; grid-template-columns: 8rem minmax(0, 1fr); gap: .5rem; }
+.ak-btn {
+  font: inherit;
+  font-size: .9rem;
+  padding: .5rem 1rem;
+  border: 1px solid var(--black);
+  background: var(--black);
+  color: var(--paper);
+  cursor: pointer;
+}
+.ak-btn:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }

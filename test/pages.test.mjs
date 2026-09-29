@@ -120,6 +120,19 @@ for (const file of pages) {
       assert.ok(disclaimerIdx > sourcesIdx, 'disclaimer should appear after sources');
     });
   }
+
+  test(`${name}: every accordion is class="ak-faq" with a <summary><h2>`, () => {
+    const details = [...html.matchAll(/<details\b([^>]*)>([\s\S]*?)<\/details>/g)];
+    for (const [, attrs, body] of details) {
+      assert.match(attrs, /class="ak-faq"/, `<details${attrs}> missing class="ak-faq"`);
+      assert.match(body, /^\s*<summary><h2>/, `<details> content doesn't open with <summary><h2>`);
+    }
+  });
+
+  test(`${name}: the tool is never collapsed into a <details>`, () => {
+    const details = [...html.matchAll(/<details\b[^>]*>([\s\S]*?)<\/details>/g)];
+    for (const [, body] of details) assert.doesNotMatch(body, /class="ak-tool\b/);
+  });
 }
 
 test('sitemap lists exactly the pages', () => {

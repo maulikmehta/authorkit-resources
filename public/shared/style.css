@@ -564,3 +564,36 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
   color: var(--stone);
   max-width: 38rem;
 }
+
+/* Explainer / FAQ accordions (owner decision 2026-09-29): collapsed by
+   default, one <details class="ak-faq"> per section, matching the ruled-box
+   language the rest of main uses (.ak-tool, .ak-callout). New class — R0b
+   is expected to convert cover-calculator and the shared explainer sections
+   to this pattern separately; this page needed it first, so the minimal
+   rules live here rather than waiting. */
+.ak-faq {
+  border: 1px solid var(--rule);
+  padding: .9rem 1.1rem;
+  margin-top: 1.5rem;
+}
+.ak-faq + .ak-faq { margin-top: .75rem; }
+.ak-faq summary {
+  cursor: pointer;
+  list-style: none;
+}
+.ak-faq summary::-webkit-details-marker { display: none; }
+.ak-faq summary h2 {
+  display: inline-block;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--black);
+}
+.ak-faq summary::after {
+  content: "+";
+  float: right;
+  font-size: 1.2rem;
+  color: var(--stone);
+}
+.ak-faq[open] summary::after { content: "\2212"; }
+.ak-faq-content { padding-top: .9rem; }

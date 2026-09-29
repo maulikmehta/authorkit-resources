@@ -508,9 +508,18 @@ a:hover { text-decoration-thickness: 2px; }
 .ak-draft { border: 1px dashed var(--rule); padding: .7rem 1rem; font-size: .9rem; color: var(--stone); margin: 1rem 0; }
 .ak-draft strong { color: var(--black); }
 
-/* Hub list */
-.ak-index { list-style: none; border-top: 1px solid var(--rule); margin-bottom: 3rem; }
-.ak-index li { padding: .8rem 0; border-bottom: 1px solid var(--rule-lt); }
+/* Hub list: a grid of resource cards. Single column on phones happens by itself. */
+.ak-index {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  column-gap: 2.5rem;
+  row-gap: 1.5rem;
+  border-top: 1px solid var(--rule);
+  padding-top: 1.5rem;
+  margin-bottom: 3rem;
+}
+.ak-index li { display: flex; flex-direction: column; gap: .35rem; }
 .ak-index a { font-weight: 600; }
 .ak-index span { display: block; color: var(--stone); font-size: .9rem; }
 

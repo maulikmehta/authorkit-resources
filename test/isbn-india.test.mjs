@@ -31,3 +31,8 @@ test('barcode link uses the live slug, not the 404 one', () => {
   assert.match(html, /kindlepreneur\.com\/isbn-bar-code-generator\//);
   assert.doesNotMatch(html, /isbn-barcode-generator\/"/);
 });
+
+test('disclosure is plain text, no link, and RRRNA is not claimed to hold questions', () => {
+  assert.match(main, /<p>AuthorKit assigns ISBNs for books it publishes\.<\/p>/);
+  assert.doesNotMatch(main, /are with RRRNA|isbn-mhrd/);
+});

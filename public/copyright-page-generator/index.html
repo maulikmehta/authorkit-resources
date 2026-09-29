@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='163.81 159.67 607.19 703.21'><path fill='%23111' d='M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z'/></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copyright page generator — AuthorKit</title>
+<meta name="description" content="Fill in a short form and get copyright page text for your book to paste in, with the reason for each line and its source written out.">
+<link rel="canonical" href="https://resources.authorkit.pro/copyright-page-generator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="/shared/style.css">
+</head>
+<body>
+<a class="ak-skip" href="#main">Skip to the calculator</a>
+<header class="masthead">
+  <div class="wrap wrap--page masthead__inner">
+    <a class="masthead__brand" href="https://authorkit.pro" aria-label="AuthorKit home">
+      <svg class="masthead__mark" viewBox="163.81 159.67 607.19 703.21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z"/>
+      </svg>
+      <span class="masthead__name">AuthorKit</span>
+    </a>
+    <nav class="masthead__nav" aria-label="Site navigation">
+      <a href="/">Resources</a>
+      <a class="masthead__gh" href="https://github.com/maulikmehta/authorkit-resources"
+         target="_blank" rel="noopener" aria-label="View the source on GitHub">
+        <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor"
+             aria-hidden="true" focusable="false">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+<div class="wrap wrap--page">
+<nav class="ak-crumbs" aria-label="Breadcrumb">
+  <ol><li><a href="https://authorkit.pro">AuthorKit</a></li><li><a href="/">Resources</a></li><li aria-current="page">Copyright page generator</li></ol>
+</nav>
+<div class="ak-page">
+<main class="ak-main" id="main">
+  <header class="hero">
+    <h1>Copyright page generator</h1>
+    <p>Fill in the form and the text for your book's copyright page appears below, ready to copy.</p>
+  </header>
+
+  <section class="ak-tool" aria-label="Generator">
+    <div class="ak-tool__body">
+      <div>
+        <div class="ak-field"><label for="title">Title</label><input id="title" type="text" autocomplete="off"></div>
+        <div class="ak-field"><label for="author">Author</label><input id="author" type="text" autocomplete="off"></div>
+        <div class="ak-field">
+          <label for="holder">Copyright owner (optional)</label>
+          <input id="holder" type="text" autocomplete="off">
+          <span class="ak-hint">Leave blank if you are the owner. Fill in only if someone else, such as a company, owns the copyright.</span>
+        </div>
+        <div class="ak-field">
+          <label for="year">Year of first publication</label>
+          <input id="year" type="text" inputmode="numeric" maxlength="4" autocomplete="off">
+        </div>
+        <div class="ak-field ak-field--check">
+          <label><input id="rights" type="checkbox"> Add "All rights reserved" and a reproduction sentence</label>
+          <span class="ak-hint">Conventional, optional.</span>
+        </div>
+        <div class="ak-field ak-field--check">
+          <label><input id="fiction" type="checkbox"> Add a fiction disclaimer</label>
+          <span class="ak-hint">Conventional, optional.</span>
+        </div>
+      </div>
+      <div>
+        <div class="ak-field"><label for="publisher">Publisher or imprint (optional)</label><input id="publisher" type="text" autocomplete="off"></div>
+        <div class="ak-field"><label for="edition">Edition line (optional)</label><input id="edition" type="text" autocomplete="off" placeholder="e.g. First edition, 2026"></div>
+        <div class="ak-field">
+          <label for="isbn1">ISBN 1 (optional)</label>
+          <div class="ak-isbn-row">
+            <select id="fmt1" aria-label="Format of ISBN 1"><option>Paperback</option><option>Hardcover</option><option>Ebook</option></select>
+            <input id="isbn1" type="text" inputmode="numeric" autocomplete="off" placeholder="978-…">
+          </div>
+        </div>
+        <div class="ak-field">
+          <label for="isbn2">ISBN 2 (optional)</label>
+          <div class="ak-isbn-row">
+            <select id="fmt2" aria-label="Format of ISBN 2"><option>Paperback</option><option selected>Hardcover</option><option>Ebook</option></select>
+            <input id="isbn2" type="text" inputmode="numeric" autocomplete="off" placeholder="978-…">
+          </div>
+        </div>
+        <div class="ak-field">
+          <label for="isbn3">ISBN 3 (optional)</label>
+          <div class="ak-isbn-row">
+            <select id="fmt3" aria-label="Format of ISBN 3"><option>Paperback</option><option>Hardcover</option><option selected>Ebook</option></select>
+            <input id="isbn3" type="text" inputmode="numeric" autocomplete="off" placeholder="978-…">
+          </div>
+          <span class="ak-hint">Each ISBN must be a valid ISBN-13. Hyphens are fine. Each format has its own; see <a href="/isbn-india/">ISBN in India</a>.</span>
+        </div>
+      </div>
+    </div>
+    <div aria-live="polite">
+      <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+    </div>
+    <div class="ak-field" id="result" hidden>
+      <label for="out">Copyright page text</label>
+      <textarea id="out" readonly></textarea>
+      <p><button id="copy" type="button" class="ak-btn">Copy</button> <span class="ak-hint" id="copy-msg" role="status"></span></p>
+    </div>
+    <p id="prompt" class="ak-hint"></p>
+  </section>
+
+  <details class="ak-faq">
+    <summary><h2>Do you need a copyright page or notice?</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p><strong>KDP.</strong> Its Intellectual Property Rights FAQ says: "Amazon does not require you to include a copyright page. If you would like your book to have a copyright page, you must incorporate it into your content file." It also says: "The copyright page included in the book content is not sufficient to prove that you hold the necessary publishing rights."</p>
+      <p><strong>United States.</strong> The U.S. Copyright Office's Circular 3 says: "Copyright notice is optional for unpublished works, foreign works, or works published on or after March 1, 1989." It also says notice "does not require permission from, or registration with, the Copyright Office." The benefit it lists for a published work: "a notice may prevent a defendant in a copyright infringement action from attempting to limit his or her liability for damages or injunctive relief based on an innocent infringement defense."</p>
+      <p><strong>India.</strong> Section 13(1) of the Copyright Act, 1957 says copyright "shall subsist throughout India" in "original literary, dramatic, musical and artistic works". Section 13(2) adds conditions for a published work: it is "first published in India, or where the work is first published outside India, the author is at the date of such publication, or in a case where the author was dead at that date, was at the time of his death, a citizen of India". A notice is not among the conditions in section 13. This page does not say what other Indian rules may apply to a book; ask a qualified professional about your own case.</p>
+    </div>
+  </details>
+
+  <details class="ak-faq">
+    <summary><h2>What each line means</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p><strong>Copyright © year owner.</strong> Circular 3: "A notice consists of three elements that generally appear as a single continuous statement": the copyright symbol ©, the word "copyright" or the abbreviation "copr."; "The year of first publication of the work"; and "The name of the copyright owner." Its example is "© 2017 John Doe". The generator uses the symbol and the word together, with the year and owner you enter; if you leave the owner blank it uses the author.</p>
+      <p><strong>All rights reserved, and the sentence after it.</strong> Conventional, optional. Circular 3's list of the elements of a notice does not include it, and none of the sources below asks for it. The sentence is a common form of words for reuse permission, not one taken from a source.</p>
+      <p><strong>Published by.</strong> Conventional, optional. If you use your own ISBN, KDP's ISBN and imprint help says you "must enter the same details (i.e. book title, author name, publisher) in KDP that you used to register the ISBN". That is about what you enter in KDP; keeping the page consistent with it is sensible.</p>
+      <p><strong>Edition.</strong> Conventional, optional. Whatever you type is printed as you type it.</p>
+      <p><strong>ISBN lines.</strong> KDP: "Each format of your book (paperback vs hardcover) needs its own ISBN. eBooks and low-content books are the only formats where an ISBN is optional." So each format gets its own line here, and a line is left out if you leave the field blank. See <a href="/isbn-india/">ISBN in India</a> for how to get one in India.</p>
+      <p><strong>Fiction disclaimer.</strong> Conventional, optional. No source we checked asks for it.</p>
+    </div>
+  </details>
+
+  <section class="ak-sources">
+    <p>Sources (last verified <span data-verified="2026-09-29">2026-09-29</span>):</p>
+    <ul>
+      <li><a href="https://www.copyright.gov/circs/circ03.pdf">U.S. Copyright Office, Circular 3: Copyright Notice</a>: the three elements of a notice, the © 2017 John Doe example, notice optional for works published on or after March 1, 1989, the innocent infringement benefit</li>
+      <li><a href="https://copyright.gov.in/Documents/CopyrightRules1957.pdf">Copyright Office of India: The Copyright Act, 1957</a>: section 13, works in which copyright subsists and its conditions</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G200672400">KDP: Intellectual Property Rights FAQ</a>: KDP does not require a copyright page; a copyright page does not prove publishing rights</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201834170">KDP: What is an ISBN and Imprint?</a>: one ISBN per format, matching your own ISBN's details</li>
+    </ul>
+  </section>
+  <p class="ak-disclaimer">These tools and guides are for information only. Check requirements with KDP, and ask a qualified professional about tax or legal questions. AuthorKit is not affiliated with Amazon.</p>
+</main>
+
+<aside class="ak-sidebar">
+  <nav class="related" aria-label="Related resources">
+    <h2>AuthorKit resources</h2>
+    <ul>
+      <li><a href="/cover-calculator/">KDP cover calculator</a></li>
+      <li><a href="/novel-word-count/">Novel word count by genre</a></li>
+      <li><a href="/kdp-royalty-calculator/">KDP royalty calculator</a></li>
+      <li><a href="/kdp-from-india/">Publishing on KDP from India</a></li>
+      <li><a href="/isbn-india/">ISBN in India</a></li>
+      <li><a href="/copyright-page-generator/" aria-current="page">Copyright page generator</a></li>
+    </ul>
+    <h2>Official guidance</h2>
+    <ul>
+      <li><a href="https://www.copyright.gov/circs/circ03.pdf">U.S. Copyright Office: Circular 3</a></li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G200672400">KDP: Intellectual property FAQ</a></li>
+    </ul>
+  </nav>
+</aside>
+</div>
+</div>
+<footer class="colophon">
+  <div class="wrap wrap--page colophon__inner">
+    <div class="colophon__brand">
+      <svg class="colophon__mark" viewBox="163.81 159.67 607.19 703.21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z"/>
+      </svg>
+      <span>AuthorKit &middot; Built by <a href="https://maulikmehta.com">Maulik Mehta</a></span>
+    </div>
+    <span class="colophon__legal">
+      &copy; 2026 Swati&rsquo;s Journal &middot;
+      <a href="https://github.com/maulikmehta/authorkit-resources/blob/main/LICENSE">MIT</a>
+    </span>
+  </div>
+</footer>
+<script type="module">
+import { copyrightPage } from '/copyright-page-generator/copyright.js';
+
+const $ = (id) => document.getElementById(id);
+const text = ['title', 'author', 'holder', 'year', 'publisher', 'edition'];
+const inputs = [...text.map($), $('rights'), $('fiction'), ...[1, 2, 3].flatMap((n) => [$(`fmt${n}`), $(`isbn${n}`)])];
+const out = $('out'), err = $('error'), result = $('result'), prompt = $('prompt'), msg = $('copy-msg');
+let touched = false;
+
+$('year').value = String(new Date().getFullYear());
+
+function render() {
+  const r = copyrightPage({
+    title: $('title').value, author: $('author').value, holder: $('holder').value, year: $('year').value,
+    publisher: $('publisher').value, edition: $('edition').value,
+    isbns: [1, 2, 3].map((n) => ({ format: $(`fmt${n}`).value, isbn: $(`isbn${n}`).value })),
+    country: 'IN', rightsReserved: $('rights').checked, fiction: $('fiction').checked,
+  });
+  msg.textContent = '';
+  const untouchedEmpty = !touched && r.error;
+  err.hidden = !r.error || untouchedEmpty;
+  result.hidden = !!r.error;
+  // .ak-hint sets display, which beats [hidden], so set the text instead.
+  prompt.textContent = untouchedEmpty ? 'Enter a title and author to see the text.' : '';
+  if (r.error) { err.textContent = r.error; out.value = ''; return; }
+  out.value = r.lines.join('\n');
+}
+
+for (const el of inputs) {
+  el.addEventListener('input', () => { touched = true; render(); });
+  el.addEventListener('change', () => { touched = true; render(); });
+}
+
+$('copy').addEventListener('click', () => {
+  const fail = () => { out.select(); msg.textContent = 'Select the text and copy it.'; };
+  if (!navigator.clipboard) return fail();
+  navigator.clipboard.writeText(out.value).then(() => { msg.textContent = 'Copied.'; }, fail);
+});
+
+render();
+</script>
+</body>
+</html>

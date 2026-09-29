@@ -627,3 +627,6 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
   cursor: pointer;
 }
 .ak-btn:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+
+/* Sandboxed preview frame (book description formatter) */
+.ak-preview { display: block; width: 100%; height: 18rem; border: 1px solid var(--rule); background: #fff; }

@@ -27,3 +27,7 @@ test('every external source in the sources list is https', () => {
   assert.ok(links.length >= 4, 'expected at least four sources');
   for (const l of links) assert.match(l, /^https:\/\//);
 });
+
+test('discloses that AuthorKit offers self-publishing services', () => {
+  assert.match(html, /AuthorKit, which runs this site, offers self-publishing services\./);
+});

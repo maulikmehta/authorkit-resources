@@ -231,8 +231,14 @@ a:hover { text-decoration-thickness: 2px; }
 
 @media (max-width: 600px) {
   .ak-grid-2, .ak-grid-3 { grid-template-columns: 1fr; }
-  .masthead__nav { display: none; }
+  .masthead__nav { gap: 1rem; font-size: .85rem; white-space: nowrap; }
+  .masthead__nav .masthead__gh { display: none; }
   .colophon__inner { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 380px) {
+  .masthead__brand { gap: .5rem; }
+  .masthead__name { font-size: 1.15rem; }
 }
 
 /* ── Results table ──────────────────────────────────────── */

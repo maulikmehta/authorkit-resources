@@ -33,7 +33,7 @@
   <section class="ak-tool" aria-label="Calculator">
     <div class="ak-tool__body">
       <div>
-        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink"></select></div>
+        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
         <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
         <div class="ak-field">
           <label for="pages" id="pages-label">Page count</label>
@@ -131,7 +131,16 @@ const NS = 'http://www.w3.org/2000/svg';
 const MARGIN = 0.45; // room around the bleed for crop marks, inches
 const short = (x) => String(+x.toFixed(3));
 
-for (const i of INK_ALL) ink.add(new Option(INK_LABELS[i], i));
+// Short option text keeps the paper visible at 390px; KDP's own wording shows under the select.
+const SHORT = {
+  'bw-cream': 'Cream paper, black & white',
+  'bw-white': 'White paper, black & white',
+  'bw-groundwood': 'Groundwood paper, black & white',
+  'standard-color': 'White paper, standard color',
+  'premium-color': 'White paper, premium color',
+};
+for (const i of INK_ALL) ink.add(new Option(SHORT[i], i));
+const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
 
 function fillTrims() {
   const keep = pickTrim(ink.value, trim.value);
@@ -225,10 +234,11 @@ function fillExample() {
   $('example').tBodies[0].replaceChildren(...rows);
 }
 
-ink.addEventListener('change', () => { fillTrims(); setLimits(); render(); });
+ink.addEventListener('change', () => { showKdpLabel(); fillTrims(); setLimits(); render(); });
 trim.addEventListener('change', () => { setLimits(); render(); });
 pages.addEventListener('input', () => { range.value = pages.value; render(); });
 range.addEventListener('input', () => { pages.value = range.value; render(); });
+showKdpLabel();
 fillTrims();
 trim.value = '6x9';
 setLimits();

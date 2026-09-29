@@ -444,7 +444,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 .ak-sidebar { font-size: .85rem; }
 .ak-sidebar h2 { font-family: var(--font-body); font-size: .85rem; font-weight: 600; border-bottom: 1px solid var(--rule); padding-bottom: .35rem; margin-bottom: .5rem; }
-.ak-sidebar h2 + ul + h2, .ak-sidebar ul + h2 { margin-top: 1.5rem; }
+.ak-sidebar ul + h2 { margin-top: 1.5rem; }
 .ak-sidebar ul { list-style: none; }
 .ak-sidebar li { padding: .3rem 0; border-bottom: 1px solid var(--rule-lt); }
 .ak-sidebar a { color: var(--stone); text-decoration: none; }
@@ -452,12 +452,14 @@ a:hover { text-decoration-thickness: 2px; }
 .ak-sidebar a[aria-current="page"] { color: var(--black); font-weight: 600; }
 
 /* The tool: a ruled box, inputs beside the visual when there is room. */
-.ak-tool { border: 1px solid var(--rule); padding: clamp(1rem, 3vw, 1.5rem); container-type: inline-size; }
+.ak-tool { border: 1px solid var(--rule); padding: clamp(.6rem, 3vw, 1.5rem); container-type: inline-size; }
 .ak-tool__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
 @container (min-width: 34rem) {
-  .ak-tool__body { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); align-items: start; }
+  .ak-tool__body { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); align-items: start; }
 }
 .ak-tool .ak-results { margin: 1.5rem 0 0; }
+.ak-tool .ak-field select { font-size: .85rem; }
+@container (max-width: 20rem) { .ak-tool .ak-field select { font-size: .8rem; padding-left: .4rem; } }
 
 .ak-field input[type="range"] { width: 100%; margin-top: .5rem; accent-color: var(--black); }
 

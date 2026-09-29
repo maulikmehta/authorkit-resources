@@ -181,10 +181,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 .ak-field label {
   display: block;
-  font-size: .72rem;
-  font-weight: 600;
-  letter-spacing: .09em;
-  text-transform: uppercase;
+  font-size: .85rem;
+  font-weight: 500;
   color: var(--stone);
   margin-bottom: .35rem;
 }
@@ -249,14 +247,15 @@ a:hover { text-decoration-thickness: 2px; }
 
 .ak-results th {
   font-family: var(--font-body);
-  font-weight: 600;
-  font-size: .72rem;
-  letter-spacing: .09em;
-  text-transform: uppercase;
+  font-weight: 500;
+  font-size: .9rem;
   color: var(--stone);
+}
+.ak-results thead th {
   border-bottom-color: var(--rule);
   padding-bottom: .4rem;
 }
+.ak-results th[scope="row"] { width: 40%; padding-right: 1rem; }
 
 .ak-val {
   font-family: var(--font-mono);
@@ -264,6 +263,7 @@ a:hover { text-decoration-thickness: 2px; }
   font-variant-numeric: tabular-nums;
 }
 
+.ak-highlight th,
 .ak-highlight td {
   border-top: 1px solid var(--rule);
   border-bottom-color: var(--rule);
@@ -281,12 +281,11 @@ a:hover { text-decoration-thickness: 2px; }
 }
 
 .ak-section h2 {
-  font-family: var(--font-body);
-  font-size: .76rem;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--stone);
+  line-height: 1.25;
+  color: var(--black);
   margin-bottom: .9rem;
 }
 
@@ -318,12 +317,11 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ── Prose (guide pages) ────────────────────────────────── */
 .ak-prose h2 {
-  font-family: var(--font-body);
-  font-size: .76rem;
+  font-family: var(--font-head);
+  font-size: 1.25rem;
   font-weight: 600;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  color: var(--stone);
+  line-height: 1.25;
+  color: var(--black);
   border-bottom: 1px solid var(--rule);
   padding-bottom: .45rem;
   margin-top: 2.2rem;
@@ -395,18 +393,10 @@ a:hover { text-decoration-thickness: 2px; }
   text-decoration: underline;
   text-decoration-color: var(--rule);
   text-underline-offset: 2px;
-  transition: all 0.2s;
 }
 .ak-sources a:hover {
   color: var(--black);
   text-decoration-color: var(--black);
-}
-.ak-sources a::after {
-  content: "↗";
-  font-size: 0.85em;
-  opacity: 0.7;
-  margin-left: 0.2em;
-  display: inline-block;
 }
 
 /* ── Colophon / footer ──────────────────────────────────── */
@@ -428,6 +418,78 @@ a:hover { text-decoration-thickness: 2px; }
 
 .colophon a { color: var(--stone); text-underline-offset: 2px; }
 .colophon a:hover { color: var(--black); }
+
+/* ── Resource page layout ────────────────────────────────
+ * .wrap--page > .ak-crumbs, then .ak-page = main.ak-main + aside.ak-sidebar.
+ * Wide: two columns, sidebar sticky. Narrow: one column, sidebar after main. */
+.wrap--page { max-width: 64rem; width: 100%; } /* width: body is a flex column, so auto margins would shrink-wrap it */
+
+:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+
+.ak-skip { position: absolute; left: -999px; }
+.ak-skip:focus { left: var(--pad); top: .5rem; z-index: 30; background: var(--paper); padding: .3rem .6rem; }
+
+.ak-crumbs { font-size: .8rem; color: var(--stone); padding-top: 1rem; }
+.ak-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: .1rem .4rem; }
+.ak-crumbs li + li::before { content: "›"; margin-right: .4rem; }
+.ak-crumbs a { color: var(--stone); }
+
+.ak-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-bottom: 3rem; }
+.ak-main .hero p, .ak-main .ak-prose { max-width: var(--measure); }
+
+@media (min-width: 60rem) {
+  .ak-page { grid-template-columns: minmax(0, 1fr) 16rem; }
+  .ak-sidebar { position: sticky; top: 5.2rem; align-self: start; padding-top: clamp(2.2rem, 5vw, 3.6rem); }
+}
+
+.ak-sidebar { font-size: .85rem; }
+.ak-sidebar h2 { font-family: var(--font-body); font-size: .85rem; font-weight: 600; border-bottom: 1px solid var(--rule); padding-bottom: .35rem; margin-bottom: .5rem; }
+.ak-sidebar h2 + ul + h2, .ak-sidebar ul + h2 { margin-top: 1.5rem; }
+.ak-sidebar ul { list-style: none; }
+.ak-sidebar li { padding: .3rem 0; border-bottom: 1px solid var(--rule-lt); }
+.ak-sidebar a { color: var(--stone); text-decoration: none; }
+.ak-sidebar a:hover { color: var(--black); text-decoration: underline; }
+.ak-sidebar a[aria-current="page"] { color: var(--black); font-weight: 600; }
+
+/* The tool: a ruled box, inputs beside the visual when there is room. */
+.ak-tool { border: 1px solid var(--rule); padding: clamp(1rem, 3vw, 1.5rem); container-type: inline-size; }
+.ak-tool__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+@container (min-width: 34rem) {
+  .ak-tool__body { grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); align-items: start; }
+}
+.ak-tool .ak-results { margin: 1.5rem 0 0; }
+
+.ak-field input[type="range"] { width: 100%; margin-top: .5rem; accent-color: var(--black); }
+
+.ak-headline span { white-space: nowrap; }
+.ak-headline { font-family: var(--font-mono); font-size: clamp(.85rem, 3.5vw, 1.05rem); font-variant-numeric: tabular-nums; margin-top: .6rem; }
+
+/* To-scale diagrams: drawn in currentColor on --paper, so dark mode just works. */
+.ak-proof { display: block; width: 100%; height: auto; color: var(--black); }
+.ak-proof .line { fill: none; stroke: currentColor; stroke-width: 1; vector-effect: non-scaling-stroke; }
+.ak-proof .fold { stroke-dasharray: 4 3; }
+.ak-proof .faint { stroke: var(--stone); }
+.ak-proof .paper { fill: var(--paper); }
+.ak-proof text { fill: currentColor; font-family: var(--font-body); }
+.ak-proof .small { fill: var(--stone); }
+
+/* The section rule already separates; no second rule under the heading. */
+.ak-section.ak-prose h2 { border-bottom: 0; padding-bottom: 0; margin-top: 0; }
+.ak-prose .ak-steps { padding-left: 0; color: inherit; }
+
+/* Draft pages: a calm notice that the content is not final. */
+.ak-draft { border: 1px dashed var(--rule); padding: .7rem 1rem; font-size: .9rem; color: var(--stone); margin: 1rem 0; }
+.ak-draft strong { color: var(--black); }
+
+/* Hub list */
+.ak-index { list-style: none; border-top: 1px solid var(--rule); margin-bottom: 3rem; }
+.ak-index li { padding: .8rem 0; border-bottom: 1px solid var(--rule-lt); }
+.ak-index a { font-weight: 600; }
+.ak-index span { display: block; color: var(--stone); font-size: .9rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
 
 /* ── Utility ────────────────────────────────────────────── */
 .ak-sr-only {

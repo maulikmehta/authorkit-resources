@@ -6,33 +6,51 @@
 <title>KDP Cover Calculator (inches and mm) — AuthorKit</title>
 <meta name="description" content="Full KDP paperback cover size, spine width and interior gutter for your trim, paper and page count, in inches and millimetres. Every number cites KDP.">
 <link rel="canonical" href="https://resources.authorkit.pro/cover-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap">
 <link rel="stylesheet" href="/shared/style.css">
 </head>
 <body>
+<a class="ak-skip" href="#main">Skip to the calculator</a>
 <header class="masthead">
-  <div class="wrap wrap--wide masthead__inner">
-    <a class="masthead__brand" href="https://authorkit.pro">AuthorKit</a>
-    <nav class="masthead__nav" aria-label="Resources"><a href="/">All resources</a></nav>
+  <div class="wrap wrap--page masthead__inner">
+    <a class="masthead__brand" href="https://authorkit.pro"><span class="masthead__name">AuthorKit</span></a>
+    <nav class="masthead__nav" aria-label="Site"><a href="/">Resources</a></nav>
   </div>
 </header>
-<main>
-<div class="wrap wrap--wide">
+<div class="wrap wrap--page">
+<nav class="ak-crumbs" aria-label="Breadcrumb">
+  <ol><li><a href="https://authorkit.pro">AuthorKit</a></li><li><a href="/">Resources</a></li><li aria-current="page">KDP cover calculator</li></ol>
+</nav>
+<div class="ak-page">
+<main class="ak-main" id="main">
   <header class="hero">
     <h1>KDP cover calculator</h1>
-    <p class="ak-prose">A KDP paperback cover is one PDF: back, spine and front, with 0.125″ of bleed on every outside edge. Its size depends on your trim, your paper and your page count. Pick them below. The interior margins for the same page count are shown too, so the cover and the inside of the book agree.</p>
+    <p>The full size of your KDP paperback cover, drawn to scale, for your paper, trim and page count.</p>
   </header>
 
-  <section class="ak-section">
-    <div class="ak-grid-2">
-      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink"></select></div>
-      <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
-      <div class="ak-field"><label for="pages">Page count</label><input id="pages" type="number" inputmode="numeric" value="300"></div>
+  <section class="ak-tool" aria-label="Calculator">
+    <div class="ak-tool__body">
+      <div>
+        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink"></select></div>
+        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
+        <div class="ak-field">
+          <label for="pages" id="pages-label">Page count</label>
+          <input id="pages" type="number" inputmode="numeric" value="300">
+          <input id="pages-range" type="range" step="2" value="300" aria-labelledby="pages-label">
+          <span class="ak-hint" id="limits"></span>
+        </div>
+      </div>
+      <div aria-live="polite">
+        <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+        <div id="proof-wrap">
+          <svg id="proof" class="ak-proof" role="img" aria-label="Full cover"></svg>
+          <p class="ak-headline" id="headline"></p>
+        </div>
+        <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
+      </div>
     </div>
-  </section>
-
-  <section class="ak-section" aria-live="polite">
-    <p id="error" class="ak-callout ak-callout-warn" hidden></p>
-    <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
     <table id="results" class="ak-results">
       <tbody>
         <tr class="ak-highlight"><th scope="row">Full cover, width</th><td class="ak-val" id="wrap-w"></td></tr>
@@ -49,39 +67,69 @@
 
   <section class="ak-section ak-prose">
     <h2>How the full cover is measured</h2>
-    <p>Width = bleed + back + spine + front + bleed. Height = bleed + trim height + bleed. KDP prints even page counts, so an odd count is rounded up before the spine is measured. Spine text is allowed only on books with more than 79 pages.</p>
+    <p>A KDP paperback cover is one PDF: back, spine and front, with 0.125″ of bleed on every outside edge. Width = bleed + back + spine + front + bleed. Height = bleed + trim height + bleed. The spine grows with the page count and the paper: cream paper is thicker than white.</p>
+    <p>KDP prints even page counts, so an odd count is rounded up before the spine is measured. Spine text is allowed only on books with more than 79 pages. In the drawing, the hatched band is the bleed that gets cut off, the solid line is the trim, the dashed lines are the spine folds, and the box on the back is the area KDP keeps clear for the barcode, 0.25″ from the spine and the bottom trim.</p>
   </section>
 
-  <nav class="related" aria-label="Related resources">
-    <h2>Related</h2>
-    <ul>
-      <li><a href="https://kdp.amazon.com/cover-calculator">KDP's cover calculator</a> — downloads a cover template to design on</li>
-      <li><a href="https://kdp.amazon.com/royalty-calculator">KDP's printing cost and royalty calculator</a></li>
-      <li><a href="/">All AuthorKit resources</a></li>
-    </ul>
-  </nav>
+  <section class="ak-section ak-prose">
+    <h2>Worked example: a 6 × 9 in paperback</h2>
+    <p>The same trim at three page counts, on cream and on white paper. The full width changes only by the spine.</p>
+    <table class="ak-results" id="example">
+      <thead><tr><th scope="col">Pages</th><th scope="col">Paper</th><th scope="col">Spine (in)</th><th scope="col">Full cover width (in)</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section class="ak-section ak-prose">
+    <h2>How to use it</h2>
+    <ol class="ak-steps">
+      <li><strong>Match your KDP setup.</strong> Choose the same paper and trim you picked on KDP's paperback content page.</li>
+      <li><strong>Enter the final page count.</strong> Use the page count of your finished interior PDF, not a draft.</li>
+      <li><strong>Make your cover canvas the full cover size.</strong> Put the back on the left and the front on the right, and let background art run into the bleed.</li>
+      <li><strong>Check against KDP's template.</strong> Before you upload, download KDP's own template for the same settings and compare.</li>
+    </ol>
+    <p>If the page count changes, the spine changes, and so does the cover. The interior gutter in the results is the inside margin for the same page count.</p>
+  </section>
 
   <section class="ak-sources">
     <p>Sources (last verified <span data-verified="2026-09-28">2026-09-28</span>):</p>
     <ul>
-      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201953020">KDP: Create a paperback cover</a> — full-cover size, spine text</li>
-      <li><a href="https://kdp.amazon.com/en_US/help/topic/G5HDYGP4BXLX4RUW">KDP: Barcodes</a> — barcode area (2″ × 1.2″)</li>
-      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201857950">KDP: Paperback submission guidelines</a> — spine width per page, page counts</li>
-      <li><a href="https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6">KDP: Trim, bleed and margins</a> — trims, page limits, gutter</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201953020">KDP: Create a paperback cover</a>: full-cover size, spine text</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G5HDYGP4BXLX4RUW">KDP: Barcodes</a>: barcode area (2″ × 1.2″), at least 0.25″ from the spine and trim</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201857950">KDP: Paperback submission guidelines</a>: spine width per page, page counts</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6">KDP: Trim, bleed and margins</a>: trims, page limits, gutter</li>
     </ul>
     <p>These are the same numbers AuthorKit Studio uses.</p>
   </section>
-</div>
 </main>
+
+<aside class="ak-sidebar">
+  <nav class="related" aria-label="Related resources">
+    <h2>AuthorKit resources</h2>
+    <ul>
+      <li><a href="/cover-calculator/" aria-current="page">KDP cover calculator</a></li>
+    </ul>
+    <h2>KDP's own tools</h2>
+    <ul>
+      <li><a href="https://kdp.amazon.com/cover-calculator">KDP cover calculator</a></li>
+      <li><a href="https://kdp.amazon.com/royalty-calculator">KDP printing cost and royalty calculator</a></li>
+    </ul>
+  </nav>
+</aside>
+</div>
+</div>
 <footer class="colophon">
-  <div class="wrap colophon__inner"><span>© 2026 AuthorKit · Not affiliated with Amazon</span></div>
+  <div class="wrap wrap--page colophon__inner"><span>© 2026 AuthorKit. Not affiliated with Amazon.</span></div>
 </footer>
 <script type="module">
-import { INK_ALL, INK_LABELS, trimsFor, trimId } from '/shared/kdp.js';
-import { coverResult, pickTrim, fmt } from '/cover-calculator/cover.js';
+import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits } from '/shared/kdp.js';
+import { coverResult, pickTrim, fmt, proofGeometry } from '/cover-calculator/cover.js';
 
 const $ = (id) => document.getElementById(id);
-const ink = $('ink'), trim = $('trim'), pages = $('pages');
+const ink = $('ink'), trim = $('trim'), pages = $('pages'), range = $('pages-range');
+const NS = 'http://www.w3.org/2000/svg';
+const MARGIN = 0.45; // room around the bleed for crop marks, inches
+const short = (x) => String(+x.toFixed(3));
 
 for (const i of INK_ALL) ink.add(new Option(INK_LABELS[i], i));
 
@@ -91,15 +139,71 @@ function fillTrims() {
   trim.value = keep;
 }
 
+function setLimits() {
+  const [min, max] = pageLimits(ink.value, parseTrim(trim.value));
+  for (const el of [range, pages]) { el.min = min; el.max = max; }
+  range.value = pages.value; // the browser clamps the thumb; the typed number stays as typed
+  $('limits').textContent = `KDP prints ${min} to ${max} pages for this paper and trim.`;
+}
+
+function el(name, attrs, text) {
+  const n = document.createElementNS(NS, name);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (text) n.textContent = text;
+  return n;
+}
+const rect = ({ x, y, w, h }, cls) => el('rect', { x, y, width: w, height: h, class: cls });
+const line = (x1, y1, x2, y2, cls = 'line') => el('line', { x1, y1, x2, y2, class: cls });
+
+function drawProof(r) {
+  const g = proofGeometry(r);
+  const [W, H] = g.viewBox, t = g.trimBox, s = g.spine;
+  const svg = $('proof');
+  svg.setAttribute('viewBox', `${-MARGIN} ${-MARGIN} ${W + 2 * MARGIN} ${H + 2 * MARGIN}`);
+  svg.setAttribute('aria-label',
+    `Full cover ${short(W)} by ${short(H)} inches: back, spine ${short(r.spine)} inches, front`);
+  const art = el('g', { 'aria-hidden': 'true' });
+  const hatch = el('pattern', { id: 'bleed-hatch', width: 0.1, height: 0.1, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' });
+  hatch.append(el('line', { x1: 0, y1: 0, x2: 0, y2: 0.1, stroke: 'currentColor', 'stroke-width': 0.012, opacity: 0.55 }));
+  const defs = el('defs', {}); defs.append(hatch);
+  art.append(defs, el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#bleed-hatch)' }));
+  art.append(rect({ x: 0, y: 0, w: W, h: H }, 'line faint'), rect(t, 'paper'), rect(t, 'line'));
+  art.append(line(s.x, 0, s.x, H, 'line fold'), line(s.x + s.w, 0, s.x + s.w, H, 'line fold'));
+  // Crop marks: extend the trim lines out past the bleed at each corner.
+  const gap = 0.06, len = MARGIN - 0.1;
+  for (const x of [t.x, t.x + t.w]) for (const y of [0 - gap, H + gap]) {
+    art.append(line(x, y, x, y + (y < 0 ? -len : len)));
+  }
+  for (const y of [t.y, t.y + t.h]) for (const x of [0 - gap, W + gap]) {
+    art.append(line(x, y, x + (x < 0 ? -len : len), y));
+  }
+  art.append(rect(g.barcode, 'line'));
+  const size = Math.min(0.55, g.back.w / 9);
+  const mid = (b) => [b.x + b.w / 2, b.y + b.h / 2];
+  const label = (b, text) => { const [x, y] = mid(b); return el('text', { x, y, 'font-size': size, 'text-anchor': 'middle', 'dominant-baseline': 'middle' }, text); };
+  art.append(label(g.back, 'Back'), label(g.front, 'Front'));
+  art.append(el('text', { x: g.barcode.x + g.barcode.w / 2, y: g.barcode.y + g.barcode.h / 2, 'font-size': size * 0.6, 'text-anchor': 'middle', 'dominant-baseline': 'middle', class: 'small' }, 'Barcode'));
+  if (s.w >= size * 1.2) {
+    const [x, y] = mid(s);
+    art.append(el('text', { x, y, 'font-size': Math.min(size, s.w * 0.6), 'text-anchor': 'middle', 'dominant-baseline': 'middle', transform: `rotate(-90 ${x} ${y})` }, 'Spine'));
+  }
+  svg.replaceChildren(art);
+}
+
 function render() {
   const r = coverResult(ink.value, trim.value, pages.value);
   $('error').hidden = !r.error;
   $('results').hidden = !!r.error;
+  $('proof-wrap').hidden = !!r.error;
   $('rounded').hidden = !!r.error || !r.rounded;
   if (r.error) { $('error').textContent = r.error; return; }
   $('rounded').textContent = `KDP prints ${r.pages} pages (odd counts are rounded up), so the spine is measured for ${r.pages}.`;
-  $('wrap-w').textContent = fmt(r.wrap[0]);
-  $('wrap-h').textContent = fmt(r.wrap[1]);
+  drawProof(r);
+  const [w, h] = r.wrap;
+  const part = (text) => Object.assign(document.createElement('span'), { textContent: text });
+  $('headline').replaceChildren(part(`${w.toFixed(3)} × ${h.toFixed(3)} in`), ' ', part(`(${(w * 25.4).toFixed(1)} × ${(h * 25.4).toFixed(1)} mm)`));
+  $('wrap-w').textContent = fmt(w);
+  $('wrap-h').textContent = fmt(h);
   $('spine').textContent = fmt(r.spine);
   $('panel').textContent = `${fmt(r.trim[0])} × ${fmt(r.trim[1])}`;
   $('spine-text').textContent = r.spineText ? 'Allowed (more than 79 pages)' : 'Not allowed (79 pages or fewer)';
@@ -108,11 +212,27 @@ function render() {
   $('outside').textContent = `${fmt(r.outside[0])} without bleed, ${fmt(r.outside[1])} with bleed`;
 }
 
-ink.addEventListener('change', () => { fillTrims(); render(); });
-trim.addEventListener('change', render);
-pages.addEventListener('input', render);
+function fillExample() {
+  const rows = [];
+  for (const n of [100, 200, 300]) for (const [id, paper] of [['bw-cream', 'Cream'], ['bw-white', 'White']]) {
+    const r = coverResult(id, '6x9', String(n));
+    const tr = document.createElement('tr');
+    for (const [text, cls] of [[n, ''], [paper, ''], [r.spine.toFixed(3), 'ak-val'], [r.wrap[0].toFixed(3), 'ak-val']]) {
+      const td = tr.insertCell(); td.textContent = text; if (cls) td.className = cls;
+    }
+    rows.push(tr);
+  }
+  $('example').tBodies[0].replaceChildren(...rows);
+}
+
+ink.addEventListener('change', () => { fillTrims(); setLimits(); render(); });
+trim.addEventListener('change', () => { setLimits(); render(); });
+pages.addEventListener('input', () => { range.value = pages.value; render(); });
+range.addEventListener('input', () => { pages.value = range.value; render(); });
 fillTrims();
 trim.value = '6x9';
+setLimits();
+fillExample();
 render();
 </script>
 </body>

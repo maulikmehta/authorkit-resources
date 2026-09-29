@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { coverResult, pickTrim, fmt } from '../public/cover-calculator/cover.js';
+import { coverResult, pickTrim, fmt, proofGeometry } from '../public/cover-calculator/cover.js';
 
 test('6x9 white 300 pages: full wrap, spine, interior margins', () => {
   const r = coverResult('bw-white', '6x9', '300');
@@ -46,4 +46,21 @@ test('switching to standard colour drops the A4 trim it does not offer', () => {
 
 test('fmt shows inches and millimetres', () => {
   assert.equal(fmt(12.9256), '12.926″ (328.3 mm)');
+});
+
+test('proofGeometry: 6x9 white 300 pages, in inches, y down', () => {
+  const g = proofGeometry(coverResult('bw-white', '6x9', '300'));
+  const near = (a, b, what) => assert.ok(Math.abs(a - b) < 1e-9, `${what}: ${a} != ${b}`);
+  const box = (b, [x, y, w, h], what) => {
+    near(b.x, x, `${what}.x`); near(b.y, y, `${what}.y`); near(b.w, w, `${what}.w`); near(b.h, h, `${what}.h`);
+  };
+  near(g.viewBox[0], 12.9256, 'viewBox w'); near(g.viewBox[1], 9.25, 'viewBox h');
+  assert.equal(g.bleed, 0.125);
+  box(g.back, [0.125, 0.125, 6, 9], 'back');
+  box(g.spine, [6.125, 0.125, 0.6756, 9], 'spine');
+  box(g.front, [6.8006, 0.125, 6, 9], 'front');
+  box(g.trimBox, [0.125, 0.125, 12.6756, 9], 'trimBox');
+  near(g.barcode.w, 2, 'barcode.w'); near(g.barcode.h, 1.2, 'barcode.h');
+  near(g.barcode.x + g.barcode.w, 6.125 - 0.25, 'barcode right edge');
+  near(g.barcode.y + g.barcode.h, 9.25 - 0.125 - 0.25, 'barcode bottom edge');
 });

@@ -28,6 +28,19 @@ function target(fromFile, ref) {
 }
 
 // The tool folder a file belongs to ('' for the hub and shared files).
+// Sidebar order on every page (README "Page skeleton"). A folder under public/
+// with an index.html must be listed here and linked from every page's sidebar.
+const RESOURCES = [
+  'cover-calculator', 'novel-word-count', 'kdp-royalty-calculator', 'kdp-from-india',
+  'isbn-india', 'copyright-page-generator', 'kdp-preflight-checklist',
+  'book-design-templates', 'book-description-formatter', 'isbn-barcode-generator',
+];
+const existing = readdirSync(ROOT).filter((n) => n !== 'shared' && existsSync(join(ROOT, n, 'index.html')));
+
+test('every resource folder is in the sidebar list', () => {
+  for (const f of existing) assert.ok(RESOURCES.includes(f), `${f} missing from RESOURCES`);
+});
+
 const toolOf = (file) => {
   const first = relative(ROOT, file).split(sep)[0];
   return first.includes('.') || first === 'shared' ? '' : first;
@@ -75,6 +88,20 @@ for (const file of pages) {
       const related = html.match(/<nav class="related"[^>]*>([\s\S]*?)<\/nav>/);
       assert.ok(related, 'missing <nav class="related">');
       assert.match(related[1], /<a href="[^"]+"/);
+    });
+
+    test(`${name}: sidebar links every resource in order, marks its own`, () => {
+      const aside = html.match(/<aside\b[^>]*>([\s\S]*?)<\/aside>/);
+      assert.ok(aside, 'missing <aside> sidebar');
+      const nav = aside[1].match(/<nav class="related"[^>]*>([\s\S]*?)<\/nav>/);
+      assert.ok(nav, 'sidebar has no <nav class="related">');
+      const links = [...nav[1].matchAll(/<a href="\/([^"/]+)\/"([^>]*)>/g)];
+      const want = RESOURCES.filter((f) => existing.includes(f));
+      assert.deepEqual(links.map((m) => m[1]), want);
+      const own = toolOf(file);
+      for (const [, f, attrs] of links) {
+        assert.equal(/aria-current="page"/.test(attrs), f === own, `aria-current on ${f}`);
+      }
     });
   }
 }

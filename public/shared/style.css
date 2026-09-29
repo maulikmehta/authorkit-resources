@@ -630,3 +630,4 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 
 /* Sandboxed preview frame (book description formatter) */
 .ak-preview { display: block; width: 100%; height: 18rem; border: 1px solid var(--rule); background: #fff; }
+.ak-field textarea.ak-tall { min-height: 18rem; }

@@ -118,14 +118,19 @@ a:hover { text-decoration-thickness: 2px; }
   align-items: center;
   gap: 1.5rem;
   font-family: var(--font-body);
-  font-size: .85rem;
+  font-size: .95rem;
 }
 
 .masthead__nav a {
   color: var(--stone);
   text-decoration: none;
+  /* Icon-only: flex removes the inline-image baseline gap, and the padding
+     keeps the tap target near 44px without enlarging the mark. */
+  display: flex;
+  align-items: center;
   padding: .35rem;
   margin: -.35rem;
+  border-radius: 4px;
 }
 .masthead__nav a:hover { color: var(--black); }
 .masthead__nav a[aria-current="page"] {
@@ -226,7 +231,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 @media (max-width: 600px) {
   .ak-grid-2, .ak-grid-3 { grid-template-columns: 1fr; }
-  .masthead__nav { gap: .75rem; font-size: .8rem; }
+  .masthead__nav { display: none; }
+  .colophon__inner { flex-direction: column; align-items: flex-start; }
 }
 
 /* ── Results table ──────────────────────────────────────── */
@@ -414,6 +420,21 @@ a:hover { text-decoration-thickness: 2px; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: .75rem;
+}
+
+.colophon__brand {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+}
+
+.colophon__legal { white-space: nowrap; }
+
+.colophon__mark {
+  width: 13px;
+  height: 15px;
+  fill: var(--stone);
+  flex-shrink: 0;
 }
 
 .colophon a { color: var(--stone); text-underline-offset: 2px; }

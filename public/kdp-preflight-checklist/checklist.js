@@ -5,7 +5,7 @@ const BLEED = 'https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6'; // Tri
 const FIX = 'https://kdp.amazon.com/en_US/help/topic/G201834260'; // Fix paperback formatting issues
 
 /**
- * One item per Check in authorkit-studio's preflight.rs, plus KDP-only extras (check: null).
+ * One item per preflight check we mirror, plus KDP-only extras (check: null).
  * `quote` is KDP's own wording, fetched 2026-09-29 from `source`; numbers appear only there.
  * @type {{ id: string, check: string | null, title: string, detail: string, quote: string, source: string, sourceTitle: string }[]}
  */
@@ -27,14 +27,14 @@ export const ITEMS = [
   {
     id: 'safe-area', check: 'safe-area',
     title: 'Text stays inside the margins',
-    detail: 'Nothing you need to keep sits closer to the outside edges, or to the spine, than the margins in the table above.',
+    detail: 'Nothing you need to keep sits closer to the outside edges, or to the spine, than the margins for your page count (shown above once you enter it).',
     quote: 'The top, bottom, and outside margins must be a minimum of 0.25 inches for books without bleed and 0.375 inches (9.6mm) for books with bleed. The inside margin size depends on the page count',
     source: `${BLEED}#margins`, sourceTitle: 'Trim, bleed and margins',
   },
   {
     id: 'missing-image', check: 'missing-image',
     title: 'Images are embedded in the file',
-    detail: 'Open the PDF and page through it: every picture shows, none is a blank box or a missing-link mark.',
+    detail: 'Every image is embedded in your file, not linked. Page through the PDF and check each picture appears.',
     quote: 'Embed all fonts and images in your native file prior to submission.',
     source: `${SUB}#filespec`, sourceTitle: 'Paperback submission guidelines',
   },
@@ -54,10 +54,10 @@ export const ITEMS = [
   },
   {
     id: 'bleed-unused', check: 'bleed-unused',
-    title: 'Bleed only if art reaches the page edge',
-    detail: 'If no image or background runs to the edge of any page, set the page size to the plain trim size, not the bleed size.',
+    title: 'Bleed if art reaches the page edge',
+    detail: 'If any image, background or illustration should reach the edge of a page, the whole file is sized for bleed.',
     quote: 'You should include bleed in your interior file if you have any images, backgrounds, or illustrations in your book that you want to reach the edge of the page.',
-    source: `${BLEED}#bleed`, sourceTitle: 'Trim, bleed and margins',
+    source: `${BLEED}#bleedhowto`, sourceTitle: 'Trim, bleed and margins',
   },
   {
     id: 'blank-pages', check: 'blank-pages',
@@ -97,7 +97,7 @@ export const ITEMS = [
 ];
 
 /**
- * Studio checks left off the page because no KDP page was found that says it.
+ * Preflight checks left off the page because no KDP page was found that says it.
  * The mirror test counts them, so a new Check still fails the test.
  */
 export const UNSOURCED = ['colour-in-bw'];

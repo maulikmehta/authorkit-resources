@@ -47,14 +47,16 @@
 
   <section class="ak-tool" aria-label="Calculator">
     <div class="ak-tool__body">
-      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
-      <div class="ak-grid-2">
+      <div>
+        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
         <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
         <div class="ak-field">
           <label for="pages">Page count</label>
           <input id="pages" type="number" inputmode="numeric" value="300">
           <span class="ak-hint" id="limits"></span>
         </div>
+      </div>
+      <div>
         <div class="ak-field">
           <label for="list">List price, USD</label>
           <input id="list" type="number" inputmode="decimal" step="0.01" value="14.99">
@@ -65,9 +67,9 @@
           <input id="fx" type="number" inputmode="decimal" step="0.01" placeholder="e.g. 88.50">
           <span class="ak-hint">Leave blank to skip rupee conversion. Look up the <a href="https://www.rbi.org.in/Scripts/BS_DisplayReferenceRate.aspx" target="_blank" rel="noopener">RBI reference rate</a>.</span>
         </div>
-      </div>
-      <div aria-live="polite">
-        <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+        <div aria-live="polite">
+          <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+        </div>
       </div>
     </div>
     <table id="results" class="ak-results">
@@ -75,13 +77,13 @@
         <tr><th scope="col"></th><th scope="col">USD</th><th scope="col" id="inr-head">INR</th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Printing cost</th><td class="ak-val" id="r-cost"></td><td class="ak-val inr-cell"></td></tr>
-        <tr><th scope="row">Royalty rate</th><td class="ak-val" id="r-rate"></td><td class="ak-val inr-cell"></td></tr>
+        <tr><th scope="row">Printing cost</th><td class="ak-val" id="r-cost"></td><td class="ak-val inr-cell" id="r-cost-inr"></td></tr>
+        <tr><th scope="row">Royalty rate</th><td class="ak-val" id="r-rate"></td><td class="ak-val inr-cell" id="r-rate-inr"></td></tr>
         <tr class="ak-highlight"><th scope="row">Royalty per sale</th><td class="ak-val" id="r-royalty"></td><td class="ak-val inr-cell" id="r-royalty-inr"></td></tr>
-        <tr><th scope="row">US withholding, India (15% treaty rate)</th><td class="ak-val" id="r-withhold"></td><td class="ak-val inr-cell"></td></tr>
+        <tr><th scope="row">US withholding, India (15% treaty rate)</th><td class="ak-val" id="r-withhold"></td><td class="ak-val inr-cell" id="r-withhold-inr"></td></tr>
         <tr class="ak-highlight"><th scope="row">Net royalty, India</th><td class="ak-val" id="r-net"></td><td class="ak-val inr-cell" id="r-net-inr"></td></tr>
-        <tr><th scope="row">Expanded Distribution, royalty per sale</th><td class="ak-val" id="r-exp-royalty"></td><td class="ak-val inr-cell"></td></tr>
-        <tr><th scope="row">Expanded Distribution, US withholding</th><td class="ak-val" id="r-exp-withhold"></td><td class="ak-val inr-cell"></td></tr>
+        <tr><th scope="row">Expanded Distribution, royalty per sale</th><td class="ak-val" id="r-exp-royalty"></td><td class="ak-val inr-cell" id="r-exp-royalty-inr"></td></tr>
+        <tr><th scope="row">Expanded Distribution, US withholding</th><td class="ak-val" id="r-exp-withhold"></td><td class="ak-val inr-cell" id="r-exp-withhold-inr"></td></tr>
         <tr class="ak-highlight"><th scope="row">Expanded Distribution, net royalty (India)</th><td class="ak-val" id="r-exp-net"></td><td class="ak-val inr-cell" id="r-exp-net-inr"></td></tr>
       </tbody>
     </table>
@@ -160,6 +162,7 @@ const ink = $('ink'), trim = $('trim'), pages = $('pages'), list = $('list'), fx
 const inrCells = document.querySelectorAll('.inr-cell');
 const inrHead = $('inr-head');
 const fxPrompt = $('fx-prompt');
+const FX_PROMPT = fxPrompt.textContent;
 
 const usd = (v) => `$${v.toFixed(2)}`;
 const inr = (v) => `₹${v.toFixed(2)}`;
@@ -197,8 +200,7 @@ function render() {
 
   err.hidden = !r.error;
   results.hidden = !!r.error;
-  fxPrompt.hidden = !!r.error;
-  if (r.error) { err.textContent = r.error; $('min-list').textContent = ''; return; }
+  if (r.error) { err.textContent = r.error; $('min-list').textContent = ''; fxPrompt.textContent = ''; return; }
 
   $('min-list').textContent = `KDP's minimum list price for this book is ${usd(r.minList)}.`;
 
@@ -220,11 +222,19 @@ function render() {
 
   inrHead.hidden = !r.inr;
   for (const c of inrCells) c.hidden = !r.inr;
-  fxPrompt.hidden = !!r.inr;
+  // .ak-hint sets display, which beats [hidden], so empty the text instead.
+  fxPrompt.textContent = r.inr ? '' : FX_PROMPT;
   if (r.inr) {
+    // Printing cost is deducted before payout and the rate is a percentage: no rupee value.
+    $('r-cost-inr').textContent = '—';
+    $('r-rate-inr').textContent = '—';
     $('r-royalty-inr').textContent = inr(r.inr.royalty);
+    $('r-withhold-inr').textContent = `−${inr(r.inr.withholding)}`;
     $('r-net-inr').textContent = inr(r.inr.net);
-    $('r-exp-net-inr').textContent = r.inr.expandedNet === null ? '—' : inr(r.inr.expandedNet);
+    const x = (v, sign = '') => (v === null ? '—' : sign + inr(v));
+    $('r-exp-royalty-inr').textContent = x(r.inr.expandedRoyalty);
+    $('r-exp-withhold-inr').textContent = x(r.inr.expandedWithholding, '−');
+    $('r-exp-net-inr').textContent = x(r.inr.expandedNet);
   }
 }
 

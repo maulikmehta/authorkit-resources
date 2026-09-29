@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { royaltyResult } from '../public/kdp-royalty-calculator/royalty.js';
+import { round2 } from '../public/shared/kdp.js';
 
 const base = { ink: 'bw-white', trim: '6x9', pages: '300', list: '14.99', fx: '' };
 
@@ -25,6 +26,27 @@ test('no exchange rate: rupee view is null, dollars still shown', () => {
 test('exchange rate converts net to rupees', () => {
   const r = royaltyResult({ ...base, fx: '85' });
   assert.equal(r.inr.net, 317.05);
+});
+
+test('every USD money field has an INR counterpart when fx is given', () => {
+  const r = royaltyResult({ ...base, fx: '85' });
+  const pairs = [
+    [r.royalty, r.inr.royalty],
+    [r.withholding, r.inr.withholding],
+    [r.net, r.inr.net],
+    [r.expanded.royalty, r.inr.expandedRoyalty],
+    [r.expanded.withholding, r.inr.expandedWithholding],
+    [r.expanded.net, r.inr.expandedNet],
+  ];
+  for (const [usd, inrVal] of pairs) assert.equal(inrVal, round2(usd * 85));
+});
+
+test('expanded INR fields are null when Expanded Distribution is unavailable', () => {
+  const r = royaltyResult({ ...base, list: '10.00', fx: '85' });
+  assert.equal(r.expanded, null);
+  assert.equal(r.inr.expandedRoyalty, null);
+  assert.equal(r.inr.expandedWithholding, null);
+  assert.equal(r.inr.expandedNet, null);
 });
 
 test('price below KDP minimum is an error naming the minimum', () => {

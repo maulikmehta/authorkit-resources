@@ -7,7 +7,10 @@ import { US_WITHHOLDING_INDIA, EXPANDED_RATE } from './india.js';
  *   pages: number, printCost: number, rate: number, royalty: number,
  *   withholding: number, net: number,
  *   expanded: { royalty: number, withholding: number, net: number } | null,
- *   minList: number, inr: null | { royalty: number, net: number, expandedNet: number | null }
+ *   minList: number, inr: null | {
+ *     royalty: number, withholding: number, net: number,
+ *     expandedRoyalty: number | null, expandedWithholding: number | null, expandedNet: number | null
+ *   }
  * }}
  */
 export function royaltyResult(input) {
@@ -44,12 +47,19 @@ export function royaltyResult(input) {
     };
   }
 
+  // Every money figure the author actually receives (or has withheld from them)
+  // gets a rupee counterpart. Printing cost and the royalty rate don't: printing
+  // cost is deducted before anything is paid out, never an amount the author
+  // receives or converts, and the rate is a percentage, not a currency amount.
   let inr = null;
   const fx = parseFloat(input.fx);
   if (!isNaN(fx) && fx > 0) {
     inr = {
       royalty: round2(royalty * fx),
+      withholding: round2(withholding * fx),
       net: round2(net * fx),
+      expandedRoyalty: expanded ? round2(expanded.royalty * fx) : null,
+      expandedWithholding: expanded ? round2(expanded.withholding * fx) : null,
       expandedNet: expanded ? round2(expanded.net * fx) : null
     };
   }

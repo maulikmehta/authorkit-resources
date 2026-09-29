@@ -3,9 +3,9 @@
  * `checked`. Primary sources (SFWA, a publisher's/imprint's own submission
  * guidelines) come first. For genres with no primary source, a row may cite
  * one named, dated industry page that states that genre's range itself
- * (owner decision 2026-09-29) — Writer's Digest, Jericho Writers, Reedsy's
- * editorial guides, or a writers' organisation such as SCBWI for children's
- * books. Never averaged or combined across sources. See the page's "Why
+ * (owner decision 2026-09-29) — Reedsy's editorial guides, Jericho Writers,
+ * or a writers' organisation such as SCBWI for children's books. Never
+ * averaged or combined across sources. See the page's "Why
  * some genres aren't listed" section for what was searched for and dropped.
  *
  * `max: null` means the source states no upper bound (SFWA's "Novel" is
@@ -25,8 +25,8 @@ export const GENRES = [
   { id: 'reedsy-literary', label: 'Literary fiction (Reedsy)', min: 80000, max: 100000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
   { id: 'reedsy-memoir', label: 'Memoir (Reedsy)', min: 80000, max: 90000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
   { id: 'reedsy-mystery-thriller', label: 'Mystery & thriller (Reedsy)', min: 80000, max: 100000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
-  { id: 'reedsy-romance', label: 'Single-title romance (Reedsy)', min: 80000, max: 100000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
-  { id: 'jericho-womens', label: "Upmarket & women's fiction (Jericho Writers)", min: 75000, max: 110000, source: 'https://jerichowriters.com/average-novel-wordcount/', checked: '2026-09-29' },
+  { id: 'reedsy-romance', label: 'Romance (Reedsy)', min: 80000, max: 100000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
+  { id: 'jericho-womens', label: "Women's fiction (Jericho Writers)", min: 75000, max: 110000, source: 'https://jerichowriters.com/average-novel-wordcount/', checked: '2026-09-29' },
   { id: 'reedsy-ya', label: 'Young adult (Reedsy)', min: 55000, max: 80000, source: 'https://reedsy.com/studio/resources/how-many-words-in-a-novel/', checked: '2026-09-29' },
   { id: 'scbwi-middle-grade', label: 'Middle grade (SCBWI)', min: 25000, max: 62500, source: 'https://scbwikitetales.com/2016/10/12/ask-an-editor-word-count-for-middle-grade-and-young-adult/', checked: '2026-09-29' },
   { id: 'scbwi-picture-books', label: 'Picture books (SCBWI)', min: 500, max: 750, source: 'https://scbwikitetales.com/2022/01/19/ask-an-editor-word-count/', checked: '2026-09-29' },

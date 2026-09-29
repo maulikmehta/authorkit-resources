@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='163.81 159.67 607.19 703.21'><path fill='%23111' d='M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z'/></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KDP royalty calculator, India view — AuthorKit</title>
+<meta name="description" content="KDP paperback royalty per sale on Amazon.com for your paper, trim, pages and list price, then net royalty in rupees after US withholding for an Indian author.">
+<link rel="canonical" href="https://resources.authorkit.pro/kdp-royalty-calculator/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="/shared/style.css">
+</head>
+<body>
+<a class="ak-skip" href="#main">Skip to the calculator</a>
+<header class="masthead">
+  <div class="wrap wrap--page masthead__inner">
+    <a class="masthead__brand" href="https://authorkit.pro" aria-label="AuthorKit home">
+      <svg class="masthead__mark" viewBox="163.81 159.67 607.19 703.21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z"/>
+      </svg>
+      <span class="masthead__name">AuthorKit</span>
+    </a>
+    <nav class="masthead__nav" aria-label="Site navigation">
+      <a href="/">Resources</a>
+      <a class="masthead__gh" href="https://github.com/maulikmehta/authorkit-resources"
+         target="_blank" rel="noopener" aria-label="View the source on GitHub">
+        <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor"
+             aria-hidden="true" focusable="false">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+      </a>
+    </nav>
+  </div>
+</header>
+<div class="wrap wrap--page">
+<nav class="ak-crumbs" aria-label="Breadcrumb">
+  <ol><li><a href="https://authorkit.pro">AuthorKit</a></li><li><a href="/">Resources</a></li><li aria-current="page">KDP royalty calculator</li></ol>
+</nav>
+<div class="ak-page">
+<main class="ak-main" id="main">
+  <header class="hero">
+    <h1>KDP royalty calculator</h1>
+    <p>Amazon.com paperback royalty per sale for your paper, trim, pages and list price, then net royalty in rupees after US withholding for an Indian author.</p>
+  </header>
+
+  <section class="ak-tool" aria-label="Calculator">
+    <div class="ak-tool__body">
+      <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
+      <div class="ak-grid-2">
+        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
+        <div class="ak-field">
+          <label for="pages">Page count</label>
+          <input id="pages" type="number" inputmode="numeric" value="300">
+          <span class="ak-hint" id="limits"></span>
+        </div>
+        <div class="ak-field">
+          <label for="list">List price, USD</label>
+          <input id="list" type="number" inputmode="decimal" step="0.01" value="14.99">
+          <span class="ak-hint" id="min-list"></span>
+        </div>
+        <div class="ak-field">
+          <label for="fx">Exchange rate, ₹ per $ (optional)</label>
+          <input id="fx" type="number" inputmode="decimal" step="0.01" placeholder="e.g. 88.50">
+          <span class="ak-hint">Leave blank to skip rupee conversion. Look up the <a href="https://www.rbi.org.in/Scripts/BS_DisplayReferenceRate.aspx" target="_blank" rel="noopener">RBI reference rate</a>.</span>
+        </div>
+      </div>
+      <div aria-live="polite">
+        <p id="error" class="ak-callout ak-callout-warn" hidden></p>
+      </div>
+    </div>
+    <table id="results" class="ak-results">
+      <thead>
+        <tr><th scope="col"></th><th scope="col">USD</th><th scope="col" id="inr-head">INR</th></tr>
+      </thead>
+      <tbody>
+        <tr><th scope="row">Printing cost</th><td class="ak-val" id="r-cost"></td><td class="ak-val inr-cell"></td></tr>
+        <tr><th scope="row">Royalty rate</th><td class="ak-val" id="r-rate"></td><td class="ak-val inr-cell"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Royalty per sale</th><td class="ak-val" id="r-royalty"></td><td class="ak-val inr-cell" id="r-royalty-inr"></td></tr>
+        <tr><th scope="row">US withholding, India (15% treaty rate)</th><td class="ak-val" id="r-withhold"></td><td class="ak-val inr-cell"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Net royalty, India</th><td class="ak-val" id="r-net"></td><td class="ak-val inr-cell" id="r-net-inr"></td></tr>
+        <tr><th scope="row">Expanded Distribution, royalty per sale</th><td class="ak-val" id="r-exp-royalty"></td><td class="ak-val inr-cell"></td></tr>
+        <tr><th scope="row">Expanded Distribution, US withholding</th><td class="ak-val" id="r-exp-withhold"></td><td class="ak-val inr-cell"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Expanded Distribution, net royalty (India)</th><td class="ak-val" id="r-exp-net"></td><td class="ak-val inr-cell" id="r-exp-net-inr"></td></tr>
+      </tbody>
+    </table>
+    <p id="fx-prompt" class="ak-hint">Enter an exchange rate above to see these in rupees.</p>
+  </section>
+
+  <details class="ak-faq">
+    <summary><h2>How KDP computes the royalty</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>For a paperback sold on Amazon.com, KDP pays 60% of the list price minus the printing cost when the list price is $9.99 or more, and 50% minus the printing cost below that: <code>(royalty rate × list price) − printing cost = royalty</code>. The printing cost itself is a fixed cost plus a per-page cost that depends on your ink, paper and trim size.</p>
+      <p>Expanded Distribution pays 40% of the list price minus the printing cost, and makes the paperback available to bookstores and libraries outside Amazon. At a low list price this can come out at or below zero — when it does, this calculator shows it as not available at that price rather than a negative royalty.</p>
+      <p>This calculator covers Amazon.com paperback sales only. UK and EU marketplaces, and ebooks, are not covered yet.</p>
+    </div>
+  </details>
+
+  <details class="ak-faq">
+    <summary><h2>US withholding for an Indian author</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>KDP withholds US tax from royalties by default at 30%. An author who completes the W-8BEN tax interview in KDP and doesn't have a US taxpayer ID can enter the income tax identification number issued by the tax authority in their country of residence instead. Under the India-US tax treaty (Article 12), the rate on royalties for the copyright of a literary, artistic or scientific work — which covers a book — is 15%, the rate this calculator uses.</p>
+      <p>The tax withheld in the US isn't the end of it: under Indian tax rules, a resident who has already paid tax on foreign income can claim credit for it using Form 67 when filing their Indian return, so the same royalty isn't taxed twice.</p>
+      <p>This is not tax advice. Indian income tax on royalties is calculated separately from this US withholding; talk to a tax professional about your own return.</p>
+    </div>
+  </details>
+
+  <section class="ak-sources">
+    <p>Sources (last verified <span data-verified="2026-09-29">2026-09-29</span>):</p>
+    <ul>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201834330">KDP: Paperback royalty</a>: 50%/60% royalty rate, the royalty formula, Expanded Distribution's 40% rate</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201834340">KDP: Printing cost</a>: fixed cost plus per-page cost</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6">KDP: Trim, bleed and margins</a>: trims and page-count ranges</li>
+      <li><a href="https://kdp.amazon.com/en_US/help/topic/G201274690">KDP: Royalty tax information</a>: 30% default US withholding; entering a non-US tax ID on the W-8BEN</li>
+      <li><a href="https://www.irs.gov/pub/irs-trty/india.pdf">IRS: India tax treaty, Article 12</a>: 15% rate on copyright royalties for a resident of India</li>
+      <li><a href="https://www.incometax.gov.in/iec/foportal/help/statutory-forms/popular-form/form67-um">Income Tax Department: Form 67</a>: claiming credit in India for foreign tax already paid</li>
+    </ul>
+  </section>
+  <p class="ak-disclaimer">These tools and guides are for information only. Check requirements with KDP, and ask a qualified professional about tax or legal questions. AuthorKit is not affiliated with Amazon.</p>
+</main>
+
+<aside class="ak-sidebar">
+  <nav class="related" aria-label="Related resources">
+    <h2>AuthorKit resources</h2>
+    <ul>
+      <li><a href="/cover-calculator/">KDP cover calculator</a></li>
+      <li><a href="/novel-word-count/">Novel word count by genre</a></li>
+      <li><a href="/kdp-royalty-calculator/" aria-current="page">KDP royalty calculator</a></li>
+    </ul>
+    <h2>KDP's own tools</h2>
+    <ul>
+      <li><a href="https://kdp.amazon.com/cover-calculator">KDP cover calculator</a></li>
+      <li><a href="https://kdp.amazon.com/royalty-calculator">KDP printing cost and royalty calculator</a></li>
+    </ul>
+  </nav>
+</aside>
+</div>
+</div>
+<footer class="colophon">
+  <div class="wrap wrap--page colophon__inner">
+    <div class="colophon__brand">
+      <svg class="colophon__mark" viewBox="163.81 159.67 607.19 703.21" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z"/>
+      </svg>
+      <span>AuthorKit &middot; Built by <a href="https://maulikmehta.com">Maulik Mehta</a></span>
+    </div>
+    <span class="colophon__legal">
+      &copy; 2026 Swati&rsquo;s Journal &middot;
+      <a href="https://github.com/maulikmehta/authorkit-resources/blob/main/LICENSE">MIT</a>
+    </span>
+  </div>
+</footer>
+<script type="module">
+import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits, isOffered } from '/shared/kdp.js';
+import { royaltyResult } from '/kdp-royalty-calculator/royalty.js';
+
+const $ = (id) => document.getElementById(id);
+const ink = $('ink'), trim = $('trim'), pages = $('pages'), list = $('list'), fx = $('fx');
+const inrCells = document.querySelectorAll('.inr-cell');
+const inrHead = $('inr-head');
+const fxPrompt = $('fx-prompt');
+
+const usd = (v) => `$${v.toFixed(2)}`;
+const inr = (v) => `₹${v.toFixed(2)}`;
+
+// Short option text keeps the paper visible at 390px; KDP's own wording shows under the select.
+const SHORT = {
+  'bw-cream': 'Cream paper, black & white',
+  'bw-white': 'White paper, black & white',
+  'bw-groundwood': 'Groundwood paper, black & white',
+  'standard-color': 'White paper, standard color',
+  'premium-color': 'White paper, premium color',
+};
+for (const i of INK_ALL) ink.add(new Option(SHORT[i], i));
+const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
+
+/** Keep the chosen trim if this ink offers it, else the ink's first trim. */
+function pickTrim(inkId, currentId) {
+  return currentId && isOffered(inkId, parseTrim(currentId)) ? currentId : trimId(trimsFor(inkId)[0]);
+}
+
+function fillTrims() {
+  const keep = pickTrim(ink.value, trim.value);
+  trim.replaceChildren(...trimsFor(ink.value).map((t) => new Option(`${t[0]}″ × ${t[1]}″`, trimId(t))));
+  trim.value = keep;
+}
+
+function setLimits() {
+  const [min, max] = pageLimits(ink.value, parseTrim(trim.value));
+  $('limits').textContent = `KDP prints ${min} to ${max} pages for this paper and trim.`;
+}
+
+function render() {
+  const r = royaltyResult({ ink: ink.value, trim: trim.value, pages: pages.value, list: list.value, fx: fx.value });
+  const err = $('error'), results = $('results');
+
+  err.hidden = !r.error;
+  results.hidden = !!r.error;
+  fxPrompt.hidden = !!r.error;
+  if (r.error) { err.textContent = r.error; $('min-list').textContent = ''; return; }
+
+  $('min-list').textContent = `KDP's minimum list price for this book is ${usd(r.minList)}.`;
+
+  $('r-cost').textContent = usd(r.printCost);
+  $('r-rate').textContent = `${(r.rate * 100).toFixed(0)}%`;
+  $('r-royalty').textContent = usd(r.royalty);
+  $('r-withhold').textContent = `−${usd(r.withholding)}`;
+  $('r-net').textContent = usd(r.net);
+
+  if (r.expanded) {
+    $('r-exp-royalty').textContent = usd(r.expanded.royalty);
+    $('r-exp-withhold').textContent = `−${usd(r.expanded.withholding)}`;
+    $('r-exp-net').textContent = usd(r.expanded.net);
+  } else {
+    $('r-exp-royalty').textContent = 'Not available at this price (would be $0 or less)';
+    $('r-exp-withhold').textContent = '—';
+    $('r-exp-net').textContent = '—';
+  }
+
+  inrHead.hidden = !r.inr;
+  for (const c of inrCells) c.hidden = !r.inr;
+  fxPrompt.hidden = !!r.inr;
+  if (r.inr) {
+    $('r-royalty-inr').textContent = inr(r.inr.royalty);
+    $('r-net-inr').textContent = inr(r.inr.net);
+    $('r-exp-net-inr').textContent = r.inr.expandedNet === null ? '—' : inr(r.inr.expandedNet);
+  }
+}
+
+ink.addEventListener('change', () => { showKdpLabel(); fillTrims(); setLimits(); render(); });
+trim.addEventListener('change', () => { setLimits(); render(); });
+pages.addEventListener('input', render);
+list.addEventListener('input', render);
+fx.addEventListener('input', render);
+
+showKdpLabel();
+fillTrims();
+trim.value = '6x9';
+setLimits();
+render();
+</script>
+</body>
+</html>

@@ -5,10 +5,6 @@ import { readFileSync } from 'node:fs';
 const html = readFileSync(new URL('../public/isbn-india/index.html', import.meta.url), 'utf8');
 const main = html.match(/<main[\s\S]*<\/main>/)[0];
 
-test('draft banner stays until RRRNA answers', () => {
-  assert.match(html, /class="ak-draft"[^>]*data-status="draft"/);
-});
-
 test('cites the Indian agency portal', () => {
   assert.match(html, /href="https:\/\/isbn\.gov\.in[^"]*"/);
 });

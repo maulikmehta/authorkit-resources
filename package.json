@@ -4,6 +4,7 @@
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "build:templates": "node scripts/build-templates.mjs"
   }
 }

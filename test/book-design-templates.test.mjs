@@ -126,3 +126,23 @@ test('every sample is 250-450 words with its source and date', () => {
     assert.ok(s.title && s.author && s.year < 1929 && s.heading, key);
   }
 });
+
+import { existsSync, readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { join } from 'node:path';
+import { render } from '../scripts/build-templates.mjs';
+
+const PUB = fileURLToPath(new URL('../public/', import.meta.url));
+const built = render();
+
+test('committed pages match the data (run npm run build:templates)', () => {
+  for (const [p, content] of Object.entries(built)) {
+    assert.ok(existsSync(join(PUB, p)), `${p} missing`);
+    assert.equal(readFileSync(join(PUB, p), 'utf8'), content, `${p} is stale`);
+  }
+});
+
+test('no template folder is left over from a removed template', () => {
+  const dirs = readdirSync(join(PUB, 'book-design-templates'), { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
+  for (const d of dirs) assert.ok(built[`book-design-templates/${d}/index.html`], `${d} is not in templates.json`);
+});

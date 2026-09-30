@@ -65,3 +65,5 @@ When KDP changes a number:
 - Free: no email gate, no account.
 - Every number shows its source URL and the date it was checked.
 - Push `main` only.
+
+    npm run build:templates   # after editing book-design-templates/templates.json or samples.json; commit the output

@@ -1,0 +1,46 @@
+/* Book design templates: filter chips, gallery cards, preview pages.
+   Cards and book pages are white paper with dark ink in both themes. */
+
+.bdt-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: 0 0 .6rem; }
+.bdt-chips[hidden] { display: none; }
+.bdt-chips a { font-size: .85rem; padding: .3rem .75rem; border: 1px solid var(--rule); color: var(--black); text-decoration: none; }
+.bdt-chips a:hover { background: var(--code-bg); }
+.bdt-chips a[aria-current] { background: var(--black); color: var(--paper); }
+.bdt-chips a:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+
+.bdt-grid { list-style: none; padding: 0; margin: 1rem 0 2rem; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr)); gap: 1rem; }
+.bdt-card[hidden] { display: none; }
+.bdt-card a { display: flex; flex-direction: column; gap: .75rem; height: 100%; box-sizing: border-box; padding: 1.25rem; border: 1px solid var(--rule); background: #fff; color: #1a1a1a; text-decoration: none; }
+.bdt-card a:hover, .bdt-card a:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.bdt-card__head { font-family: var(--bdt-head); font-size: 1.5rem; line-height: 1.2; text-transform: var(--bdt-case); font-variant-caps: var(--bdt-caps); letter-spacing: var(--bdt-track); }
+.bdt-card__body { font-family: var(--bdt-body); font-size: 1rem; line-height: 1.5; text-align: justify; hyphens: auto; }
+.bdt-card__meta { margin-top: auto; font-family: var(--font-body); font-size: .8rem; color: #4a4845; }
+
+/* Controls in a row above the preview, so the page gets the full column width. */
+.bdt-controls { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: 0 1rem; align-items: end; }
+.bdt-controls .bdt-wide { grid-column: 1 / -1; }
+.bdt-controls textarea { max-height: 12rem; }
+.bdt-preview { position: relative; overflow: hidden; min-width: 0; margin-top: 1rem; }
+.bdt-pages { display: grid; gap: 1rem; justify-items: center; }
+.bdt-row { overflow: hidden; }
+.bdt-scale { display: flex; transform-origin: top left; }
+.bdt-measure { position: absolute; left: -10000px; top: 0; visibility: hidden; }
+.bdt-flip { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .9rem; }
+
+.bdt-page { position: relative; box-sizing: border-box; flex: none; background: #fff; color: #1a1a1a; box-shadow: 0 0 0 1px rgba(0, 0, 0, .18); font-family: var(--bdt-body); font-size: var(--bdt-size); line-height: var(--bdt-lead); font-kerning: normal; }
+.bdt-page--blank { background: #f4f2ed; }
+.bdt-body { height: 100%; overflow: hidden; }
+.bdt-body p { margin: 0; text-align: justify; hyphens: auto; text-indent: 1.5em; }
+.bdt-body p.bdt-cont, .bdt-opener + p, .bdt-break + p { text-indent: 0; }
+.bdt-body p.bdt-break { text-align: center; text-indent: 0; margin: .6em 0; }
+.bdt-body p.bdt-verse { text-align: left; text-indent: 0; hyphens: manual; margin-bottom: 1em; }
+
+.bdt-opener { font-family: var(--bdt-head); text-align: center; padding-top: 18%; margin-bottom: 2.2em; }
+.bdt-num { display: block; font-size: 2.2em; line-height: 1.1; }
+.bdt-title { display: block; font-size: 1.3em; line-height: 1.25; margin-top: .4em; text-transform: var(--bdt-case); font-variant-caps: var(--bdt-caps); letter-spacing: var(--bdt-track); }
+.bdt-initial-drop-cap .bdt-opener + p::first-letter { float: left; font-family: var(--bdt-head); font-size: 3.3em; line-height: .8; padding: .06em .08em 0 0; }
+.bdt-initial-small-caps .bdt-opener + p::first-line { font-variant-caps: small-caps; letter-spacing: .03em; }
+
+.bdt-rh, .bdt-folio { position: absolute; left: 0; right: 0; text-align: center; font-size: .75em; }
+.bdt-rh { top: calc(var(--bdt-top) * .45); font-family: var(--bdt-head); letter-spacing: .08em; text-transform: uppercase; }
+.bdt-folio { bottom: calc(var(--bdt-bottom) * .4); }

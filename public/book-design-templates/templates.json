@@ -268,9 +268,9 @@
       },
       "trim": "5.5x8.5",
       "verse": false,
-      "why": "A sharp old-style body with a classic display face.",
+      "why": "A crisp, open body text with a refined display face for chapter titles.",
       "citation": null,
-      "sample": "austen"
+      "sample": "eliot"
     },
     {
       "id": "novel-romance",
@@ -440,7 +440,7 @@
       },
       "trim": "5.5x8.5",
       "verse": false,
-      "why": "A highly legible digital body with a futuristic geometric heading.",
+      "why": "A sturdy, open body text with a clean geometric heading that reads as modern.",
       "citation": null,
       "sample": "wells"
     },
@@ -482,7 +482,7 @@
       },
       "trim": "5.5x8.5",
       "verse": false,
-      "why": "An authentic old-style body paired with a rough historical display face.",
+      "why": "An old-style body with a rougher display face that recalls early printing.",
       "citation": null,
       "sample": "dickens"
     },
@@ -527,7 +527,7 @@
       "verse": false,
       "why": "A warm and inviting pairing that remains highly readable.",
       "citation": null,
-      "sample": "eliot"
+      "sample": "austen"
     },
     {
       "id": "novel-ya",
@@ -573,7 +573,7 @@
       "sample": "alcott"
     },
     {
-      "id": "memoir-memoir",
+      "id": "memoir",
       "name": "Memoir",
       "type": "memoir",
       "genres": [],
@@ -694,12 +694,12 @@
       },
       "trim": "6x9",
       "verse": false,
-      "why": "A newspaper-style body paired with an American gothick heading.",
+      "why": "A calm, readable body text with a sturdy sans-serif heading.",
       "citation": null,
       "sample": "thoreau"
     },
     {
-      "id": "poetry-poetry",
+      "id": "poetry",
       "name": "Poetry",
       "type": "poetry",
       "genres": [],
@@ -740,7 +740,7 @@
       "sample": "keats"
     },
     {
-      "id": "childrens-childrens",
+      "id": "childrens",
       "name": "Children's",
       "type": "children",
       "genres": [],
@@ -776,7 +776,7 @@
       },
       "trim": "5x8",
       "verse": false,
-      "why": "A highly legible body typeface designed for early readers paired with a rounded display font.",
+      "why": "A plain, open body text at a larger size, with a rounded heading.",
       "citation": null,
       "sample": "carroll"
     }

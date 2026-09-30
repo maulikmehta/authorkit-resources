@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { coverResult, pickTrim, fmt, proofGeometry } from '../public/cover-calculator/cover.js';
+import { coverResult, proofGeometry } from '../public/cover-calculator/cover.js';
+import { pickTrim, fmt } from '../public/shared/ui.js';
 
 test('6x9 white 300 pages: full wrap, spine, interior margins', () => {
   const r = coverResult('bw-white', '6x9', '300');

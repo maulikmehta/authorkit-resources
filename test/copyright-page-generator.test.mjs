@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { copyrightPage, isIsbn13 } from '../public/copyright-page-generator/copyright.js';
 
-const base = { author: 'Swati Joshi', year: '2026', country: 'IN' };
+const base = { author: 'Swati Joshi', year: '2026' };
 
 test('minimum: notice line with ©, year, holder defaults to author', () => {
   const { lines } = copyrightPage(base);

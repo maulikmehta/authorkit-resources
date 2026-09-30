@@ -99,7 +99,10 @@ function frame() {
   return { stage, inner };
 }
 
+let lastCols = 0;
 function draw() {
+  // Spread ↔ single page (a resize or a new trim) changes what a view is; start again at page 1.
+  if (cols() !== lastCols) { lastCols = cols(); view = 0; }
   const v = views();
   view = Math.min(view, Math.max(0, v.length - 1));
   const { stage, inner } = frame();
@@ -197,13 +200,7 @@ text.addEventListener('input', () => { save(); soon(); });
 title.addEventListener('input', () => { save(); soon(); });
 trim.addEventListener('change', render);
 $('bdt-clear').addEventListener('click', () => { text.value = ''; title.value = ''; save(); view = 0; render(); });
-let lastCols = 0;
-new ResizeObserver(() => {
-  if (busy) return;
-  // Switching between spread and single page changes what a "view" is; start from page 1's view.
-  if (cols() !== lastCols) { lastCols = cols(); view = 0; }
-  draw();
-}).observe(out);
+new ResizeObserver(() => { if (!busy) draw(); }).observe(out);
 
 // Measure with the real fonts, not the fallback; measure again if a face arrives later.
 const faces = [

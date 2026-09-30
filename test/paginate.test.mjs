@@ -103,3 +103,10 @@ test('always makes progress even if nothing fits', () => {
 test('empty text gives no pages', () => {
   assert.deepEqual(paginate(parse('  \n\n '), holds(10)), { pages: [], truncated: false });
 });
+
+test('a paragraph that cannot fit even one word on an empty page still flows on', () => {
+  // Page 0 holds nothing (a long chapter title filled it); later pages hold 10 units.
+  const fits = (i, bs) => bs.reduce((n, b) => n + size(b), 0) <= (i === 0 ? 0 : 10);
+  const { pages } = paginate(parse(Array.from({ length: 15 }, (_, i) => `w${i}`).join(' ')), fits);
+  assert.deepEqual(pages.map((p) => p.reduce((n, b) => n + size(b), 0)), [1, 10, 4]);
+});

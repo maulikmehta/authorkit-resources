@@ -36,13 +36,17 @@ function target(fromFile, ref) {
 const RESOURCES = [
   'cover-calculator', 'novel-word-count', 'kdp-royalty-calculator', 'kdp-from-india',
   'isbn-india', 'copyright-page-generator', 'kdp-preflight-checklist',
-  'book-design-templates', 'book-description-formatter', 'book-mockups', 'isbn-barcode-generator',
+  'book-design-templates', 'book-description-formatter', 'book-mockups',
 ];
 const existing = readdirSync(ROOT).filter((n) => n !== 'shared' && existsSync(join(ROOT, n, 'index.html')));
 
 test('every resource folder is in the sidebar list', () => {
   for (const f of existing) assert.ok(RESOURCES.includes(f), `${f} missing from RESOURCES`);
 });
+
+// Import specifiers inside module scripts only, so prose or JSON that says from '…' is not read as code.
+const importsOf = (html) => [...html.matchAll(/<script type="module"[^>]*>([\s\S]*?)<\/script>/g)]
+  .flatMap((m) => [...m[1].matchAll(/from '([^']+)'/g)].map((i) => i[1]));
 
 const toolOf = (file) => {
   const first = relative(ROOT, file).split(sep)[0];
@@ -66,14 +70,14 @@ for (const file of pages) {
   });
 
   test(`${name}: local links and imports resolve`, () => {
-    const refs = [...html.matchAll(/(?:href|src)="([^"]+)"|from '([^']+)'/g)].map((m) => m[1] ?? m[2])
+    const refs = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map((m) => m[1]).concat(importsOf(html))
       .filter((r) => !/^(https?:|mailto:|data:|#)/.test(r) && r.split(/[?#]/)[0]);
     for (const r of refs) assert.ok(target(file, r), `broken link ${r}`);
   });
 
   test(`${name}: code comes only from its own folder and shared/`, () => {
     // Links between resources are welcome; code imports across tool folders are not.
-    const code = [...html.matchAll(/src="([^"]+)"|from '([^']+)'/g)].map((m) => m[1] ?? m[2])
+    const code = [...html.matchAll(/src="([^"]+)"/g)].map((m) => m[1]).concat(importsOf(html))
       .filter((r) => !/^(https?:|data:)/.test(r));
     const own = toolOf(file);
     for (const r of code) {

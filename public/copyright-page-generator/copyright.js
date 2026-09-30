@@ -15,7 +15,7 @@ export function isIsbn13(s) {
  * @param {{
  *   author: string, holder?: string, year: string,
  *   isbns?: { format: string, isbn: string }[],   // e.g. [{ format: 'Paperback', isbn: '978…' }]
- *   publisher?: string, edition?: string, country: 'IN' | 'US',
+ *   publisher?: string, edition?: string,
  *   rightsReserved?: boolean, fiction?: boolean,
  * }} f
  * @returns {{ lines: string[] } | { error: string }}

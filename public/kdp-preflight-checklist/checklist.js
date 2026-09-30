@@ -1,3 +1,4 @@
+import { fmt } from '../shared/ui.js';
 import { BLEED_IN, INK_ALL, gutterIn, outsideMarginMinIn, pageLimits, trimsFor } from '../shared/kdp.js';
 
 // The page has no paper or trim input, so bound by the widest range KDP prints across all of them.
@@ -107,7 +108,6 @@ export const ITEMS = [
  */
 export const UNSOURCED = ['colour-in-bw'];
 
-const fmt = (inches) => `${inches.toFixed(3)}″ (${(inches * 25.4).toFixed(1)} mm)`;
 
 /** gutter/margins text for a page count, from shared/kdp.js, inches and mm. */
 export function marginsFor(pages) {

@@ -32,11 +32,5 @@ export const GENRES = [
   { id: 'scbwi-picture-books', label: 'Picture books (SCBWI)', min: 500, max: 750, source: 'https://scbwikitetales.com/2022/01/19/ask-an-editor-word-count/', checked: '2026-09-29' },
 ];
 
-/**
- * Words per printed page by trim id. Left empty: a search today (checked
- * 2026-09-29) found no named typesetting or publishing source that states a
- * words-per-page figure for a given trim and font — only blog posts and
- * "rule of thumb" pages that don't cite one. See the report for what was
- * tried. No estimator is built on this page.
- */
-export const WORDS_PER_PAGE = {};
+// No words-to-pages estimate: no named typesetting or publishing source states
+// a words-per-page figure for a trim and font (searched 2026-09-29).

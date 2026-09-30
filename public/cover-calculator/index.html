@@ -165,7 +165,8 @@
 </footer>
 <script type="module">
 import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits } from '/shared/kdp.js';
-import { coverResult, pickTrim, fmt, proofGeometry } from '/cover-calculator/cover.js';
+import { pickTrim, fmt, INK_SHORT } from '/shared/ui.js';
+import { coverResult, proofGeometry } from '/cover-calculator/cover.js';
 
 const $ = (id) => document.getElementById(id);
 const ink = $('ink'), trim = $('trim'), pages = $('pages'), range = $('pages-range');
@@ -173,15 +174,7 @@ const NS = 'http://www.w3.org/2000/svg';
 const MARGIN = 0.45; // room around the bleed for crop marks, inches
 const short = (x) => String(+x.toFixed(3));
 
-// Short option text keeps the paper visible at 390px; KDP's own wording shows under the select.
-const SHORT = {
-  'bw-cream': 'Cream paper, black & white',
-  'bw-white': 'White paper, black & white',
-  'bw-groundwood': 'Groundwood paper, black & white',
-  'standard-color': 'White paper, standard color',
-  'premium-color': 'White paper, premium color',
-};
-for (const i of INK_ALL) ink.add(new Option(SHORT[i], i));
+for (const i of INK_ALL) ink.add(new Option(INK_SHORT[i], i));
 const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
 
 function fillTrims() {

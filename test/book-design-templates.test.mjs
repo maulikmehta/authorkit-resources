@@ -18,7 +18,7 @@ const data = (templates = [tpl()]) => ({
   fonts: { 'EB Garamond': font(), 'Playfair Display': font({ specimen: 'https://fonts.google.com/specimen/Playfair+Display', weights: [400, 700], italic: false }) },
   templates,
 });
-const samples = { austen: { title: 'Pride and Prejudice', author: 'Jane Austen', year: 1813, heading: 'Chapter I', source: 'https://www.gutenberg.org/ebooks/1342', checked: '2026-09-30', text: 'word '.repeat(300) } };
+const samples = { empty: { text: '***\n\n#' }, austen: { title: 'Pride and Prejudice', author: 'Jane Austen', year: 1813, heading: 'Chapter I', source: 'https://www.gutenberg.org/ebooks/1342', checked: '2026-09-30', text: 'word '.repeat(300) } };
 
 test('a valid template has no problems', () => {
   assert.deepEqual(problems(data(), samples), []);
@@ -41,6 +41,7 @@ test('problems catches each kind of bad data', () => {
     [tpl({ margins: { top: 0.75, bottom: 0.75, inside: 0.3, outside: 0.5 } }), /inside/],
     [tpl({ margins: { top: 0.2, bottom: 0.75, inside: 0.625, outside: 0.5 } }), /top/],
     [tpl({ sample: 'nope' }), /sample/],
+    [tpl({ sample: 'empty' }), /no text/],
     [tpl({ citation: { book: 'X' } }), /citation/],
     [tpl({ why: '' }), /why/],
   ];

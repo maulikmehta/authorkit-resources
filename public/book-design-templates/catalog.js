@@ -1,6 +1,7 @@
 // Book design templates: the catalog's vocabulary and rules. Pure: used by
 // the generator (Node) and by the gallery page (browser).
 import { Ink, isOffered, parseTrim, gutterIn, outsideMarginMinIn } from '../shared/kdp.js';
+import { parse } from './paginate.js';
 
 export const TYPES = [
   { id: 'novel', label: 'Novel', noun: 'novel', genres: [
@@ -102,6 +103,7 @@ export function problems(data, samples) {
     for (const k of ['top', 'bottom', 'outside']) if (!(m[k] >= outsideMarginMinIn(false))) say(t, `${k} margin below KDP's ${outsideMarginMinIn(false)} in`);
     if (typeof t.verse !== 'boolean') say(t, 'verse must be true or false');
     if (!samples[t.sample]) say(t, `sample ${t.sample} missing`);
+    else if (!parse(samples[t.sample].text ?? '', { verse: t.verse }).some((b) => b.kind !== 'break')) say(t, `sample ${t.sample} has no text`);
     if (!t.why?.trim()) say(t, 'why is empty');
     const c = t.citation;
     if (c !== null && !(c?.book && c.author && c.publisher && c.year && c.typeface && c.note !== undefined

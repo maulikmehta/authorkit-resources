@@ -192,16 +192,22 @@ function render(typing = false) {
     author: $('author').value, holder: $('holder').value, year: $('year').value,
     publisher: $('publisher').value, edition: $('edition').value,
     isbns: [1, 2, 3].map((n) => ({ format: $(`fmt${n}`).value, isbn: $(`isbn${n}`).value })),
-    country: 'IN', rightsReserved: $('rights').checked, fiction: $('fiction').checked,
+    rightsReserved: $('rights').checked, fiction: $('fiction').checked,
   });
   msg.textContent = '';
   const waiting = !authorLeft && !$('author').value.trim();
   // Errors show when a field is left (change), not mid-typing.
   err.hidden = !r.error || waiting || typing;
-  result.hidden = !!r.error;
   // .ak-hint sets display, which beats [hidden], so set the text instead.
   prompt.textContent = waiting ? 'Enter an author name to see the text.' : '';
-  if (r.error) { err.textContent = r.error; out.value = ''; return; }
+  if (r.error) {
+    err.textContent = r.error;
+    // Mid-typing (a half-entered ISBN), keep the last good text on screen;
+    // it clears when the field is left and the error shows.
+    if (!typing || waiting) { result.hidden = true; out.value = ''; }
+    return;
+  }
+  result.hidden = false;
   out.value = r.lines.join('\n');
 }
 

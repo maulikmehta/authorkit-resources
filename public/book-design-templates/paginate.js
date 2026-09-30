@@ -88,7 +88,7 @@ export function splitBlock(b, k) {
 /**
  * Fills pages in order. A block that does not fit is split at the largest
  * word (or verse line) count that does; a page that cannot take even one unit
- * of an unsplittable block takes it anyway, so layout always moves forward.
+ * takes one anyway, so layout always moves forward.
  */
 export function paginate(blocks, fits, maxPages = 4) {
   const pages = [];
@@ -105,7 +105,12 @@ export function paginate(blocks, fits, maxPages = 4) {
         if (fits(i, [...page, splitBlock(b, mid)[0]])) lo = mid; else hi = mid - 1;
       }
       if (lo > 0) { const [head, tail] = splitBlock(b, lo); page.push(head); queue[0] = tail; }
-      else if (!page.length) page.push(queue.shift());
+      else if (!page.length) {
+        // Nothing fits even on an empty page: place one unit so layout moves on,
+        // and let the rest flow to the next page rather than be clipped.
+        if (size(b) > 1) { const [head, tail] = splitBlock(b, 1); page.push(head); queue[0] = tail; }
+        else page.push(queue.shift());
+      }
       break;
     }
     pages.push(page);

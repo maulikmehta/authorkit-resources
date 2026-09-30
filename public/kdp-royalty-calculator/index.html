@@ -161,7 +161,8 @@
   </div>
 </footer>
 <script type="module">
-import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits, isOffered } from '/shared/kdp.js';
+import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits } from '/shared/kdp.js';
+import { pickTrim, INK_SHORT } from '/shared/ui.js';
 import { royaltyResult } from '/kdp-royalty-calculator/royalty.js';
 
 const $ = (id) => document.getElementById(id);
@@ -174,21 +175,8 @@ const FX_PROMPT = fxPrompt.textContent;
 const usd = (v) => `$${v.toFixed(2)}`;
 const inr = (v) => `₹${v.toFixed(2)}`;
 
-// Short option text keeps the paper visible at 390px; KDP's own wording shows under the select.
-const SHORT = {
-  'bw-cream': 'Cream paper, black & white',
-  'bw-white': 'White paper, black & white',
-  'bw-groundwood': 'Groundwood paper, black & white',
-  'standard-color': 'White paper, standard color',
-  'premium-color': 'White paper, premium color',
-};
-for (const i of INK_ALL) ink.add(new Option(SHORT[i], i));
+for (const i of INK_ALL) ink.add(new Option(INK_SHORT[i], i));
 const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
-
-/** Keep the chosen trim if this ink offers it, else the ink's first trim. */
-function pickTrim(inkId, currentId) {
-  return currentId && isOffered(inkId, parseTrim(currentId)) ? currentId : trimId(trimsFor(inkId)[0]);
-}
 
 function fillTrims() {
   const keep = pickTrim(ink.value, trim.value);

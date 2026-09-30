@@ -17,8 +17,8 @@ const DISCLAIMER = '<p class="ak-disclaimer">These tools and guides are for info
 const CASE = { upper: ['uppercase', 'normal', '.08em'], 'small-caps': ['none', 'all-small-caps', '.06em'], none: ['none', 'normal', '0'] };
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-// \u003c keeps </script> out; \u0027 keeps pages.test's `from '...'` import scanner off sample text.
-const json = (o, indent) => JSON.stringify(o, null, indent).replace(/</g, '\\u003c').replace(/'/g, '\\u0027');
+// \u003c keeps a </script> in the data from closing the tag.
+const json = (o, indent) => JSON.stringify(o, null, indent).replace(/</g, '\\u003c');
 const runsHtml = (runs) => runs.map((r) => (r.italic ? `<em>${esc(r.text)}</em>` : esc(r.text))).join('');
 const pairOf = (t) => (t.body.family === t.heading.family ? t.body.family : `${t.body.family} and ${t.heading.family}`);
 const latest = (...dates) => dates.filter(Boolean).sort().at(-1);
@@ -220,7 +220,7 @@ ${sources([
 
 // The card's paragraph: the sample's first block, cut to about 45 words.
 function excerpt(t, s) {
-  const [b] = parse(s.text, { verse: t.verse });
+  const b = parse(s.text, { verse: t.verse }).find((x) => x.kind !== 'break');
   if (b.kind === 'verse') return b.lines.slice(0, 4);
   const cut = size(b) > 45 ? splitBlock(b, 45)[0] : b;
   return [[...cut.runs, ...(cut === b ? [] : [{ text: '…', italic: false }])]];

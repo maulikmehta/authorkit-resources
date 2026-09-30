@@ -1,14 +1,8 @@
 import {
-  trimsFor, isOffered, trimId, parseTrim, pageLimits, printedPages, spineWidthIn,
+  parseTrim, pageLimits, printedPages, spineWidthIn,
   coverSizeIn, gutterIn, outsideMarginMinIn, SPINE_TEXT_MIN_PAGES, BARCODE_AREA_IN, BLEED_IN,
 } from '../shared/kdp.js';
 
-/** Keep the chosen trim if this ink offers it, else the ink's first trim. */
-export function pickTrim(ink, currentId) {
-  return currentId && isOffered(ink, parseTrim(currentId)) ? currentId : trimId(trimsFor(ink)[0]);
-}
-
-export const fmt = (inches) => `${inches.toFixed(3)}″ (${(inches * 25.4).toFixed(1)} mm)`;
 
 export function coverResult(ink, id, pagesInput) {
   const trim = parseTrim(id);

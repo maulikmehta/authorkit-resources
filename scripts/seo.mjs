@@ -96,7 +96,7 @@ function llms() {
   const list = first(hub, /<ul class="ak-index" id="tools">([\s\S]*?)<\/ul>/);
   const items = [...list.matchAll(/<li><a href="([^"]+)">([\s\S]*?)<\/a><span>([\s\S]*?)<\/span><\/li>/g)]
     .map(([, href, name, what]) => `- [${text(name)}](${SITE}${href}): ${text(what)}`);
-  return `# AuthorKit Resources\n\n> Free tools and guides for authors publishing on Amazon KDP. ${lead}\n\n## Resources\n\n${items.join('\n')}\n`;
+  return `# AuthorKit Resources\n\n> ${lead}\n\n## Resources\n\n${items.join('\n')}\n`;
 }
 
 export function render() {

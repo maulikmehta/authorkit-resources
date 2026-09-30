@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { TYPES, SITE_FONTS, PAGES_ASSUMED, typeOf, genreOf, answer, fontsHref, fmtTrim, inMm, problems } from '../public/book-design-templates/catalog.js';
 import { parse, size, splitBlock } from '../public/book-design-templates/paginate.js';
 import { gutterIn } from '../public/shared/kdp.js';
+import { WEBSITE_ID, ogTags } from './head.mjs';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const DIR = join(PUB, 'book-design-templates');
@@ -56,6 +57,7 @@ ${chrome.icon}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
+${ogTags({ title, description, url: SITE + path })}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 ${fonts.map((h) => `<link rel="stylesheet" href="${esc(h)}">`).join('\n')}
@@ -95,7 +97,7 @@ const crumbList = (items) => ({
 
 function sources(items, checked) {
   return `  <section class="ak-sources">
-    <p>Sources (last verified <span data-verified="${checked}">${checked}</span>):</p>
+    <p>Sources (last verified <time data-verified="${checked}" datetime="${checked}">${checked}</time>):</p>
     <ul>
 ${items.map(([url, label, what]) => `      <li><a href="${esc(url)}">${esc(label)}</a>: ${esc(what)}</li>`).join('\n')}
     </ul>
@@ -131,12 +133,13 @@ function inner(t, data, samples, chrome) {
   const vars = `${fontVars(t)}; --bdt-size: ${t.size[0]}pt; --bdt-lead: ${t.size[1]}pt; --bdt-top: ${m.top}in; --bdt-bottom: ${m.bottom}in`;
   const families = [...new Set([t.body.family, t.heading.family])];
   const c = t.citation;
+  const checked = latest(fb.checked, fh.checked, s.checked, c?.checked, data.ofl.checked);
   const ld = {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage', '@id': SITE + path, url: SITE + path, name: title, description: text,
-        isPartOf: { '@type': 'WebSite', name: 'AuthorKit Resources', url: `${SITE}/` },
+        '@type': 'WebPage', '@id': SITE + path, url: SITE + path, name: title, description: text, dateModified: checked,
+        isPartOf: { '@id': WEBSITE_ID },
         mainEntity: {
           '@type': 'CreativeWork', name: t.name, description: text, genre: genre ?? type.label,
           about: families.map((f) => ({ '@type': 'CreativeWork', name: f, url: data.fonts[f].specimen, license: 'https://openfontlicense.org/' })),
@@ -212,7 +215,7 @@ ${sources([
     [s.source, `Project Gutenberg: ${s.title}`, 'sample text, public domain'],
     ...(c ? [[c.url, c.book, `set in ${c.typeface}`]] : []),
     [KDP_MARGINS, 'KDP: Trim, bleed and margins', 'trim sizes and minimum margins'],
-  ], latest(fb.checked, fh.checked, s.checked, c?.checked, data.ofl.checked))}`;
+  ], checked)}`;
   const script = `<script type="application/json" id="bdt-data">${json({ template: t, sample: s })}</script>
 <script type="module" src="${BASE}preview.js"></script>`;
   return page({
@@ -256,7 +259,7 @@ function gallery(data, samples, chrome) {
     '@graph': [
       {
         '@type': 'CollectionPage', '@id': SITE + path, url: SITE + path, name: 'Book design templates', description,
-        isPartOf: { '@type': 'WebSite', name: 'AuthorKit Resources', url: `${SITE}/` },
+        isPartOf: { '@id': WEBSITE_ID },
         mainEntity: {
           '@type': 'ItemList', numberOfItems: data.templates.length,
           itemListElement: data.templates.map((t, i) => ({ '@type': 'ListItem', position: i + 1, url: `${SITE}${BASE}${t.id}/`, name: `${t.name}: ${pairOf(t)}` })),
@@ -338,13 +341,6 @@ show();
   });
 }
 
-function sitemap(xml, templates) {
-  const kept = xml.split('\n').filter((l) => !l.includes(`${SITE}${BASE}`));
-  const ours = [BASE, ...templates.map((t) => `${BASE}${t.id}/`)].map((p) => `  <url><loc>${SITE}${p}</loc></url>`);
-  const end = kept.findIndex((l) => l.includes('</urlset>'));
-  return [...kept.slice(0, end), ...ours, ...kept.slice(end)].join('\n');
-}
-
 export function render() {
   const data = JSON.parse(readFileSync(join(DIR, 'templates.json'), 'utf8'));
   const samples = JSON.parse(readFileSync(join(DIR, 'samples.json'), 'utf8'));
@@ -353,7 +349,6 @@ export function render() {
   const chrome = chromeFrom(readFileSync(join(PUB, 'cover-calculator/index.html'), 'utf8'));
   const files = { 'book-design-templates/index.html': gallery(data, samples, chrome) };
   for (const t of data.templates) files[`book-design-templates/${t.id}/index.html`] = inner(t, data, samples, chrome);
-  files['sitemap.xml'] = sitemap(readFileSync(join(PUB, 'sitemap.xml'), 'utf8'), data.templates);
   return files;
 }
 

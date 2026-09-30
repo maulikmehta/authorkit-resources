@@ -8,6 +8,7 @@
   "scripts": {
     "test": "node --test",
     "build:templates": "node scripts/build-templates.mjs",
-    "prerender": "node scripts/prerender.mjs"
+    "prerender": "node scripts/prerender.mjs",
+    "seo": "node scripts/seo.mjs"
   }
 }

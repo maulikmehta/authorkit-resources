@@ -77,7 +77,9 @@ for (const file of pages) {
       .filter((r) => !/^(https?:|data:)/.test(r));
     const own = toolOf(file);
     for (const r of code) {
-      const other = toolOf(target(file, r));
+      const t = target(file, r);
+      assert.ok(t, `broken link ${r}`);
+      const other = toolOf(t);
       assert.ok(other === '' || other === own, `${r} imports code from another tool's folder`);
     }
   });

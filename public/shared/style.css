@@ -294,8 +294,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 .ak-section h2 {
   font-family: var(--font-head);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   line-height: 1.25;
   color: var(--black);
   margin-bottom: .9rem;
@@ -330,8 +330,8 @@ a:hover { text-decoration-thickness: 2px; }
 /* ── Prose (guide pages) ────────────────────────────────── */
 .ak-prose h2 {
   font-family: var(--font-head);
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   line-height: 1.25;
   color: var(--black);
   border-bottom: 1px solid var(--rule);
@@ -339,6 +339,9 @@ a:hover { text-decoration-thickness: 2px; }
   margin-top: 2.2rem;
   margin-bottom: .9rem;
 }
+
+/* A section already opens with a rule; its first heading needs no second one. */
+.ak-section > h2:first-child { border-bottom: 0; padding-bottom: 0; margin-top: 0; }
 
 .ak-prose h3 {
   font-size: 1rem;
@@ -398,6 +401,8 @@ a:hover { text-decoration-thickness: 2px; }
   border-top: 1px solid var(--rule-lt);
 }
 
+/* The last accordion's bottom rule already separates the sources. */
+.ak-faq + .ak-sources { border-top: 0; padding-top: 0; }
 .ak-sources ul { list-style: none; padding: 0; margin: 0; }
 .ak-sources li { margin-bottom: .25rem; font-size: .8rem; color: var(--stone); }
 .ak-sources a {
@@ -485,6 +490,9 @@ a:hover { text-decoration-thickness: 2px; }
   .ak-tool__body { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); align-items: start; }
 }
 .ak-tool .ak-results { margin: 1.5rem 0 0; }
+/* The tool's own border closes the table. */
+.ak-tool .ak-results tr:last-child > th,
+.ak-tool .ak-results tr:last-child > td { border-bottom: 0; }
 .ak-tool .ak-field select,
 .ak-tool .ak-field input[type="number"],
 .ak-tool .ak-field input[type="text"] { font-size: .85rem; }
@@ -556,7 +564,7 @@ main a[href^="http"]:not([href*="authorkit.pro"])::after,
 main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 .ak-sidebar a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 .colophon a[href^="http"]:not([href*="authorkit.pro"]):hover::after {
-  transform: translate(2px, -2px);
+  transform: translate(3px, -3px);
   opacity: 1;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -571,7 +579,6 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
   font-size: .8rem;
   line-height: 1.5;
   color: var(--stone);
-  max-width: 38rem;
 }
 
 /* Explainers and FAQs: native accordions. The heading keeps the brand face. */
@@ -634,3 +641,23 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 /* Sandboxed preview frame (book description formatter) */
 .ak-preview { display: block; width: 100%; height: 18rem; border: 1px solid var(--rule); background: #fff; }
 .ak-field textarea.ak-tall { min-height: 18rem; }
+
+/* Previous / next: the brand arrow's stroke, drawn horizontally. */
+.ak-prev::before, .ak-next::after {
+  content: "";
+  display: inline-block;
+  width: .8em;
+  height: .8em;
+  vertical-align: -.05em;
+  background: currentColor;
+  opacity: .5;
+  -webkit-mask: var(--ak-arrow-h) no-repeat center / contain;
+          mask: var(--ak-arrow-h) no-repeat center / contain;
+  transition: transform .2s ease, opacity .2s ease;
+}
+.ak-prev::before { margin-right: .3em; transform: scaleX(-1); }
+.ak-next::after { margin-left: .3em; }
+.ak-prev:hover::before { transform: scaleX(-1) translateX(3px); opacity: 1; }
+.ak-next:hover::after { transform: translateX(3px); opacity: 1; }
+:root { --ak-arrow-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-motion: reduce) { .ak-prev::before, .ak-next::after { transition: none; } }

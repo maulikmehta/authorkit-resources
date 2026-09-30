@@ -707,3 +707,12 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 .ak-example figcaption { font-size: .8rem; color: var(--stone); margin-bottom: .5rem; }
 .ak-example blockquote { margin: 0; font-size: .9rem; }
 .ak-example blockquote p + p { margin-top: .5rem; }
+
+/* Feedback box: last in the sidebar, so it ends the page on phones. */
+.ak-connect { margin-top: 1.5rem; border: 1px solid var(--rule); padding: 1rem; font-size: .85rem; line-height: 1.5; }
+.ak-connect p + p { margin-top: .6rem; }
+.ak-connect__label { font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); margin-top: .9rem !important; }
+.ak-connect__cta { display: inline-block; margin-top: .9rem; padding: .45rem .8rem; border: 1px solid var(--black); color: var(--black); text-decoration: none; }
+.ak-connect__cta:hover { background: var(--black); color: var(--paper); }
+.ak-connect__cta:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
+.ak-connect p a { color: var(--black); text-decoration: underline; text-underline-offset: 2px; }

@@ -50,7 +50,8 @@ function graph(rel, html) {
   const nodes = [];
   if (kind === 'hub') {
     nodes.push(
-      { '@type': 'Organization', '@id': ORG_ID, name: 'AuthorKit', url: 'https://authorkit.pro/' },
+      { '@type': 'Organization', '@id': ORG_ID, name: 'AuthorKit', url: 'https://authorkit.pro/',
+        founder: { '@type': 'Person', name: 'Swati Joshi', url: 'https://swatisjournal.com/' } },
       { '@type': 'WebSite', '@id': WEBSITE_ID, name: 'AuthorKit Resources', url: `${SITE}/`, description, publisher: { '@id': ORG_ID } },
     );
   } else if (kind === 'tool') {

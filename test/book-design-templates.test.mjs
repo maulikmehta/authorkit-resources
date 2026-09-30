@@ -103,3 +103,26 @@ test('fmtTrim and inMm', () => {
   assert.equal(fmtTrim('5.5x8.5'), '5.5 × 8.5 in');
   assert.equal(inMm(0.5), '12.7 mm');
 });
+
+import { readFileSync } from 'node:fs';
+const DIR = new URL('../public/book-design-templates/', import.meta.url);
+const real = JSON.parse(readFileSync(new URL('templates.json', DIR), 'utf8'));
+const realSamples = JSON.parse(readFileSync(new URL('samples.json', DIR), 'utf8'));
+
+test('templates.json passes every rule', () => {
+  assert.deepEqual(problems(real, realSamples), []);
+});
+
+test('every book type and genre has a template', () => {
+  assert.deepEqual(gaps(real), []);
+});
+
+test('every sample is 250-450 words with its source and date', () => {
+  for (const [key, s] of Object.entries(realSamples)) {
+    const words = s.text.split(/\s+/).filter(Boolean).length;
+    assert.ok(words >= 250 && words <= 450, `${key}: ${words} words`);
+    assert.match(s.source, /^https:\/\/www\.gutenberg\.org\//, key);
+    assert.match(s.checked, /^\d{4}-\d{2}-\d{2}$/, key);
+    assert.ok(s.title && s.author && s.year < 1929 && s.heading, key);
+  }
+});

@@ -1,0 +1,784 @@
+{
+  "checked": "2026-09-30",
+  "ofl": {
+    "note": "The SIL Open Font License (OFL) allows you to use these fonts freely in print publications and e-books, even if you sell them. Referencing or embedding an OFL font in a document does not change the license of the document itself.",
+    "url": "https://openfontlicense.org/ofl-faq/",
+    "checked": "2026-09-30"
+  },
+  "fonts": {
+    "Crimson Pro": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Crimson+Pro",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Cormorant Garamond": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Cormorant+Garamond",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "EB Garamond": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/EB+Garamond",
+      "weights": [
+        400,
+        500,
+        600,
+        700,
+        800
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Playfair Display": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Playfair+Display",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Source Serif 4": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Source+Serif+4",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Oswald": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Oswald",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    },
+    "Alegreya": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Alegreya",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Cinzel": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Cinzel",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    },
+    "Literata": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Literata",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Space Grotesk": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Space+Grotesk",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    },
+    "IM Fell English": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/IM+Fell+English",
+      "weights": [
+        400
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Alegreya SC": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Alegreya+SC",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Josefin Sans": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Josefin+Sans",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Libre Caslon Text": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Libre+Caslon+Text",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Libre Caslon Display": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Libre+Caslon+Display",
+      "weights": [
+        400
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    },
+    "Inter": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Inter",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Newsreader": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Newsreader",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Libre Franklin": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Libre+Franklin",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Spectral": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Spectral",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Cormorant SC": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Cormorant+SC",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    },
+    "Andika": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Andika",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
+    },
+    "Fredoka": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Fredoka",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": false,
+      "checked": "2026-09-30"
+    }
+  },
+  "templates": [
+    {
+      "id": "novel-literary",
+      "name": "Literary",
+      "type": "novel",
+      "genres": [
+        "literary"
+      ],
+      "body": {
+        "family": "Crimson Pro",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Cormorant Garamond",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "drop-cap",
+      "ornament": "❦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A sharp old-style body with a classic display face.",
+      "citation": null,
+      "sample": "austen"
+    },
+    {
+      "id": "novel-romance",
+      "name": "Romance",
+      "type": "novel",
+      "genres": [
+        "romance"
+      ],
+      "body": {
+        "family": "EB Garamond",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Playfair Display",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "none",
+      "ornament": "❦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A soft old-style body with a high-contrast display face.",
+      "citation": null,
+      "sample": "austen"
+    },
+    {
+      "id": "novel-mystery",
+      "name": "Mystery",
+      "type": "novel",
+      "genres": [
+        "mystery"
+      ],
+      "body": {
+        "family": "Source Serif 4",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Oswald",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "numeral",
+      "initial": "small-caps",
+      "ornament": "✦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A readable transitional body with a strong condensed heading.",
+      "citation": null,
+      "sample": "doyle"
+    },
+    {
+      "id": "novel-fantasy",
+      "name": "Fantasy",
+      "type": "novel",
+      "genres": [
+        "fantasy-sf"
+      ],
+      "body": {
+        "family": "Alegreya",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Cinzel",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "drop-cap",
+      "ornament": "✧",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "An energetic body with a classical Roman heading.",
+      "citation": null,
+      "sample": "wells"
+    },
+    {
+      "id": "novel-scifi",
+      "name": "Sci-Fi",
+      "type": "novel",
+      "genres": [
+        "fantasy-sf"
+      ],
+      "body": {
+        "family": "Literata",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Space Grotesk",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        10.5,
+        14
+      ],
+      "number": "numeral",
+      "initial": "none",
+      "ornament": "✦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A highly legible digital body with a futuristic geometric heading.",
+      "citation": null,
+      "sample": "wells"
+    },
+    {
+      "id": "novel-historical",
+      "name": "Historical",
+      "type": "novel",
+      "genres": [
+        "historical"
+      ],
+      "body": {
+        "family": "EB Garamond",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "IM Fell English",
+        "weights": [
+          400
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "drop-cap",
+      "ornament": "❧",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "An authentic old-style body paired with a rough historical display face.",
+      "citation": null,
+      "sample": "dickens"
+    },
+    {
+      "id": "novel-cozy",
+      "name": "Cozy",
+      "type": "novel",
+      "genres": [
+        "cozy"
+      ],
+      "body": {
+        "family": "Alegreya",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Alegreya SC",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "small-caps",
+      "ornament": "☕",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A warm and inviting pairing that remains highly readable.",
+      "citation": null,
+      "sample": "eliot"
+    },
+    {
+      "id": "novel-ya",
+      "name": "YA",
+      "type": "novel",
+      "genres": [
+        "ya"
+      ],
+      "body": {
+        "family": "Crimson Pro",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Josefin Sans",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "numeral",
+      "initial": "none",
+      "ornament": "✦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A crisp body with a stylish geometric sans-serif heading.",
+      "citation": null,
+      "sample": "alcott"
+    },
+    {
+      "id": "memoir-memoir",
+      "name": "Memoir",
+      "type": "memoir",
+      "genres": [],
+      "body": {
+        "family": "Libre Caslon Text",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Libre Caslon Display",
+        "weights": [
+          400
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "word",
+      "initial": "drop-cap",
+      "ornament": "❦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5.5x8.5",
+      "verse": false,
+      "why": "A solid and classic feel tailored for personal narratives.",
+      "citation": null,
+      "sample": "douglass"
+    },
+    {
+      "id": "nonfiction-business",
+      "name": "Business",
+      "type": "nonfiction",
+      "genres": [
+        "self-help"
+      ],
+      "body": {
+        "family": "Source Serif 4",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Inter",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "numeral",
+      "initial": "none",
+      "ornament": "■",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "6x9",
+      "verse": false,
+      "why": "A clear and authoritative pairing suited for dense information.",
+      "citation": null,
+      "sample": "barnum"
+    },
+    {
+      "id": "nonfiction-narrative",
+      "name": "Narrative",
+      "type": "nonfiction",
+      "genres": [
+        "narrative"
+      ],
+      "body": {
+        "family": "Newsreader",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Libre Franklin",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true,
+        "case": "none"
+      },
+      "size": [
+        11,
+        14.5
+      ],
+      "number": "numeral",
+      "initial": "small-caps",
+      "ornament": "✦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "6x9",
+      "verse": false,
+      "why": "A newspaper-style body paired with an American gothick heading.",
+      "citation": null,
+      "sample": "thoreau"
+    },
+    {
+      "id": "poetry-poetry",
+      "name": "Poetry",
+      "type": "poetry",
+      "genres": [],
+      "body": {
+        "family": "Spectral",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Cormorant SC",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        11,
+        16
+      ],
+      "number": "numeral",
+      "initial": "none",
+      "ornament": "❦",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5x8",
+      "verse": true,
+      "why": "An elegant serif that supports the structure of verse.",
+      "citation": null,
+      "sample": "keats"
+    },
+    {
+      "id": "childrens-childrens",
+      "name": "Children's",
+      "type": "children",
+      "genres": [],
+      "body": {
+        "family": "Andika",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": true
+      },
+      "heading": {
+        "family": "Fredoka",
+        "weights": [
+          400,
+          700
+        ],
+        "italic": false,
+        "case": "none"
+      },
+      "size": [
+        12.5,
+        18
+      ],
+      "number": "numeral",
+      "initial": "none",
+      "ornament": "★",
+      "margins": {
+        "top": 0.75,
+        "bottom": 0.75,
+        "inside": 0.625,
+        "outside": 0.5
+      },
+      "trim": "5x8",
+      "verse": false,
+      "why": "A highly legible body typeface designed for early readers paired with a rounded display font.",
+      "citation": null,
+      "sample": "carroll"
+    }
+  ]
+}

@@ -167,3 +167,7 @@ test('prev/next links on each inner page walk every template once', () => {
 test('generated pages use the brand arrow classes, not arrow characters', () => {
   for (const [p, html] of Object.entries(built)) assert.doesNotMatch(html, /[←→↗]/, p);
 });
+
+test('samples carry no Gutenberg illustration captions or bracketed notes', () => {
+  for (const [key, s] of Object.entries(realSamples)) assert.doesNotMatch(s.text, /\[Illustration|\[_?Copyright/, key);
+});

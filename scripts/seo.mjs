@@ -88,6 +88,16 @@ function sitemap(all) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows.join('\n')}\n</urlset>\n`;
 }
 
+// llms.txt (llmstxt.org): the hub's own list of resources, as plain Markdown.
+function llms() {
+  const hub = readFileSync(PUB + 'index.html', 'utf8');
+  const lead = text(first(hub, /<header class="hero">[\s\S]*?<p>([\s\S]*?)<\/p>/));
+  const list = first(hub, /<ul class="ak-index" id="tools">([\s\S]*?)<\/ul>/);
+  const items = [...list.matchAll(/<li><a href="([^"]+)">([\s\S]*?)<\/a><span>([\s\S]*?)<\/span><\/li>/g)]
+    .map(([, href, name, what]) => `- [${text(name)}](${SITE}${href}): ${text(what)}`);
+  return `# AuthorKit Resources\n\n> Free tools and guides for authors publishing on Amazon KDP. ${lead}\n\n## Resources\n\n${items.join('\n')}\n`;
+}
+
 export function render() {
   const all = pages();
   const files = {};
@@ -97,6 +107,7 @@ export function render() {
     files[rel] = head(rel, readFileSync(PUB + rel, 'utf8'));
   }
   files['sitemap.xml'] = sitemap(all);
+  files['llms.txt'] = llms();
   return files;
 }
 

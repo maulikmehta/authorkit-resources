@@ -39,7 +39,7 @@ function chromeFrom(ref) {
   const sidebar = grab(/<aside class="ak-sidebar">[\s\S]*?<\/aside>/, 'sidebar').replace(' aria-current="page"', '');
   if (!sidebar.includes(own)) throw new Error('add /book-design-templates/ to the sidebars first');
   return {
-    icon: grab(/<link rel="icon"[^>]*>/, 'favicon'),
+    icon: grab(/<link rel="icon" href="[^"]*">/, 'favicon'),
     masthead: grab(/<header class="masthead">[\s\S]*?<\/header>/, 'masthead'),
     footer: grab(/<footer class="colophon">[\s\S]*?<\/footer>/, 'footer'),
     sidebar: sidebar.replace(own, '<a href="/book-design-templates/" aria-current="page">'),
@@ -192,7 +192,7 @@ ${c ? `
   </section>
 
   <section class="ak-section ak-prose">
-    <h2>More ${esc(type.label.toLowerCase())} templates</h2>
+    <h2>${siblings.length ? `More ${esc(type.label.toLowerCase())} templates` : 'More templates'}</h2>
     <ul>
 ${more.map((x) => `      <li><a href="${BASE}${x.id}/">${esc(x.name)}: ${esc(pairOf(x))}</a></li>`).join('\n')}
     </ul>

@@ -146,3 +146,11 @@ test('no template folder is left over from a removed template', () => {
   const dirs = readdirSync(join(PUB, 'book-design-templates'), { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name);
   for (const d of dirs) assert.ok(built[`book-design-templates/${d}/index.html`], `${d} is not in templates.json`);
 });
+
+test('generated pages copy the favicon line whole, so the viewport meta is not swallowed', () => {
+  const icon = readFileSync(join(PUB, 'cover-calculator/index.html'), 'utf8').match(/<link rel="icon" href="[^"]*">/)[0];
+  for (const [p, html] of Object.entries(built)) {
+    if (!p.endsWith('.html')) continue;
+    assert.ok(html.includes(`${icon}\n<meta name="viewport"`), `${p}: favicon line broken`);
+  }
+});

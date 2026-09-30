@@ -82,6 +82,12 @@ for (const file of pages) {
     }
   });
 
+  test(`${name}: says nothing about AuthorKit Studio or AuthorKit's services`, () => {
+    // Owner decision 2026-09-30: the site doesn't disclose Studio or publishing services.
+    const text = html.replace(/<[^>]+>/g, ' ');
+    assert.doesNotMatch(text, /AuthorKit Studio|AuthorKit[^.]{0,80}(publishing services?|assigns ISBNs)/i);
+  });
+
   if (name !== 'index.html') {
     test(`${name}: carries a last-verified date`, () => {
       assert.match(html, /data-verified="\d{4}-\d{2}-\d{2}"/);

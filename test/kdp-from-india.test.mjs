@@ -28,6 +28,6 @@ test('every external source in the sources list is https', () => {
   for (const l of links) assert.match(l, /^https:\/\//);
 });
 
-test('discloses that AuthorKit offers self-publishing services', () => {
-  assert.match(html, /AuthorKit, which runs this site, offers self-publishing services\./);
+test('does not mention AuthorKit services', () => {
+  assert.doesNotMatch(html, /offers self-publishing services/);
 });

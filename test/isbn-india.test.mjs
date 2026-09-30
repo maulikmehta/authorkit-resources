@@ -13,8 +13,8 @@ test('cites the Indian agency portal', () => {
   assert.match(html, /href="https:\/\/isbn\.gov\.in[^"]*"/);
 });
 
-test('discloses that AuthorKit assigns ISBNs', () => {
-  assert.match(main, /AuthorKit assigns ISBNs for books it publishes\./);
+test('does not mention AuthorKit services', () => {
+  assert.doesNotMatch(main, /AuthorKit assigns ISBNs/);
 });
 
 test('no foreign agency list', () => {
@@ -32,7 +32,6 @@ test('barcode link uses the live slug, not the 404 one', () => {
   assert.doesNotMatch(html, /isbn-barcode-generator\/"/);
 });
 
-test('disclosure is plain text, no link, and RRRNA is not claimed to hold questions', () => {
-  assert.match(main, /<p>AuthorKit assigns ISBNs for books it publishes\.<\/p>/);
+test('RRRNA is not claimed to hold questions', () => {
   assert.doesNotMatch(main, /are with RRRNA|isbn-mhrd/);
 });

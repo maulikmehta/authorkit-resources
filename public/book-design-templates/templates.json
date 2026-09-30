@@ -226,6 +226,16 @@
       ],
       "italic": false,
       "checked": "2026-09-30"
+    },
+    "Libre Baskerville": {
+      "license": "OFL-1.1",
+      "specimen": "https://fonts.google.com/specimen/Libre+Baskerville",
+      "weights": [
+        400,
+        700
+      ],
+      "italic": true,
+      "checked": "2026-09-30"
     }
   },
   "templates": [
@@ -280,10 +290,9 @@
         "romance"
       ],
       "body": {
-        "family": "EB Garamond",
+        "family": "Libre Baskerville",
         "weights": [
-          400,
-          700
+          400
         ],
         "italic": true
       },
@@ -311,7 +320,7 @@
       },
       "trim": "5.5x8.5",
       "verse": false,
-      "why": "A soft old-style body with a high-contrast display face.",
+      "why": "A crisp, generous body text with a high-contrast display face.",
       "citation": null,
       "sample": "austen"
     },
@@ -366,10 +375,9 @@
         "fantasy-sf"
       ],
       "body": {
-        "family": "Alegreya",
+        "family": "EB Garamond",
         "weights": [
-          400,
-          700
+          400
         ],
         "italic": true
       },
@@ -397,8 +405,17 @@
       },
       "trim": "5.5x8.5",
       "verse": false,
-      "why": "An energetic body with a classical Roman heading.",
-      "citation": null,
+      "why": "A classic old-style body with inscriptional capitals for chapter titles.",
+      "citation": {
+        "book": "Harry Potter and the Deathly Hallows",
+        "author": "J. K. Rowling",
+        "publisher": "Scholastic, US edition",
+        "year": 2007,
+        "typeface": "12-point Adobe Garamond",
+        "note": "EB Garamond is a free revival of the same Claude Garamont types.",
+        "url": "https://cei.org/blog/adobe-garamond-in-the-harry-potter-books-not-a-character-but-a-font/",
+        "checked": "2026-09-30"
+      },
       "sample": "wells"
     },
     {

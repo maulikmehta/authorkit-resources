@@ -74,6 +74,7 @@ export function problems(data, samples) {
     if (f.license !== 'OFL-1.1') out.push(`font ${name}: licence must be OFL-1.1`);
     if (!f.specimen?.startsWith('https://fonts.google.com/specimen/')) out.push(`font ${name}: specimen URL`);
     if (!DATE.test(f.checked ?? '')) out.push(`font ${name}: checked date`);
+    if (!f.about?.trim() || !f.aboutSource?.startsWith('https://')) out.push(`font ${name}: about quote and its source`);
   }
   const seen = new Set();
   for (const t of data.templates) {

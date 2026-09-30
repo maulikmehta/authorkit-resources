@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { TYPES, matches, answer, fontsHref, fmtTrim, inMm, problems, gaps } from '../public/book-design-templates/catalog.js';
 
-const font = (over = {}) => ({ license: 'OFL-1.1', specimen: 'https://fonts.google.com/specimen/EB+Garamond', weights: [400, 700], italic: true, checked: '2026-09-30', ...over });
+const font = (over = {}) => ({ license: 'OFL-1.1', specimen: 'https://fonts.google.com/specimen/EB+Garamond', weights: [400, 700], italic: true, checked: '2026-09-30', about: 'A line.', aboutSource: 'https://raw.githubusercontent.com/google/fonts/main/ofl/x/DESCRIPTION.en_us.html', ...over });
 const tpl = (over = {}) => ({
   id: 'romance-garden-party', name: 'Garden Party', type: 'novel', genres: ['romance'],
   body: { family: 'EB Garamond', weights: [400], italic: true },

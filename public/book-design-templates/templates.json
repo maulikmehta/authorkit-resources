@@ -14,7 +14,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Crimson Pro is a serif typeface family: Contemporary, clear, classic and rounded/open.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/crimsonpro/DESCRIPTION.en_us.html"
     },
     "Cormorant Garamond": {
       "license": "OFL-1.1",
@@ -24,7 +26,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Cormorant is a free display type family developed by Christian Thalmann.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/DESCRIPTION.en_us.html"
     },
     "EB Garamond": {
       "license": "OFL-1.1",
@@ -37,7 +41,9 @@
         800
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "It is a community project to create a revival of Claude Garamont’s famous humanist typefaces from the mid-16th century.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/ebgaramond/DESCRIPTION.en_us.html"
     },
     "Playfair Display": {
       "license": "OFL-1.1",
@@ -47,7 +53,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "This design lends itself to this period, and while it is not a revival of any particular design, it takes influence from the designs of John Baskerville and from ‘Scotch Roman’ designs.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/playfairdisplay/DESCRIPTION.en_us.html"
     },
     "Source Serif 4": {
       "license": "OFL-1.1",
@@ -57,7 +65,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Source Serif 4 is a serif typeface in the transitional style, designed to complement the Source Sans 3 family.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/DESCRIPTION.en_us.html"
     },
     "Oswald": {
       "license": "OFL-1.1",
@@ -67,7 +77,9 @@
         700
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Oswald is a reworking of the classic style historically represented by the 'Alternate Gothic' sans serif typefaces.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/oswald/DESCRIPTION.en_us.html"
     },
     "Alegreya": {
       "license": "OFL-1.1",
@@ -77,7 +89,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Alegreya is a typeface originally intended for literature.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/alegreya/DESCRIPTION.en_us.html"
     },
     "Cinzel": {
       "license": "OFL-1.1",
@@ -87,7 +101,9 @@
         700
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Cinzel is a typeface inspired in first century roman inscriptions, and based on classical proportions.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/cinzel/DESCRIPTION.en_us.html"
     },
     "Literata": {
       "license": "OFL-1.1",
@@ -97,7 +113,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Originally created as the brand typeface for Google Play Books, it exceeds the strict needs of a comfortable reading experience on any device, screen resolution, or font size.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/literata/DESCRIPTION.en_us.html"
     },
     "Space Grotesk": {
       "license": "OFL-1.1",
@@ -107,7 +125,9 @@
         700
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Space Grotesk is a proportional sans-serif typeface variant based on Colophon Foundry's fixed-width Space Mono family (2016).",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/spacegrotesk/DESCRIPTION.en_us.html"
     },
     "IM Fell English": {
       "license": "OFL-1.1",
@@ -116,7 +136,9 @@
         400
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "The Oxford Printing house holds the oldest punches and matrices surviving in England, material not only treasured but used; types cast therefrom being employed for the composition of books and other printed matter.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/imfellenglish/DESCRIPTION.en_us.html"
     },
     "Alegreya SC": {
       "license": "OFL-1.1",
@@ -126,7 +148,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Alegreya is a typeface originally intended for literature.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/alegreyasc/DESCRIPTION.en_us.html"
     },
     "Josefin Sans": {
       "license": "OFL-1.1",
@@ -136,7 +160,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "The idea of this typeface is to be geometric, elegant, with a vintage feeling, for use at larger sizes.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/josefinsans/DESCRIPTION.en_us.html"
     },
     "Libre Caslon Text": {
       "license": "OFL-1.1",
@@ -146,7 +172,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Libre Caslon, instead, is based on hand lettering artist Caslon interpretations typical of 1950s advertising.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/librecaslontext/DESCRIPTION.en_us.html"
     },
     "Libre Caslon Display": {
       "license": "OFL-1.1",
@@ -155,7 +183,9 @@
         400
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Libre Caslon Display is the display version of Libre Caslon Text.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/librecaslondisplay/DESCRIPTION.en_us.html"
     },
     "Inter": {
       "license": "OFL-1.1",
@@ -165,7 +195,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Inter is a variable font family carefully crafted & designed for computer screens.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/inter/DESCRIPTION.en_us.html"
     },
     "Newsreader": {
       "license": "OFL-1.1",
@@ -175,7 +207,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "NewsReader is an original typeface designed by Production Type, primarily intended for continuous on-screen reading in content-rich environments.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/newsreader/DESCRIPTION.en_us.html"
     },
     "Libre Franklin": {
       "license": "OFL-1.1",
@@ -185,7 +219,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Libre Franklin is an interpretation and expansion of the 1912 Morris Fuller Benton classic.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/librefranklin/DESCRIPTION.en_us.html"
     },
     "Spectral": {
       "license": "OFL-1.1",
@@ -195,7 +231,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Spectral offers an efficient, beautiful design that’s intended primarily for text-rich, screen-first environments and long-form reading.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/spectral/article/ARTICLE.en_us.html"
     },
     "Cormorant SC": {
       "license": "OFL-1.1",
@@ -205,7 +243,9 @@
         700
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Cormorant is a free display type family developed by Christian Thalmann.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantsc/DESCRIPTION.en_us.html"
     },
     "Andika": {
       "license": "OFL-1.1",
@@ -215,7 +255,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Andika is a sans serif, Unicode-compliant font designed especially for literacy use, taking into account the needs of beginning readers.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/andika/DESCRIPTION.en_us.html"
     },
     "Fredoka": {
       "license": "OFL-1.1",
@@ -225,7 +267,9 @@
         700
       ],
       "italic": false,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "Fredoka is a big, round, bold font that is perfect for adding a little fun to any headline or large text.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/fredoka/DESCRIPTION.en_us.html"
     },
     "Libre Baskerville": {
       "license": "OFL-1.1",
@@ -235,7 +279,9 @@
         700
       ],
       "italic": true,
-      "checked": "2026-09-30"
+      "checked": "2026-09-30",
+      "about": "It is based on the American Type Founder's Baskerville from 1941, but it has a taller x-height, wider counters and a little less contrast, that allow it to work well for reading on-screen.",
+      "aboutSource": "https://raw.githubusercontent.com/google/fonts/main/ofl/librebaskerville/DESCRIPTION.en_us.html"
     }
   },
   "templates": [

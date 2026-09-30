@@ -104,7 +104,7 @@ ${items.map(([url, label, what]) => `      <li><a href="${esc(url)}">${esc(label
 
 function fontRow(label, spec, f, isBody) {
   const styles = [...spec.weights.map(String), ...(isBody && spec.italic ? ['400 italic'] : [])].join(', ');
-  return `        <tr><th scope="row">${label}</th><td><a href="${esc(f.specimen)}">${esc(spec.family)}</a><br><span class="ak-hint">Styles used: ${styles}. Licence: SIL Open Font License 1.1.</span></td></tr>`;
+  return `        <tr><th scope="row">${label}</th><td><a href="${esc(f.specimen)}">${esc(spec.family)}</a><br><span class="ak-hint">Google Fonts: \u201c${esc(f.about)}\u201d Styles used: ${styles}. Licence: SIL Open Font License 1.1.</span></td></tr>`;
 }
 
 function inner(t, data, samples, chrome) {
@@ -115,7 +115,11 @@ function inner(t, data, samples, chrome) {
   const pair = pairOf(t);
   const text = answer(t);
   const genre = genreOf(t)?.[1];
-  const title = `${t.name}: ${pair} for a ${genreOf(t) ? `${genreOf(t)[2]} ` : ''}${type.noun}`;
+  const kind = `${genreOf(t) ? `${genreOf(t)[2]} ` : ''}${type.noun}`;
+  // Query first ("Font for a cozy novel"), then the pairing: each page's title is its own.
+  const title = `Font for a ${kind}: ${pair}`;
+  // Lead the description with what differs per page: pairing, size, trim.
+  const meta = `${pair} for a ${kind}: ${t.size[0]}/${t.size[1]} pt on a ${fmtTrim(t.trim)} trim. Free OFL fonts; paste your own pages to preview them.`;
   // Prev/next walk the whole catalog in book-type order, wrapping, so the author can flip
   // through pairings with their own text (it carries over via localStorage).
   const order = TYPES.flatMap((ty) => data.templates.filter((x) => x.type === ty.id));
@@ -197,12 +201,13 @@ ${more.map((x) => `      <li><a href="${BASE}${x.id}/">${esc(x.name)}: ${esc(pai
     <div class="ak-faq-content ak-prose">
       <p>Your browser sets the preview, so line breaks and hyphens can fall a little differently from the PDF your formatting software makes. The fonts, sizes and margins are the ones in the table.</p>
       <p>The margins assume a book of about ${PAGES_ASSUMED} pages, for which KDP asks for an inside margin of at least ${inches(gutterIn(PAGES_ASSUMED))}. For your own page count, use the <a href="/cover-calculator/">KDP cover calculator</a>.</p>
-      <p>${esc(data.ofl.note)}</p>
+      <p>Both fonts are under the SIL Open Font License; <a href="${BASE}">the templates page</a> says what it allows for books.</p>
     </div>
   </details>
 
 ${sources([
     ...families.map((f) => [data.fonts[f].specimen, `Google Fonts: ${f}`, 'styles and licence']),
+    ...families.map((f) => [data.fonts[f].aboutSource, `Google Fonts: ${f} description`, 'the quoted line']),
     [data.ofl.url, 'SIL Open Font License FAQ', 'using OFL fonts in books'],
     [s.source, `Project Gutenberg: ${s.title}`, 'sample text, public domain'],
     ...(c ? [[c.url, c.book, `set in ${c.typeface}`]] : []),
@@ -211,7 +216,7 @@ ${sources([
   const script = `<script type="application/json" id="bdt-data">${json({ template: t, sample: s })}</script>
 <script type="module" src="${BASE}preview.js"></script>`;
   return page({
-    chrome, title: `${title} — AuthorKit`, description: text, path, ld, main, script,
+    chrome, title: `${title} — AuthorKit`, description: meta, path, ld, main, script,
     fonts: [fontsHref([...SITE_FONTS, t.body, t.heading])],
     skip: 'Skip to the preview',
     crumbs: `<li><a href="${BASE}">Book design templates</a></li><li aria-current="page">${esc(t.name)}</li>`,
@@ -265,7 +270,7 @@ function gallery(data, samples, chrome) {
 ${TYPES.filter((x) => x.genres.length).map((x) => `    <p class="bdt-chips" data-for="${x.id}" hidden><a href="?type=${x.id}" data-genre="">All</a>${x.genres.map(([id, label]) => `<a href="?type=${x.id}&amp;genre=${id}" data-genre="${id}">${esc(label)}</a>`).join('')}</p>`).join('\n')}
   </nav>`;
   const main = `  <header class="hero">
-    <h1>Book design templates</h1>
+    <h1>Book design templates: font pairings for book interiors</h1>
     <p>Font pairings for book interiors, by book type and genre. Open one and paste a page of your manuscript to see it set.</p>
   </header>
 
@@ -326,7 +331,7 @@ document.querySelector('.bdt-filter').addEventListener('click', (e) => {
 show();
 </script>`;
   return page({
-    chrome, title: 'Book design templates: font pairings for book interiors — AuthorKit', description, path, ld, main, script,
+    chrome, title: `Book Interior Font Pairings for KDP Paperbacks (${data.templates.length} Free Templates) — AuthorKit`, description, path, ld, main, script,
     fonts: [fontsHref(SITE_FONTS), cardFonts],
     skip: 'Skip to the templates',
     crumbs: '<li aria-current="page">Book design templates</li>',

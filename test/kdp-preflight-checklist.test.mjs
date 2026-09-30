@@ -41,6 +41,12 @@ test('bad page count is an error, never NaN', () => {
   }
 });
 
+test('page count outside what KDP prints is an error naming the range', () => {
+  // 24 and 828: lowest minimum and highest maximum across every paper, ink and trim (pageLimits).
+  for (const p of ['23', '829', '3000']) assert.match(marginsFor(p).error, /24 to 828/, p);
+  for (const p of ['24', '828']) assert.ok(!marginsFor(p).error, p);
+});
+
 test('progress counts only known ids', () => {
   assert.deepEqual(progress(new Set([ITEMS[0].id, 'nope'])), { done: 1, total: ITEMS.length });
 });

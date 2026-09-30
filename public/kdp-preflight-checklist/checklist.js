@@ -1,4 +1,9 @@
-import { BLEED_IN, gutterIn, outsideMarginMinIn } from '../shared/kdp.js';
+import { BLEED_IN, INK_ALL, gutterIn, outsideMarginMinIn, pageLimits, trimsFor } from '../shared/kdp.js';
+
+// The page has no paper or trim input, so bound by the widest range KDP prints across all of them.
+const LIMITS = INK_ALL.flatMap((ink) => trimsFor(ink).map((t) => pageLimits(ink, t)));
+const MIN_PAGES = Math.min(...LIMITS.map(([lo]) => lo));
+const MAX_PAGES = Math.max(...LIMITS.map(([, hi]) => hi));
 
 const SUB = 'https://kdp.amazon.com/en_US/help/topic/G201857950'; // Paperback submission guidelines
 const BLEED = 'https://kdp.amazon.com/en_US/help/topic/GVBQ3CMEQW3W2VL6'; // Trim, bleed and margins
@@ -108,8 +113,12 @@ const fmt = (inches) => `${inches.toFixed(3)}″ (${(inches * 25.4).toFixed(1)} 
 export function marginsFor(pages) {
   const s = String(pages ?? '').trim();
   if (!/^\d+$/.test(s) || Number(s) < 1) return { error: 'Enter your page count to see the margins for it.' };
+  const n = Number(s);
+  if (n < MIN_PAGES || n > MAX_PAGES) {
+    return { error: `KDP prints ${MIN_PAGES} to ${MAX_PAGES} pages, depending on paper, ink and trim. Check your page count.` };
+  }
   return {
-    gutter: fmt(gutterIn(Number(s))),
+    gutter: fmt(gutterIn(n)),
     outside: fmt(outsideMarginMinIn(false)),
     outsideBleed: fmt(outsideMarginMinIn(true)),
     bleed: fmt(BLEED_IN),

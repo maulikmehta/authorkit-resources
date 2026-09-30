@@ -8,6 +8,7 @@ import { INK_ALL, INK_LABELS, trimsFor, trimId, parseTrim, pageLimits } from '..
 import { fmt, INK_SHORT } from '../public/shared/ui.js';
 import { coverResult } from '../public/cover-calculator/cover.js';
 import { royaltyResult } from '../public/kdp-royalty-calculator/royalty.js';
+import { ITEMS } from '../public/kdp-preflight-checklist/checklist.js';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -81,7 +82,17 @@ function royalty(html) {
   return html;
 }
 
-const PAGES_OUT = { 'cover-calculator/index.html': cover, 'kdp-royalty-calculator/index.html': royalty };
+// The checklist items, as the page script builds them (it rebuilds them to add ticks).
+function preflight(html) {
+  const items = ITEMS.map((i) => `<div class="ak-field ak-field--check"><label for="chk-${i.id}"><input type="checkbox" id="chk-${i.id}"><span>${esc(i.title)}</span></label>`
+    + `<p class="ak-hint">${esc(i.detail)}</p><p class="ak-hint">KDP: \u201c${esc(i.quote)}\u201d <a href="${esc(i.source)}">${esc(i.sourceTitle)}</a></p></div>`).join('');
+  // Items nest <div>s, so they sit between markers rather than in fill()'s single-element match.
+  const re = /(<!-- prerender:items -->)[\s\S]*?(<!-- \/prerender:items -->)/;
+  if (!re.test(html)) throw new Error('no prerender:items markers');
+  return fill(html.replace(re, (_, a, b) => a + items + b), 'progress', `0 of ${ITEMS.length} checked`);
+}
+
+const PAGES_OUT = { 'cover-calculator/index.html': cover, 'kdp-royalty-calculator/index.html': royalty, 'kdp-preflight-checklist/index.html': preflight };
 
 export function render() {
   return Object.fromEntries(Object.entries(PAGES_OUT).map(([p, f]) => [p, f(readFileSync(PUB + p, 'utf8'))]));

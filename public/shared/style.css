@@ -207,7 +207,7 @@ a:hover { text-decoration-thickness: 2px; }
 .ak-field select:focus,
 .ak-field input:focus {
   outline: 2px solid var(--black);
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
 .ak-hint {
@@ -485,7 +485,9 @@ a:hover { text-decoration-thickness: 2px; }
   .ak-tool__body { grid-template-columns: minmax(0, 17rem) minmax(0, 1fr); align-items: start; }
 }
 .ak-tool .ak-results { margin: 1.5rem 0 0; }
-.ak-tool .ak-field select { font-size: .85rem; }
+.ak-tool .ak-field select,
+.ak-tool .ak-field input[type="number"],
+.ak-tool .ak-field input[type="text"] { font-size: .85rem; }
 @container (max-width: 20rem) { .ak-tool .ak-field select { font-size: .8rem; padding-left: .4rem; } }
 
 .ak-field input[type="range"] { width: 100%; margin-top: .5rem; accent-color: var(--black); }
@@ -626,6 +628,7 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
   color: var(--paper);
   cursor: pointer;
 }
+.ak-btn:hover { background: var(--paper); color: var(--black); }
 .ak-btn:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
 
 /* Sandboxed preview frame (book description formatter) */

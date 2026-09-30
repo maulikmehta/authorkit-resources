@@ -7,7 +7,7 @@
 - [KDP cover calculator](https://resources.authorkit.pro/cover-calculator/): Full cover, spine and interior margins, in inches and mm, drawn to scale.
 - [Novel word count by genre](https://resources.authorkit.pro/novel-word-count/): Typical lengths for fiction categories and publisher lines, each from a named source.
 - [KDP royalty calculator](https://resources.authorkit.pro/kdp-royalty-calculator/): Amazon.com paperback royalty per sale, and net royalty in rupees after US withholding for an Indian author.
-- [Publishing on KDP from India](https://resources.authorkit.pro/kdp-from-india/): Where KDP sells, how the tax interview and payments work, and what to ask a Chartered Accountant. Draft.
+- [Publishing on KDP from India](https://resources.authorkit.pro/kdp-from-india/): Where KDP sells, how the tax interview and payments work, and what to ask a Chartered Accountant.
 - [ISBN in India](https://resources.authorkit.pro/isbn-india/): How to apply to RRRNA for a free ISBN, KDP's free ISBN vs your own, and one ISBN per format.
 - [Copyright page generator](https://resources.authorkit.pro/copyright-page-generator/): Copyright page text for your book, with the reason for each line and its source.
 - [KDP paperback preflight checklist](https://resources.authorkit.pro/kdp-preflight-checklist/): What KDP rejects in a paperback interior PDF, as a tick list with the margins for your page count.

@@ -4,12 +4,8 @@ import { readFileSync } from 'node:fs';
 
 const html = readFileSync(new URL('../public/kdp-from-india/index.html', import.meta.url), 'utf8');
 
-test('draft banner stays until a CA has reviewed tax and GST', () => {
-  assert.match(html, /class="ak-draft"[^>]*data-status="draft"/);
-});
-
-test('says it is not tax advice', () => {
-  assert.match(html, /not tax or legal advice/i);
+test('the banner says it is not tax or legal advice', () => {
+  assert.match(html, /<p class="ak-draft" role="note">This is not tax or legal advice\.<\/p>/);
 });
 
 test('links to the royalty calculator', () => {

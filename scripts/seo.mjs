@@ -93,10 +93,11 @@ function sitemap(all) {
 function llms() {
   const hub = readFileSync(PUB + 'index.html', 'utf8');
   const lead = text(first(hub, /<header class="hero">[\s\S]*?<p>([\s\S]*?)<\/p>/));
-  const list = first(hub, /<ul class="ak-index" id="tools">([\s\S]*?)<\/ul>/);
-  const items = [...list.matchAll(/<li><a href="([^"]+)">([\s\S]*?)<\/a><span>([\s\S]*?)<\/span><\/li>/g)]
-    .map(([, href, name, what]) => `- [${text(name)}](${SITE}${href}): ${text(what)}`);
-  return `# AuthorKit Resources\n\n> ${lead}\n\n## Resources\n\n${items.join('\n')}\n`;
+  const groups = [...hub.matchAll(/<section class="ak-group"[^>]*>\s*<h2[^>]*>([\s\S]*?)<\/h2>\s*<ul class="ak-index">([\s\S]*?)<\/ul>/g)]
+    .map(([, title, list]) => `## ${text(title)}\n\n` + [...list.matchAll(/<li><a href="([^"]+)">([\s\S]*?)<\/a><span>([\s\S]*?)<\/span><\/li>/g)]
+      .map(([, href, name, what]) => `- [${text(name)}](${SITE}${href}): ${text(what)}`).join('\n'));
+  if (!groups.length) throw new Error('hub: no resource groups found');
+  return `# AuthorKit Resources\n\n> ${lead}\n\n${groups.join('\n\n')}\n`;
 }
 
 export function render() {

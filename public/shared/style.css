@@ -716,3 +716,11 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 .ak-connect__cta:hover { background: var(--black); color: var(--paper); }
 .ak-connect__cta:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
 .ak-connect p a { color: var(--black); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Resource groups: hub sections and sidebar sub-heads share one order. */
+.ak-group + .ak-group { margin-top: 2rem; }
+.ak-group h2 { font-family: var(--font-body); font-size: .76rem; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--stone); border-bottom: 1px solid var(--rule); padding-bottom: .45rem; margin-bottom: 1rem; }
+.ak-sidebar h3 { font-family: var(--font-body); font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--stone); margin: 1rem 0 .25rem; }
+.ak-sidebar h2 + h3 { margin-top: .5rem; }
+.ak-group .ak-index { border-top: 0; padding-top: 0; margin-bottom: 0; }
+#tools { margin-bottom: 3rem; }

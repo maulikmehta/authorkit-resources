@@ -34,9 +34,17 @@ function target(fromFile, ref) {
 // Sidebar order on every page (README "Page skeleton"). A folder under public/
 // with an index.html must be listed here and linked from every page's sidebar.
 const RESOURCES = [
-  'cover-calculator', 'novel-word-count', 'kdp-royalty-calculator', 'kdp-from-india',
-  'isbn-india', 'copyright-page-generator', 'kdp-preflight-checklist',
-  'book-design-templates', 'book-description-formatter', 'book-mockups', 'book-formatting-software',
+  'novel-word-count',
+  'book-formatting-software',
+  'book-design-templates',
+  'copyright-page-generator',
+  'cover-calculator',
+  'kdp-preflight-checklist',
+  'book-description-formatter',
+  'kdp-royalty-calculator',
+  'book-mockups',
+  'kdp-from-india',
+  'isbn-india',
 ];
 const existing = readdirSync(ROOT).filter((n) => n !== 'shared' && existsSync(join(ROOT, n, 'index.html')));
 

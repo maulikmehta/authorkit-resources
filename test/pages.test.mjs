@@ -36,7 +36,7 @@ function target(fromFile, ref) {
 const RESOURCES = [
   'cover-calculator', 'novel-word-count', 'kdp-royalty-calculator', 'kdp-from-india',
   'isbn-india', 'copyright-page-generator', 'kdp-preflight-checklist',
-  'book-design-templates', 'book-description-formatter', 'book-mockups',
+  'book-design-templates', 'book-description-formatter', 'book-mockups', 'book-formatting-software',
 ];
 const existing = readdirSync(ROOT).filter((n) => n !== 'shared' && existsSync(join(ROOT, n, 'index.html')));
 

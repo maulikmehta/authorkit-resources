@@ -15,7 +15,7 @@ const KIND = {
   'index.html': 'hub',
   'cover-calculator': 'tool', 'kdp-royalty-calculator': 'tool', 'copyright-page-generator': 'tool',
   'kdp-preflight-checklist': 'tool', 'book-description-formatter': 'tool',
-  'novel-word-count': 'guide', 'kdp-from-india': 'guide', 'isbn-india': 'guide', 'book-mockups': 'guide',
+  'novel-word-count': 'guide', 'kdp-from-india': 'guide', 'isbn-india': 'guide', 'book-mockups': 'guide', 'book-formatting-software': 'guide',
 };
 const GENERATED = 'book-design-templates';
 

@@ -21,14 +21,24 @@
 .bdt-controls .bdt-wide { grid-column: 1 / -1; }
 .bdt-controls textarea { max-height: 12rem; }
 .bdt-preview { position: relative; overflow: hidden; min-width: 0; margin-top: 1rem; }
-.bdt-pages { display: grid; gap: 1rem; justify-items: center; }
-.bdt-row { overflow: hidden; }
-.bdt-scale { display: flex; transform-origin: top left; }
+/* Book viewer: one spread (or page) at a time; the turning leaf is 3D. */
+.bdt-pages { display: flex; justify-content: center; touch-action: pan-y; }
+.bdt-stage { position: relative; }
+.bdt-scale { position: relative; display: flex; transform-origin: top left; perspective: 2400px; }
+.bdt-leaf { position: absolute; top: 0; height: 100%; transform-style: preserve-3d; will-change: transform; }
+.bdt-face { position: absolute; inset: 0; backface-visibility: hidden; }
+.bdt-face--back { transform: rotateY(180deg); }
+.bdt-page--none { background: transparent; box-shadow: none; }
+.bdt-turn { display: flex; justify-content: center; align-items: center; gap: 1rem; margin-top: .75rem; font-size: .85rem; color: var(--stone); }
+.bdt-turn[hidden] { display: none; }
+.bdt-btn { font: inherit; color: var(--black); background: none; border: 1px solid var(--rule); padding: .3rem .8rem; cursor: pointer; }
+.bdt-btn:hover:not(:disabled) { background: var(--black); color: var(--paper); }
+.bdt-btn:disabled { opacity: .35; cursor: default; }
+.bdt-btn:focus-visible { outline: 2px solid var(--black); outline-offset: 2px; }
 .bdt-measure { position: absolute; left: -10000px; top: 0; visibility: hidden; }
 .bdt-flip { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1rem; font-size: .9rem; }
 
 .bdt-page { position: relative; box-sizing: border-box; flex: none; background: #fff; color: #1a1a1a; box-shadow: 0 0 0 1px rgba(0, 0, 0, .18); font-family: var(--bdt-body); font-size: var(--bdt-size); line-height: var(--bdt-lead); font-kerning: normal; }
-.bdt-page--blank { background: #f4f2ed; }
 .bdt-body { height: 100%; overflow: hidden; }
 .bdt-body p { margin: 0; text-align: justify; hyphens: auto; text-indent: 1.5em; }
 .bdt-body p.bdt-cont, .bdt-opener + p, .bdt-break + p { text-indent: 0; }

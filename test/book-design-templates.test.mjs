@@ -154,3 +154,16 @@ test('generated pages copy the favicon line whole, so the viewport meta is not s
     assert.ok(html.includes(`${icon}\n<meta name="viewport"`), `${p}: favicon line broken`);
   }
 });
+
+test('prev/next links on each inner page walk every template once', () => {
+  const nextOf = (id) => built[`book-design-templates/${id}/index.html`].match(/<a href="\/book-design-templates\/([^/"]+)\/"[^>]*rel="next">/)[1];
+  const seen = new Set();
+  let id = real.templates[0].id;
+  do { seen.add(id); id = nextOf(id); } while (!seen.has(id));
+  assert.equal(seen.size, real.templates.length);
+  for (const t of real.templates) assert.match(built[`book-design-templates/${t.id}/index.html`], /rel="prev"/, t.id);
+});
+
+test('generated pages use the brand arrow classes, not arrow characters', () => {
+  for (const [p, html] of Object.entries(built)) assert.doesNotMatch(html, /[←→↗]/, p);
+});

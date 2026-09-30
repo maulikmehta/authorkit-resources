@@ -118,18 +118,18 @@
         <div class="ak-field bdt-wide"><label for="bdt-text">Your pages</label><textarea id="bdt-text" placeholder="Paste 1–2 pages of your manuscript"></textarea><span class="ak-hint">Paste from Word, or leave a blank line between paragraphs. *Asterisks* or _underscores_ make italics. A line of *** is a scene break. Your text stays in this browser and follows you to every template.</span></div>
         <div class="ak-field"><label for="bdt-title">Chapter title (optional)</label><input id="bdt-title" type="text"></div>
         <div class="ak-field"><label for="bdt-trim">Trim size</label><select id="bdt-trim"></select></div>
-        <div class="ak-field ak-field--check"><label><input id="bdt-spread" type="checkbox"> Show facing pages</label></div>
         <div class="ak-field"><button type="button" class="ak-btn" id="bdt-clear">Clear, use the sample</button></div>
     </div>
     <div class="bdt-preview bdt-initial-drop-cap" style="--bdt-body: 'EB Garamond', Georgia, serif; --bdt-head: 'IM Fell English', Georgia, serif; --bdt-case: none; --bdt-caps: normal; --bdt-track: 0; --bdt-size: 11pt; --bdt-lead: 14.5pt; --bdt-top: 0.75in; --bdt-bottom: 0.75in">
         <div id="bdt-pages" class="bdt-pages" role="img" aria-label="Book pages set in EB Garamond and IM Fell English"></div>
+        <div class="bdt-turn" id="bdt-turn" hidden><button type="button" class="bdt-btn ak-prev" id="bdt-back">Back</button><span id="bdt-at" aria-live="polite"></span><button type="button" class="bdt-btn ak-next" id="bdt-fwd">Next</button></div>
         <div id="bdt-measure" class="bdt-measure" aria-hidden="true"></div>
         <p class="ak-hint" id="bdt-note" aria-live="polite"></p>
         <p class="ak-hint" id="bdt-credit"></p>
     </div>
     <nav class="bdt-flip" aria-label="Other templates">
-      <a href="/book-design-templates/novel-scifi/" rel="prev">← Sci-Fi</a>
-      <a href="/book-design-templates/novel-cozy/" rel="next">Cozy →</a>
+      <a href="/book-design-templates/novel-scifi/" class="ak-prev" rel="prev">Sci-Fi</a>
+      <a href="/book-design-templates/novel-cozy/" class="ak-next" rel="next">Cozy</a>
     </nav>
     <table class="ak-results">
       <tbody>
@@ -142,13 +142,6 @@
   </section>
 
   <section class="ak-section ak-prose">
-    <h2>About this preview</h2>
-    <p>Your browser sets the preview, so line breaks and hyphens can fall a little differently from the PDF your formatting software makes. The fonts, sizes and margins are the ones in the table.</p>
-    <p>The margins assume a book of about 300 pages, for which KDP asks for an inside margin of at least 0.5 in (12.7 mm). For your own page count, use the <a href="/cover-calculator/">KDP cover calculator</a>.</p>
-    <p>The SIL Open Font License (OFL) allows you to use these fonts freely in print publications and e-books, even if you sell them. Referencing or embedding an OFL font in a document does not change the license of the document itself.</p>
-  </section>
-
-  <section class="ak-section ak-prose">
     <h2>More novel templates</h2>
     <ul>
       <li><a href="/book-design-templates/novel-literary/">Literary: Crimson Pro and Cormorant Garamond</a></li>
@@ -157,6 +150,15 @@
     </ul>
     <p><a href="/book-design-templates/">All book design templates</a></p>
   </section>
+
+  <details class="ak-faq">
+    <summary><h2>About this preview</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>Your browser sets the preview, so line breaks and hyphens can fall a little differently from the PDF your formatting software makes. The fonts, sizes and margins are the ones in the table.</p>
+      <p>The margins assume a book of about 300 pages, for which KDP asks for an inside margin of at least 0.5 in (12.7 mm). For your own page count, use the <a href="/cover-calculator/">KDP cover calculator</a>.</p>
+      <p>The SIL Open Font License (OFL) allows you to use these fonts freely in print publications and e-books, even if you sell them. Referencing or embedding an OFL font in a document does not change the license of the document itself.</p>
+    </div>
+  </details>
 
   <section class="ak-sources">
     <p>Sources (last verified <span data-verified="2026-09-30">2026-09-30</span>):</p>

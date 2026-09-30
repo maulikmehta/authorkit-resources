@@ -156,18 +156,18 @@ function inner(t, data, samples, chrome) {
         <div class="ak-field bdt-wide"><label for="bdt-text">Your pages</label><textarea id="bdt-text" placeholder="Paste 1–2 pages of your manuscript"></textarea><span class="ak-hint">Paste from Word, or leave a blank line between paragraphs. *Asterisks* or _underscores_ make italics. A line of *** is a scene break. Your text stays in this browser and follows you to every template.</span></div>
         <div class="ak-field"><label for="bdt-title">Chapter title (optional)</label><input id="bdt-title" type="text"></div>
         <div class="ak-field"><label for="bdt-trim">Trim size</label><select id="bdt-trim"></select></div>
-        <div class="ak-field ak-field--check"><label><input id="bdt-spread" type="checkbox"> Show facing pages</label></div>
         <div class="ak-field"><button type="button" class="ak-btn" id="bdt-clear">Clear, use the sample</button></div>
     </div>
     <div class="bdt-preview bdt-initial-${t.initial}" style="${esc(vars)}">
         <div id="bdt-pages" class="bdt-pages" role="img" aria-label="${esc(`Book pages set in ${pair}`)}"></div>
+        <div class="bdt-turn" id="bdt-turn" hidden><button type="button" class="bdt-btn ak-prev" id="bdt-back">Back</button><span id="bdt-at" aria-live="polite"></span><button type="button" class="bdt-btn ak-next" id="bdt-fwd">Next</button></div>
         <div id="bdt-measure" class="bdt-measure" aria-hidden="true"></div>
         <p class="ak-hint" id="bdt-note" aria-live="polite"></p>
         <p class="ak-hint" id="bdt-credit"></p>
     </div>
     <nav class="bdt-flip" aria-label="Other templates">
-      <a href="${BASE}${prev.id}/" rel="prev">← ${esc(prev.name)}</a>
-      <a href="${BASE}${next.id}/" rel="next">${esc(next.name)} →</a>
+      <a href="${BASE}${prev.id}/" class="ak-prev" rel="prev">${esc(prev.name)}</a>
+      <a href="${BASE}${next.id}/" class="ak-next" rel="next">${esc(next.name)}</a>
     </nav>
     <table class="ak-results">
       <tbody>
@@ -185,19 +185,21 @@ ${c ? `
   </section>
 ` : ''}
   <section class="ak-section ak-prose">
-    <h2>About this preview</h2>
-    <p>Your browser sets the preview, so line breaks and hyphens can fall a little differently from the PDF your formatting software makes. The fonts, sizes and margins are the ones in the table.</p>
-    <p>The margins assume a book of about ${PAGES_ASSUMED} pages, for which KDP asks for an inside margin of at least ${inches(gutterIn(PAGES_ASSUMED))}. For your own page count, use the <a href="/cover-calculator/">KDP cover calculator</a>.</p>
-    <p>${esc(data.ofl.note)}</p>
-  </section>
-
-  <section class="ak-section ak-prose">
     <h2>${siblings.length ? `More ${esc(type.label.toLowerCase())} templates` : 'More templates'}</h2>
     <ul>
 ${more.map((x) => `      <li><a href="${BASE}${x.id}/">${esc(x.name)}: ${esc(pairOf(x))}</a></li>`).join('\n')}
     </ul>
     <p><a href="${BASE}">All book design templates</a></p>
   </section>
+
+  <details class="ak-faq">
+    <summary><h2>About this preview</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>Your browser sets the preview, so line breaks and hyphens can fall a little differently from the PDF your formatting software makes. The fonts, sizes and margins are the ones in the table.</p>
+      <p>The margins assume a book of about ${PAGES_ASSUMED} pages, for which KDP asks for an inside margin of at least ${inches(gutterIn(PAGES_ASSUMED))}. For your own page count, use the <a href="/cover-calculator/">KDP cover calculator</a>.</p>
+      <p>${esc(data.ofl.note)}</p>
+    </div>
+  </details>
 
 ${sources([
     ...families.map((f) => [data.fonts[f].specimen, `Google Fonts: ${f}`, 'styles and licence']),
@@ -273,8 +275,9 @@ ${chips}
 ${cards.map((c) => c.html).join('\n')}
   </ul>
 
-  <section class="ak-section ak-prose">
-    <h2>How to use these templates</h2>
+  <details class="ak-faq">
+    <summary><h2>How to use these templates</h2></summary>
+    <div class="ak-faq-content ak-prose">
     <ol class="ak-steps">
       <li><strong>Pick your book type, then your genre.</strong> The cards show a chapter heading and a paragraph in each pairing.</li>
       <li><strong>Open a template and paste a page you know well.</strong> A page with dialogue and a page of description show the most. Your text follows you from template to template.</li>
@@ -282,7 +285,8 @@ ${cards.map((c) => c.html).join('\n')}
       <li><strong>Get the two fonts.</strong> Each template links to both on Google Fonts, and lists the sizes and margins to set in your formatting software.</li>
     </ol>
     <p>${esc(data.ofl.note)}</p>
-  </section>
+    </div>
+  </details>
 
 ${sources([
     [data.ofl.url, 'SIL Open Font License FAQ', 'using OFL fonts in books'],

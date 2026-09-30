@@ -40,7 +40,9 @@ export function cspMeta(html) {
     .map((m) => `'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`);
   const policy = [
     "default-src 'self'",
-    `script-src 'self'${hashes.map((h) => ` ${h}`).join('')}`,
+    // Cloudflare injects its Web Analytics beacon at the edge (cookie-less; enabled in Pages).
+    `script-src 'self' https://static.cloudflareinsights.com${hashes.map((h) => ` ${h}`).join('')}`,
+    "connect-src 'self' https://cloudflareinsights.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' https://fonts.gstatic.com",
     "img-src 'self' data:",

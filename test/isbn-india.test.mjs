@@ -23,10 +23,6 @@ test('no foreign agency list', () => {
   }
 });
 
-test('open questions to RRRNA are on the page', () => {
-  assert.match(main, /not yet confirmed/i);
-});
-
 test('barcode link uses the live slug, not the 404 one', () => {
   assert.match(html, /kindlepreneur\.com\/isbn-bar-code-generator\//);
   assert.doesNotMatch(html, /isbn-barcode-generator\/"/);

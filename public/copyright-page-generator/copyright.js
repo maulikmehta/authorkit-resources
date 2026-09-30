@@ -13,7 +13,7 @@ export function isIsbn13(s) {
 
 /**
  * @param {{
- *   title: string, author: string, holder?: string, year: string,
+ *   author: string, holder?: string, year: string,
  *   isbns?: { format: string, isbn: string }[],   // e.g. [{ format: 'Paperback', isbn: '978…' }]
  *   publisher?: string, edition?: string, country: 'IN' | 'US',
  *   rightsReserved?: boolean, fiction?: boolean,
@@ -21,7 +21,6 @@ export function isIsbn13(s) {
  * @returns {{ lines: string[] } | { error: string }}
  */
 export function copyrightPage(f) {
-  const title = (f.title || '').trim();
   const author = (f.author || '').trim();
   const holder = (f.holder || '').trim() || author;
   const year = (f.year || '').trim();
@@ -29,7 +28,6 @@ export function copyrightPage(f) {
   const edition = (f.edition || '').trim();
   const isbns = f.isbns || [];
 
-  if (!title) return { error: 'Please enter a title.' };
   if (!author) return { error: 'Please enter an author name.' };
   
   const y = parseInt(year, 10);

@@ -48,7 +48,6 @@
   <section class="ak-tool" aria-label="Generator">
     <div class="ak-tool__body">
       <div>
-        <div class="ak-field"><label for="title">Title</label><input id="title" type="text" autocomplete="off"></div>
         <div class="ak-field"><label for="author">Author</label><input id="author" type="text" autocomplete="off"></div>
         <div class="ak-field">
           <label for="holder">Copyright owner (optional)</label>
@@ -179,33 +178,34 @@
 import { copyrightPage } from '/copyright-page-generator/copyright.js';
 
 const $ = (id) => document.getElementById(id);
-const text = ['title', 'author', 'holder', 'year', 'publisher', 'edition'];
+const text = ['author', 'holder', 'year', 'publisher', 'edition'];
 const inputs = [...text.map($), $('rights'), $('fiction'), ...[1, 2, 3].flatMap((n) => [$(`fmt${n}`), $(`isbn${n}`)])];
 const out = $('out'), err = $('error'), result = $('result'), prompt = $('prompt'), msg = $('copy-msg');
-let touched = false;
+let authorLeft = false; // until the reader leaves Author, an empty Author is a prompt, not an error
 
 $('year').value = String(new Date().getFullYear());
 
-function render() {
+function render(typing = false) {
   const r = copyrightPage({
-    title: $('title').value, author: $('author').value, holder: $('holder').value, year: $('year').value,
+    author: $('author').value, holder: $('holder').value, year: $('year').value,
     publisher: $('publisher').value, edition: $('edition').value,
     isbns: [1, 2, 3].map((n) => ({ format: $(`fmt${n}`).value, isbn: $(`isbn${n}`).value })),
     country: 'IN', rightsReserved: $('rights').checked, fiction: $('fiction').checked,
   });
   msg.textContent = '';
-  const untouchedEmpty = !touched && r.error;
-  err.hidden = !r.error || untouchedEmpty;
+  const waiting = !authorLeft && !$('author').value.trim();
+  // Errors show when a field is left (change), not mid-typing.
+  err.hidden = !r.error || waiting || typing;
   result.hidden = !!r.error;
   // .ak-hint sets display, which beats [hidden], so set the text instead.
-  prompt.textContent = untouchedEmpty ? 'Enter a title and author to see the text.' : '';
+  prompt.textContent = waiting ? 'Enter an author name to see the text.' : '';
   if (r.error) { err.textContent = r.error; out.value = ''; return; }
   out.value = r.lines.join('\n');
 }
 
 for (const el of inputs) {
-  el.addEventListener('input', () => { touched = true; render(); });
-  el.addEventListener('change', () => { touched = true; render(); });
+  el.addEventListener('input', () => render(true));
+  el.addEventListener('change', () => { if (el.id === 'author') authorLeft = true; render(); });
 }
 
 $('copy').addEventListener('click', () => {

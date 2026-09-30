@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { copyrightPage, isIsbn13 } from '../public/copyright-page-generator/copyright.js';
 
-const base = { title: 'The Magical Friend', author: 'Swati Joshi', year: '2026', country: 'IN' };
+const base = { author: 'Swati Joshi', year: '2026', country: 'IN' };
 
 test('minimum: notice line with ©, year, holder defaults to author', () => {
   const { lines } = copyrightPage(base);
@@ -32,8 +32,8 @@ test('optional lines only when ticked', () => {
   assert.ok(copyrightPage({ ...base, rightsReserved: true }).lines.some((l) => /All rights reserved/.test(l)));
 });
 
-test('missing title, author or a bad year is an error', () => {
-  assert.ok(copyrightPage({ ...base, title: '' }).error);
+test('missing author or a bad year is an error; title is not asked for', () => {
+  assert.ok(!copyrightPage(base).error);
   assert.ok(copyrightPage({ ...base, author: '  ' }).error);
   for (const y of ['', '26', 'abcd', '3026']) assert.ok(copyrightPage({ ...base, year: y }).error, y);
 });

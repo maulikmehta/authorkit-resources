@@ -2,7 +2,7 @@
 // Open Graph block and the Content-Security-Policy every page carries.
 import { createHash } from 'node:crypto';
 export const SITE = 'https://resources.authorkit.pro';
-export const ORG_ID = `${SITE}/#org`;
+export const ORG_ID = 'https://authorkit.pro/#org'; // one entity across authorkit.pro and resources
 export const WEBSITE_ID = `${SITE}/#website`;
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

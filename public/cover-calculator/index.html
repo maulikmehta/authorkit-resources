@@ -48,34 +48,34 @@
   <section class="ak-tool" aria-label="Calculator">
     <div class="ak-tool__body">
       <div>
-        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
-        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
+        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"><option value="bw-cream" selected>Cream paper, black &amp; white</option><option value="bw-white">White paper, black &amp; white</option><option value="bw-groundwood">Groundwood paper, black &amp; white</option><option value="standard-color">White paper, standard color</option><option value="premium-color">White paper, premium color</option></select><span class="ak-hint" id="ink-kdp">KDP calls this: Black &amp; white interior with cream paper</span></div>
+        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"><option value="5x8">5″ × 8″</option><option value="5.06x7.81">5.06″ × 7.81″</option><option value="5.25x8">5.25″ × 8″</option><option value="5.5x8.5">5.5″ × 8.5″</option><option value="6x9" selected>6″ × 9″</option><option value="6.14x9.21">6.14″ × 9.21″</option><option value="6.69x9.61">6.69″ × 9.61″</option><option value="7x10">7″ × 10″</option><option value="7.44x9.69">7.44″ × 9.69″</option><option value="7.5x9.25">7.5″ × 9.25″</option><option value="8x10">8″ × 10″</option><option value="8.25x6">8.25″ × 6″</option><option value="8.25x8.25">8.25″ × 8.25″</option><option value="8.5x8.5">8.5″ × 8.5″</option><option value="8.5x11">8.5″ × 11″</option><option value="8.27x11.69">8.27″ × 11.69″</option></select></div>
         <div class="ak-field">
           <label for="pages" id="pages-label">Page count</label>
           <input id="pages" type="number" inputmode="numeric" value="300">
           <input id="pages-range" type="range" step="2" value="300" aria-labelledby="pages-label">
-          <span class="ak-hint" id="limits"></span>
+          <span class="ak-hint" id="limits">KDP prints 24 to 776 pages for this paper and trim.</span>
         </div>
       </div>
       <div aria-live="polite">
         <p id="error" class="ak-callout ak-callout-warn" hidden></p>
         <div id="proof-wrap">
           <svg id="proof" class="ak-proof" role="img" aria-label="Full cover"></svg>
-          <p class="ak-headline" id="headline"></p>
+          <p class="ak-headline" id="headline"><span>13.000 × 9.250 in</span> <span>(330.2 × 234.9 mm)</span></p>
         </div>
         <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
       </div>
     </div>
     <table id="results" class="ak-results">
       <tbody>
-        <tr class="ak-highlight"><th scope="row">Full cover, width</th><td class="ak-val" id="wrap-w"></td></tr>
-        <tr class="ak-highlight"><th scope="row">Full cover, height</th><td class="ak-val" id="wrap-h"></td></tr>
-        <tr><th scope="row">Spine width</th><td class="ak-val" id="spine"></td></tr>
-        <tr><th scope="row">Front and back, each</th><td class="ak-val" id="panel"></td></tr>
-        <tr><th scope="row">Spine text</th><td id="spine-text"></td></tr>
-        <tr><th scope="row">Barcode area (back cover)</th><td class="ak-val" id="barcode"></td></tr>
-        <tr><th scope="row">Interior gutter (inside margin)</th><td class="ak-val" id="gutter"></td></tr>
-        <tr><th scope="row">Interior outside margin, minimum</th><td class="ak-val" id="outside"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Full cover, width</th><td class="ak-val" id="wrap-w">13.000″ (330.2 mm)</td></tr>
+        <tr class="ak-highlight"><th scope="row">Full cover, height</th><td class="ak-val" id="wrap-h">9.250″ (234.9 mm)</td></tr>
+        <tr><th scope="row">Spine width</th><td class="ak-val" id="spine">0.750″ (19.0 mm)</td></tr>
+        <tr><th scope="row">Front and back, each</th><td class="ak-val" id="panel">6.000″ (152.4 mm) × 9.000″ (228.6 mm)</td></tr>
+        <tr><th scope="row">Spine text</th><td id="spine-text">Allowed (more than 79 pages)</td></tr>
+        <tr><th scope="row">Barcode area (back cover)</th><td class="ak-val" id="barcode">2.000″ (50.8 mm) × 1.200″ (30.5 mm), kept clear by KDP</td></tr>
+        <tr><th scope="row">Interior gutter (inside margin)</th><td class="ak-val" id="gutter">0.500″ (12.7 mm)</td></tr>
+        <tr><th scope="row">Interior outside margin, minimum</th><td class="ak-val" id="outside">0.250″ (6.3 mm) without bleed, 0.375″ (9.5 mm) with bleed</td></tr>
       </tbody>
     </table>
   </section>
@@ -94,7 +94,7 @@
       <p>The same trim at three page counts, on cream and on white paper. The full width changes only by the spine.</p>
       <table class="ak-results" id="example">
         <thead><tr><th scope="col">Pages</th><th scope="col">Paper</th><th scope="col">Spine (in)</th><th scope="col">Full cover width (in)</th></tr></thead>
-        <tbody></tbody>
+        <tbody><tr><td>100</td><td>Cream</td><td class="ak-val">0.250</td><td class="ak-val">12.500</td></tr><tr><td>100</td><td>White</td><td class="ak-val">0.225</td><td class="ak-val">12.475</td></tr><tr><td>200</td><td>Cream</td><td class="ak-val">0.500</td><td class="ak-val">12.750</td></tr><tr><td>200</td><td>White</td><td class="ak-val">0.450</td><td class="ak-val">12.700</td></tr><tr><td>300</td><td>Cream</td><td class="ak-val">0.750</td><td class="ak-val">13.000</td></tr><tr><td>300</td><td>White</td><td class="ak-val">0.676</td><td class="ak-val">12.926</td></tr></tbody>
       </table>
     </div>
   </details>
@@ -174,7 +174,7 @@ const NS = 'http://www.w3.org/2000/svg';
 const MARGIN = 0.45; // room around the bleed for crop marks, inches
 const short = (x) => String(+x.toFixed(3));
 
-for (const i of INK_ALL) ink.add(new Option(INK_SHORT[i], i));
+ink.replaceChildren(...INK_ALL.map((i) => new Option(INK_SHORT[i], i)));
 const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
 
 function fillTrims() {

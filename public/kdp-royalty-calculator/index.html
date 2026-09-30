@@ -48,19 +48,19 @@
   <section class="ak-tool" aria-label="Calculator">
     <div class="ak-tool__body">
       <div>
-        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"></select><span class="ak-hint" id="ink-kdp"></span></div>
-        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"></select></div>
+        <div class="ak-field"><label for="ink">Paper and ink</label><select id="ink" aria-describedby="ink-kdp"><option value="bw-cream" selected>Cream paper, black &amp; white</option><option value="bw-white">White paper, black &amp; white</option><option value="bw-groundwood">Groundwood paper, black &amp; white</option><option value="standard-color">White paper, standard color</option><option value="premium-color">White paper, premium color</option></select><span class="ak-hint" id="ink-kdp">KDP calls this: Black &amp; white interior with cream paper</span></div>
+        <div class="ak-field"><label for="trim">Trim size</label><select id="trim"><option value="5x8">5″ × 8″</option><option value="5.06x7.81">5.06″ × 7.81″</option><option value="5.25x8">5.25″ × 8″</option><option value="5.5x8.5">5.5″ × 8.5″</option><option value="6x9" selected>6″ × 9″</option><option value="6.14x9.21">6.14″ × 9.21″</option><option value="6.69x9.61">6.69″ × 9.61″</option><option value="7x10">7″ × 10″</option><option value="7.44x9.69">7.44″ × 9.69″</option><option value="7.5x9.25">7.5″ × 9.25″</option><option value="8x10">8″ × 10″</option><option value="8.25x6">8.25″ × 6″</option><option value="8.25x8.25">8.25″ × 8.25″</option><option value="8.5x8.5">8.5″ × 8.5″</option><option value="8.5x11">8.5″ × 11″</option><option value="8.27x11.69">8.27″ × 11.69″</option></select></div>
         <div class="ak-field">
           <label for="pages">Page count</label>
           <input id="pages" type="number" inputmode="numeric" value="300">
-          <span class="ak-hint" id="limits"></span>
+          <span class="ak-hint" id="limits">KDP prints 24 to 776 pages for this paper and trim.</span>
         </div>
       </div>
       <div>
         <div class="ak-field">
           <label for="list">List price, USD</label>
           <input id="list" type="number" inputmode="decimal" step="0.01" value="14.99">
-          <span class="ak-hint" id="min-list"></span>
+          <span class="ak-hint" id="min-list">KDP's minimum list price for this book is $9.20.</span>
         </div>
         <div class="ak-field">
           <label for="fx">Exchange rate, ₹ per $ (optional)</label>
@@ -74,17 +74,17 @@
     </div>
     <table id="results" class="ak-results">
       <thead>
-        <tr><th scope="col"></th><th scope="col">USD</th><th scope="col" id="inr-head">INR</th></tr>
+        <tr><th scope="col"></th><th scope="col">USD</th><th scope="col" id="inr-head" hidden>INR</th></tr>
       </thead>
       <tbody>
-        <tr><th scope="row">Printing cost</th><td class="ak-val" id="r-cost"></td><td class="ak-val inr-cell" id="r-cost-inr"></td></tr>
-        <tr><th scope="row">Royalty rate</th><td class="ak-val" id="r-rate"></td><td class="ak-val inr-cell" id="r-rate-inr"></td></tr>
-        <tr class="ak-highlight"><th scope="row">Royalty per sale</th><td class="ak-val" id="r-royalty"></td><td class="ak-val inr-cell" id="r-royalty-inr"></td></tr>
-        <tr><th scope="row">US withholding, India (15% treaty rate)</th><td class="ak-val" id="r-withhold"></td><td class="ak-val inr-cell" id="r-withhold-inr"></td></tr>
-        <tr class="ak-highlight"><th scope="row">Net royalty, India</th><td class="ak-val" id="r-net"></td><td class="ak-val inr-cell" id="r-net-inr"></td></tr>
-        <tr><th scope="row">Expanded Distribution, royalty per sale</th><td class="ak-val" id="r-exp-royalty"></td><td class="ak-val inr-cell" id="r-exp-royalty-inr"></td></tr>
-        <tr><th scope="row">Expanded Distribution, US withholding</th><td class="ak-val" id="r-exp-withhold"></td><td class="ak-val inr-cell" id="r-exp-withhold-inr"></td></tr>
-        <tr class="ak-highlight"><th scope="row">Expanded Distribution, net royalty (India)</th><td class="ak-val" id="r-exp-net"></td><td class="ak-val inr-cell" id="r-exp-net-inr"></td></tr>
+        <tr><th scope="row">Printing cost</th><td class="ak-val" id="r-cost">$4.60</td><td class="ak-val inr-cell" hidden id="r-cost-inr"></td></tr>
+        <tr><th scope="row">Royalty rate</th><td class="ak-val" id="r-rate">60%</td><td class="ak-val inr-cell" hidden id="r-rate-inr"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Royalty per sale</th><td class="ak-val" id="r-royalty">$4.39</td><td class="ak-val inr-cell" hidden id="r-royalty-inr"></td></tr>
+        <tr><th scope="row">US withholding, India (15% treaty rate)</th><td class="ak-val" id="r-withhold">−$0.66</td><td class="ak-val inr-cell" hidden id="r-withhold-inr"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Net royalty, India</th><td class="ak-val" id="r-net">$3.73</td><td class="ak-val inr-cell" hidden id="r-net-inr"></td></tr>
+        <tr><th scope="row">Expanded Distribution, royalty per sale</th><td class="ak-val" id="r-exp-royalty">$1.40</td><td class="ak-val inr-cell" hidden id="r-exp-royalty-inr"></td></tr>
+        <tr><th scope="row">Expanded Distribution, US withholding</th><td class="ak-val" id="r-exp-withhold">−$0.21</td><td class="ak-val inr-cell" hidden id="r-exp-withhold-inr"></td></tr>
+        <tr class="ak-highlight"><th scope="row">Expanded Distribution, net royalty (India)</th><td class="ak-val" id="r-exp-net">$1.19</td><td class="ak-val inr-cell" hidden id="r-exp-net-inr"></td></tr>
       </tbody>
     </table>
     <p id="fx-prompt" class="ak-hint">Enter an exchange rate above to see these in rupees.</p>
@@ -175,7 +175,7 @@ const FX_PROMPT = fxPrompt.textContent;
 const usd = (v) => `$${v.toFixed(2)}`;
 const inr = (v) => `₹${v.toFixed(2)}`;
 
-for (const i of INK_ALL) ink.add(new Option(INK_SHORT[i], i));
+ink.replaceChildren(...INK_ALL.map((i) => new Option(INK_SHORT[i], i)));
 const showKdpLabel = () => { $('ink-kdp').textContent = `KDP calls this: ${INK_LABELS[ink.value]}`; };
 
 function fillTrims() {

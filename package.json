@@ -2,9 +2,12 @@
   "name": "authorkit-resources",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "test": "node --test",
-    "build:templates": "node scripts/build-templates.mjs"
+    "build:templates": "node scripts/build-templates.mjs",
+    "prerender": "node scripts/prerender.mjs"
   }
 }

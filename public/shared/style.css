@@ -667,3 +667,9 @@ main a[href^="http"]:not([href*="authorkit.pro"]):hover::after,
 .ak-next:hover::after { transform: translateX(3px); opacity: 1; }
 :root { --ak-arrow-h: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='5' y1='12' x2='19' y2='12'/%3E%3Cpolyline points='12 5 19 12 12 19'/%3E%3C/svg%3E"); }
 @media (prefers-reduced-motion: reduce) { .ak-prev::before, .ak-next::after { transition: none; } }
+
+/* A worked example of a tool's output, shown before the form. */
+.ak-example { margin: 0 0 1.5rem; border-left: 3px solid var(--rule); padding: .25rem 0 .25rem 1rem; }
+.ak-example figcaption { font-size: .8rem; color: var(--stone); margin-bottom: .5rem; }
+.ak-example blockquote { margin: 0; font-size: .9rem; }
+.ak-example blockquote p + p { margin-top: .5rem; }

@@ -9,6 +9,7 @@ import { fmt, INK_SHORT } from '../public/shared/ui.js';
 import { coverResult } from '../public/cover-calculator/cover.js';
 import { royaltyResult } from '../public/kdp-royalty-calculator/royalty.js';
 import { ITEMS } from '../public/kdp-preflight-checklist/checklist.js';
+import { copyrightPage } from '../public/copyright-page-generator/copyright.js';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -92,7 +93,20 @@ function preflight(html) {
   return fill(html.replace(re, (_, a, b) => a + items + b), 'progress', `0 of ${ITEMS.length} checked`);
 }
 
-const PAGES_OUT = { 'cover-calculator/index.html': cover, 'kdp-royalty-calculator/index.html': royalty, 'kdp-preflight-checklist/index.html': preflight };
+// Between markers, since a blockquote of <p>s isn't a single-element fill.
+function between(html, name, inner) {
+  const re = new RegExp(`(<!-- prerender:${name} -->)[\\s\\S]*?(<!-- \\/prerender:${name} -->)`);
+  if (!re.test(html)) throw new Error(`no prerender:${name} markers`);
+  return html.replace(re, (_, a, b) => a + inner + b);
+}
+
+// A worked example of the generator's own output, for readers and crawlers.
+function copyright(html) {
+  const r = copyrightPage({ author: 'Your Name', year: '2026', rightsReserved: true, fiction: true });
+  return between(html, 'example', r.lines.map((l) => `<p>${esc(l)}</p>`).join(''));
+}
+
+const PAGES_OUT = { 'cover-calculator/index.html': cover, 'kdp-royalty-calculator/index.html': royalty, 'kdp-preflight-checklist/index.html': preflight, 'copyright-page-generator/index.html': copyright };
 
 export function render() {
   return Object.fromEntries(Object.entries(PAGES_OUT).map(([p, f]) => [p, f(readFileSync(PUB + p, 'utf8'))]));

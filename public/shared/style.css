@@ -287,7 +287,7 @@ a:hover { text-decoration-thickness: 2px; }
 
 /* ── Ruled sections (instead of rounded cards) ───────────── */
 .ak-section {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--rule-lt);
   padding-top: 1.5rem;
   margin-top: 2.5rem;
 }
@@ -468,6 +468,12 @@ a:hover { text-decoration-thickness: 2px; }
 
 .ak-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-bottom: 3rem; }
 .ak-main .hero p, .ak-main .ak-prose { max-width: var(--measure); }
+/* A ruled section spans the column like the accordions; only its text keeps the measure. */
+.ak-main .ak-section.ak-prose { max-width: none; }
+.ak-main .ak-section.ak-prose > * { max-width: var(--measure); }
+.ak-main .ak-section.ak-prose > table { max-width: none; }
+/* A table that ends its section: the next section's rule closes it. */
+.ak-section > .ak-results:last-child tr:last-child > * { border-bottom: 0; }
 
 @media (min-width: 60rem) {
   .ak-page { grid-template-columns: minmax(0, 1fr) 16rem; }

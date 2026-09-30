@@ -22,12 +22,6 @@ export const TYPES = [
   { id: 'children', label: "Children's", noun: "children's chapter book", genres: [] },
 ];
 
-/** The site's own fonts, loaded on every page (same axes as cover-calculator's <head>). */
-export const SITE_FONTS = [
-  { family: 'Playfair Display', weights: [600, 700], italic: true },
-  { family: 'Source Serif 4', weights: [400, 500], italic: true },
-];
-
 /** The preview's margins assume a book of this many pages (spec §8). */
 export const PAGES_ASSUMED = 300;
 

@@ -4,7 +4,7 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, rmSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { TYPES, SITE_FONTS, PAGES_ASSUMED, typeOf, genreOf, answer, fontsHref, fmtTrim, inMm, problems } from '../public/book-design-templates/catalog.js';
+import { TYPES, PAGES_ASSUMED, typeOf, genreOf, answer, fontsHref, fmtTrim, inMm, problems } from '../public/book-design-templates/catalog.js';
 import { parse, size, splitBlock } from '../public/book-design-templates/paginate.js';
 import { gutterIn } from '../public/shared/kdp.js';
 import { WEBSITE_ID, ogTags } from './head.mjs';
@@ -220,7 +220,7 @@ ${sources([
 <script type="module" src="${BASE}preview.js"></script>`;
   return page({
     chrome, title: `${title} — AuthorKit`, description: meta, path, ld, main, script,
-    fonts: [fontsHref([...SITE_FONTS, t.body, t.heading])],
+    fonts: [fontsHref([t.body, t.heading])],
     skip: 'Skip to the preview',
     crumbs: `<li><a href="${BASE}">Book design templates</a></li><li aria-current="page">${esc(t.name)}</li>`,
   });
@@ -335,7 +335,7 @@ show();
 </script>`;
   return page({
     chrome, title: `Book Interior Font Pairings for KDP Paperbacks (${data.templates.length} Free Templates) — AuthorKit`, description, path, ld, main, script,
-    fonts: [fontsHref(SITE_FONTS), cardFonts],
+    fonts: [cardFonts],
     skip: 'Skip to the templates',
     crumbs: '<li aria-current="page">Book design templates</li>',
   });

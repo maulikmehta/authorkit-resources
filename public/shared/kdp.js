@@ -133,6 +133,7 @@ export function paperbackListRange(market, printCost) {
   if (market !== 'US') return null;
   const step = 9.99;
   const atFifty = Math.ceil((printCost / 0.50) * 100) / 100;
-  const min = atFifty < step ? atFifty : Math.ceil((printCost / 0.60) * 100) / 100;
+  // Past the step 60 % applies, but only from the step itself (kdp.rs).
+  const min = atFifty < step ? atFifty : Math.max(step, Math.ceil((printCost / 0.60) * 100) / 100);
   return [min, 250.0];
 }

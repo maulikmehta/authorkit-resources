@@ -79,6 +79,7 @@ const cols = () => (out.clientWidth >= 2 * size[0] * PX_PER_IN * 0.55 ? 2 : 1);
 
 // Spreads start with page 1 alone on the right, as in a printed book.
 function views() {
+  if (!pages.length) return []; // before the first layout (fonts still loading)
   if (cols() === 1) return pages.map((_, i) => [i]);
   const v = [[null, 0]];
   for (let i = 1; i < pages.length; i += 2) v.push([i, i + 1 < pages.length ? i + 1 : null]);

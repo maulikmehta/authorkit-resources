@@ -1,3 +1,8 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
 /shared/*
   Cache-Control: public, max-age=0, must-revalidate
 /*.js

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { TYPES, PAGES_ASSUMED, typeOf, genreOf, answer, fontsHref, fmtTrim, inMm, problems } from '../public/book-design-templates/catalog.js';
 import { parse, size, splitBlock } from '../public/book-design-templates/paginate.js';
 import { gutterIn } from '../public/shared/kdp.js';
-import { WEBSITE_ID, ogTags } from './head.mjs';
+import { WEBSITE_ID, ogTags, cspMeta } from './head.mjs';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const DIR = join(PUB, 'book-design-templates');
@@ -57,6 +57,7 @@ ${chrome.icon}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
+${cspMeta(script)}
 ${ogTags({ title, description, url: SITE + path })}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -8,7 +8,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { SITE, ORG_ID, WEBSITE_ID, ogTags, breadcrumbs, ldJson } from './head.mjs';
+import { SITE, ORG_ID, WEBSITE_ID, ogTags, breadcrumbs, ldJson, cspMeta } from './head.mjs';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const KIND = {
@@ -74,7 +74,7 @@ function graph(rel, html) {
 
 function head(rel, html) {
   const g = graph(rel, html);
-  const block = `<!-- seo -->\n${ogTags({ title: g.title, description: g.description, url: g.url, type: g.kind === 'guide' ? 'article' : 'website' })}\n`
+  const block = `<!-- seo -->\n${cspMeta(html)}\n${ogTags({ title: g.title, description: g.description, url: g.url, type: g.kind === 'guide' ? 'article' : 'website' })}\n`
     + `<script type="application/ld+json">\n${ldJson({ '@context': 'https://schema.org', '@graph': g.nodes })}\n</script>\n<!-- /seo -->`;
   const stripped = html.replace(/<!-- seo -->[\s\S]*?<!-- \/seo -->\n?/, '');
   return stripped.replace('</head>', `${block}\n</head>`)

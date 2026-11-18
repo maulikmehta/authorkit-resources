@@ -155,8 +155,9 @@ for (const file of pages) {
   });
 }
 
-test('sitemap lists exactly the pages', () => {
+test('sitemap lists exactly the indexable pages', () => {
   const xml = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
   const listed = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).sort();
-  assert.deepEqual(listed, pages.map(urlOf).sort());
+  const indexable = pages.filter((p) => !/<meta name="robots" content="noindex/.test(readFileSync(p, 'utf8')));
+  assert.deepEqual(listed, indexable.map(urlOf).sort());
 });

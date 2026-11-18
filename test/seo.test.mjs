@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { render } from '../scripts/seo.mjs';
+import { render, indexable } from '../scripts/seo.mjs';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
 const files = render();
@@ -34,6 +34,7 @@ for (const p of pages) {
 
 test('sitemap has a lastmod for every page', () => {
   const xml = files['sitemap.xml'];
-  assert.equal((xml.match(/<url>/g) ?? []).length, pages.length);
-  assert.equal((xml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g) ?? []).length, pages.length);
+  const n = indexable(pages.map((p) => p.slice(PUB.length))).length;
+  assert.equal((xml.match(/<url>/g) ?? []).length, n);
+  assert.equal((xml.match(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/g) ?? []).length, n);
 });

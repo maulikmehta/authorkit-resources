@@ -82,7 +82,11 @@ function head(rel, html) {
     .replace(/<span data-verified="(\d{4}-\d{2}-\d{2})">\1<\/span>/g, '<time data-verified="$1" datetime="$1">$1</time>');
 }
 
+// Pages marked noindex stay out of the sitemap.
+const indexable = (all) => all.filter((rel) => !/<meta name="robots" content="noindex/.test(readFileSync(PUB + rel, 'utf8')));
+
 function sitemap(all) {
+  all = indexable(all);
   const dates = all.map((rel) => first(readFileSync(PUB + rel, 'utf8'), /data-verified="(\d{4}-\d{2}-\d{2})"/));
   const newest = dates.filter(Boolean).sort().at(-1);
   const rows = all.map((rel, i) => `  <url><loc>${urlOf(rel)}</loc><lastmod>${dates[i] ?? newest}</lastmod></url>`);
@@ -99,6 +103,8 @@ function llms() {
   if (!groups.length) throw new Error('hub: no resource groups found');
   return `# AuthorKit Resources\n\n> ${lead}\n\n${groups.join('\n\n')}\n`;
 }
+
+export { indexable, pages };
 
 export function render() {
   const all = pages();

@@ -47,7 +47,7 @@ function chromeFrom(ref) {
   };
 }
 
-function page({ chrome, title, description, path, fonts, ld, skip, crumbs, main, script }) {
+function page({ chrome, title, description, path, fonts, ld, skip, crumbs, main, script, noindex }) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +57,7 @@ ${chrome.icon}
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${SITE}${path}">
-${cspMeta(script)}
+${noindex ? '<meta name="robots" content="noindex,follow">\n' : ''}${cspMeta(script)}
 ${ogTags({ title, description, url: SITE + path })}
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,7 +129,8 @@ function inner(t, data, samples, chrome) {
   const at = order.indexOf(t);
   const prev = order[(at - 1 + order.length) % order.length], next = order[(at + 1) % order.length];
   const siblings = data.templates.filter((x) => x.id !== t.id && x.type === t.type);
-  const more = (siblings.length ? siblings : data.templates.filter((x) => x.id !== t.id)).slice(0, 3);
+  // Indexable pages first, so the links a page passes on go to pages that are in the index.
+  const more = [...(siblings.length ? siblings : data.templates.filter((x) => x.id !== t.id))].sort((a, b) => !!a.noindex - !!b.noindex).slice(0, 3);
   const m = t.margins;
   const vars = `${fontVars(t)}; --bdt-size: ${t.size[0]}pt; --bdt-lead: ${t.size[1]}pt; --bdt-top: ${m.top}in; --bdt-bottom: ${m.bottom}in`;
   const families = [...new Set([t.body.family, t.heading.family])];
@@ -221,7 +222,7 @@ ${sources([
 <script type="module" src="${BASE}preview.js"></script>`;
   return page({
     chrome, title: `${title} — AuthorKit`, description: meta, path, ld, main, script,
-    fonts: [fontsHref([t.body, t.heading])],
+    fonts: [fontsHref([t.body, t.heading])], noindex: t.noindex,
     skip: 'Skip to the preview',
     crumbs: `<li><a href="${BASE}">Book design templates</a></li><li aria-current="page">${esc(t.name)}</li>`,
   });

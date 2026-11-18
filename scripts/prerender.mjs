@@ -38,9 +38,15 @@ function cover(html) {
   const r = coverResult(INK, TRIM, PAGES);
   const [w, h] = r.wrap;
   const rows = [];
-  for (const n of [100, 200, 300]) for (const [id, paper] of [['bw-cream', 'Cream'], ['bw-white', 'White']]) {
-    const x = coverResult(id, '6x9', String(n));
-    rows.push(`<tr><td>${n}</td><td>${paper}</td><td class="ak-val">${x.spine.toFixed(3)}</td><td class="ak-val">${x.wrap[0].toFixed(3)}</td></tr>`);
+  for (const [trim, label] of [['5.5x8.5', '5.5 × 8.5 in'], ['6x9', '6 × 9 in'], ['5x8', '5 × 8 in']]) {
+    for (const n of [100, 200, 300]) {
+      for (const [id, paper] of [['bw-cream', 'Cream'], ['bw-white', 'White']]) {
+        const x = coverResult(id, trim, String(n));
+        const pxW = Math.round(x.wrap[0] * 300);
+        const pxH = Math.round(x.wrap[1] * 300);
+        rows.push(`<tr><td>${label}</td><td>${n}</td><td>${paper}</td><td class="ak-val">${x.spine.toFixed(3)}</td><td class="ak-val">${x.wrap[0].toFixed(3)} × ${x.wrap[1].toFixed(3)}</td><td class="ak-val">${pxW} × ${pxH}</td></tr>`);
+      }
+    }
   }
   const cells = {
     ink: inkOptions(INK),
@@ -50,6 +56,9 @@ function cover(html) {
     headline: `<span>${w.toFixed(3)} × ${h.toFixed(3)} in</span> <span>(${(w * 25.4).toFixed(1)} × ${(h * 25.4).toFixed(1)} mm)</span>`,
     'wrap-w': fmt(w),
     'wrap-h': fmt(h),
+    'canva-size': `${Math.round(w * 300)} × ${Math.round(h * 300)} px`,
+    'canva-w': `${Math.round(w * 300)} px`,
+    'canva-h': `${Math.round(h * 300)} px`,
     spine: fmt(r.spine),
     panel: `${fmt(r.trim[0])} × ${fmt(r.trim[1])}`,
     'spine-text': r.spineText ? 'Allowed (more than 79 pages)' : 'Not allowed (79 pages or fewer)',

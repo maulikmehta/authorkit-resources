@@ -65,3 +65,20 @@ test('proofGeometry: 6x9 white 300 pages, in inches, y down', () => {
   near(g.barcode.x + g.barcode.w, 6.125 - 0.25, 'barcode right edge');
   near(g.barcode.y + g.barcode.h, 9.25 - 0.125 - 0.25, 'barcode bottom edge');
 });
+
+test('canva pixel dimensions at 300 DPI for 6x9 cream 300 pages', () => {
+  const r = coverResult('bw-cream', '6x9', '300');
+  assert.equal(r.wrap[0], 13.0);
+  assert.equal(r.wrap[1], 9.25);
+  assert.equal(Math.round(r.wrap[0] * 300), 3900);
+  assert.equal(Math.round(r.wrap[1] * 300), 2775);
+});
+
+test('common trims calculate valid wrap dimensions', () => {
+  for (const trim of ['5x8', '5.5x8.5', '6x9']) {
+    const r = coverResult('bw-white', trim, '200');
+    assert.equal(r.error, undefined);
+    assert.ok(r.wrap[0] > 0);
+    assert.ok(r.wrap[1] > 0);
+  }
+});

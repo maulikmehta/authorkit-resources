@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='163.81 159.67 607.19 703.21'><path fill='%23111' d='M745.91,159.67H219.81a56.16,56.16,0,0,0-56,56V806.88a56.16,56.16,0,0,0,56,56H771V159.67ZM709,789.15H265.14C510.75,789.15,709,586.93,709,341.32Z'/></svg>">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KDP Cover Calculator: Spine, Full Cover and Gutter (in and mm) — AuthorKit</title>
-<meta name="description" content="Full KDP paperback cover size, spine width and interior gutter for your trim, paper and page count, in inches and millimetres. Every number cites KDP.">
+<title>KDP cover calculator: Canva dimensions, spine width and template generator — AuthorKit</title>
+<meta name="description" content="KDP cover calculator: calculate exact paperback full wrap dimensions, spine width, and Canva pixel size at 300 DPI. Sourced formula with instant PNG guide download.">
 <link rel="canonical" href="https://resources.authorkit.pro/cover-calculator/">
 <link rel="stylesheet" href="/shared/style.css">
 <!-- seo -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'sha256-pHxdvFNixPhv93GOJJgknxV+zztl0iQPhFdD1Bvbzhk='; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'sha256-a3VontFM5zFl+yYXHPg2Odfe9KwdwDk+0ftYFnbrkiE='; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AuthorKit Resources">
-<meta property="og:title" content="KDP Cover Calculator: Spine, Full Cover and Gutter (in and mm)">
-<meta property="og:description" content="Full KDP paperback cover size, spine width and interior gutter for your trim, paper and page count, in inches and millimetres. Every number cites KDP.">
+<meta property="og:title" content="KDP cover calculator: Canva dimensions, spine width and template generator">
+<meta property="og:description" content="KDP cover calculator: calculate exact paperback full wrap dimensions, spine width, and Canva pixel size at 300 DPI. Sourced formula with instant PNG guide download.">
 <meta property="og:url" content="https://resources.authorkit.pro/cover-calculator/">
 <meta name="twitter:card" content="summary">
 <script type="application/ld+json">
@@ -25,7 +25,7 @@
       "@id": "https://resources.authorkit.pro/cover-calculator/#app",
       "name": "KDP cover calculator",
       "url": "https://resources.authorkit.pro/cover-calculator/",
-      "description": "Full KDP paperback cover size, spine width and interior gutter for your trim, paper and page count, in inches and millimetres. Every number cites KDP.",
+      "description": "KDP cover calculator: calculate exact paperback full wrap dimensions, spine width, and Canva pixel size at 300 DPI. Sourced formula with instant PNG guide download.",
       "applicationCategory": "UtilitiesApplication",
       "operatingSystem": "Any",
       "browserRequirements": "Requires JavaScript",
@@ -35,7 +35,7 @@
         "price": "0",
         "priceCurrency": "USD"
       },
-      "dateModified": "2026-09-28",
+      "dateModified": "2026-11-18",
       "isPartOf": {
         "@id": "https://resources.authorkit.pro/#website"
       },
@@ -101,7 +101,7 @@
 <main class="ak-main" id="main">
   <header class="hero">
     <h1>KDP cover calculator</h1>
-    <p>The full size of your KDP paperback cover, drawn to scale, for your paper, trim and page count. Width = bleed + back + spine + front + bleed, with 0.125″ of bleed on each outside edge; the spine grows with page count and paper.</p>
+    <p>KDP cover calculator computes the exact dimensions for your paperback cover wrap. Full width equals back cover plus spine width plus front cover plus 0.25 inches of total bleed. Full height equals trim height plus 0.25 inches of total bleed. Every measurement uses Amazon KDP specifications with 0.125 inches of bleed per outside edge.</p>
   </header>
 
   <section class="ak-tool" aria-label="Calculator">
@@ -125,10 +125,26 @@
         <p id="rounded" class="ak-callout ak-callout-info" hidden></p>
       </div>
     </div>
+
+    <div class="ak-callout" style="margin: 1.25rem 0;">
+      <h3 style="margin-top: 0; margin-bottom: 0.5rem;">Canva custom dimensions (300 DPI)</h3>
+      <p style="margin-bottom: 0.75rem;">Create a custom size canvas in Canva with these exact pixel dimensions:</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center;">
+        <span class="ak-val" style="padding: 0.4rem 0.6rem; border: 1px solid var(--rule-lt); background: var(--code-bg);">Width: <strong id="canva-w">3900 px</strong></span>
+        <button type="button" class="ak-btn" id="copy-w" style="font-size: 0.85rem;">Copy width</button>
+        <span class="ak-val" style="padding: 0.4rem 0.6rem; border: 1px solid var(--rule-lt); background: var(--code-bg);">Height: <strong id="canva-h">2775 px</strong></span>
+        <button type="button" class="ak-btn" id="copy-h" style="font-size: 0.85rem;">Copy height</button>
+        <button type="button" class="ak-btn" id="copy-both" style="font-size: 0.85rem;">Copy width &amp; height</button>
+        <button type="button" class="ak-btn" id="download-guide" style="font-size: 0.85rem; font-weight: 600;">Download template guide (PNG)</button>
+      </div>
+      <p id="copy-status" class="ak-hint" style="margin-top: 0.5rem; min-height: 1.2em;" aria-live="polite"></p>
+    </div>
+
     <table id="results" class="ak-results">
       <tbody>
         <tr class="ak-highlight"><th scope="row">Full cover, width</th><td class="ak-val" id="wrap-w">13.000″ (330.2 mm)</td></tr>
         <tr class="ak-highlight"><th scope="row">Full cover, height</th><td class="ak-val" id="wrap-h">9.250″ (234.9 mm)</td></tr>
+        <tr class="ak-highlight"><th scope="row">Canva dimensions (300 DPI)</th><td class="ak-val" id="canva-size">3900 × 2775 px</td></tr>
         <tr><th scope="row">Spine width</th><td class="ak-val" id="spine">0.750″ (19.0 mm)</td></tr>
         <tr><th scope="row">Front and back, each</th><td class="ak-val" id="panel">6.000″ (152.4 mm) × 9.000″ (228.6 mm)</td></tr>
         <tr><th scope="row">Spine text</th><td id="spine-text">Allowed (more than 79 pages)</td></tr>
@@ -147,18 +163,45 @@
   <details class="ak-faq">
     <summary><h2>How the full cover is measured</h2></summary>
     <div class="ak-faq-content ak-prose">
-      <p>A KDP paperback cover is one PDF: back, spine and front, with 0.125″ of bleed on every outside edge. Width = bleed + back + spine + front + bleed. Height = bleed + trim height + bleed. The spine grows with the page count and the paper: cream paper is thicker than white.</p>
-      <p>KDP prints even page counts, so an odd count is rounded up before the spine is measured. Spine text is allowed only on books with more than 79 pages. In the drawing, the hatched band is the bleed that gets cut off, the solid line is the trim, the dashed lines are the spine folds, and the box on the back is the area KDP keeps clear for the barcode, 0.25″ from the spine and the bottom trim.</p>
+      <p>A KDP paperback cover is one continuous PDF spread consisting of the back cover, spine and front cover, with 0.125 inches (3.2 mm) of bleed added to every outside edge. Full width equals bleed plus back cover width plus spine width plus front cover width plus bleed. Full height equals trim height plus bleed.</p>
+      <p>KDP prints even page counts only. An odd page count is rounded up to the next even integer before the spine is measured. Spine text is permitted only on books with 80 pages or more. In the diagram, the outer hatched band is the bleed trimmed during manufacturing, the solid line marks the final trim edge, the dashed lines indicate spine folds, and the rectangular box on the back cover marks the 2.0 × 1.2 inch area reserved for the barcode.</p>
     </div>
   </details>
 
   <details class="ak-faq">
-    <summary><h2>Worked example: a 6 × 9 in paperback</h2></summary>
+    <summary><h2>KDP spine width calculator formula and limits</h2></summary>
     <div class="ak-faq-content ak-prose">
-      <p>The same trim at three page counts, on cream and on white paper. The full width changes only by the spine.</p>
+      <p>Amazon KDP calculates spine thickness by multiplying the page count by paper thickness. Each paper type has an exact multiplier from KDP specifications:</p>
+      <p>Black and white interior on white paper: page count × 0.002252 inches (0.0572 mm).</p>
+      <p>Black and white interior on cream paper: page count × 0.0025 inches (0.0635 mm).</p>
+      <p>Black and white interior on groundwood paper: page count × 0.00235 inches (0.0597 mm).</p>
+      <p>Standard color interior on white paper: page count × 0.002252 inches (0.0572 mm).</p>
+      <p>Premium color interior on white paper: page count × 0.002347 inches (0.0596 mm).</p>
+      <p>KDP requires an even page count. Odd numbers round up to the next even integer before spine calculation. Amazon allows spine text only on books with 80 pages or more. Books with 79 pages or fewer must leave the spine blank. The spine text must also sit at least 0.0625 inches (1.6 mm) inside the spine fold lines on both sides.</p>
+    </div>
+  </details>
+
+  <details class="ak-faq">
+    <summary><h2>How to use these dimensions in Canva</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>Follow these steps to set up your KDP cover in Canva:</p>
+      <ol class="ak-steps">
+        <li><strong>Create a custom canvas.</strong> In Canva, click <strong>Create a design</strong> and choose <strong>Custom size</strong>. Set the unit dropdown to <strong>px</strong>.</li>
+        <li><strong>Enter the 300 DPI pixel dimensions.</strong> Copy the width and height shown in the Canva box above and paste them into the width and height fields. Click <strong>Create new design</strong>.</li>
+        <li><strong>Upload the guide PNG.</strong> Click <strong>Download template guide (PNG)</strong> above. In Canva, upload this PNG and stretch it to cover the entire canvas exactly. Lock the guide layer or reduce its transparency while you arrange your front cover, spine and back cover art.</li>
+        <li><strong>Keep text inside the safe margins.</strong> Keep titles, barcodes and author names away from the outer 0.125-inch bleed zone and inside the safe margin guides. Background artwork must extend all the way to the canvas edges.</li>
+        <li><strong>Export as PDF Print.</strong> Before exporting, delete or hide the template guide layer. Click <strong>Share</strong>, choose <strong>Download</strong>, select <strong>PDF Print</strong>, check <strong>Flatten PDF</strong>, and download your print-ready file.</li>
+      </ol>
+    </div>
+  </details>
+
+  <details class="ak-faq">
+    <summary><h2>Worked examples: 5.5 × 8.5, 6 × 9 and 5 × 8 in paperbacks</h2></summary>
+    <div class="ak-faq-content ak-prose">
+      <p>The three most common KDP trim sizes at 100, 200 and 300 pages on cream and white paper. Full cover dimensions include 0.125 inches of outer bleed on all sides.</p>
       <table class="ak-results" id="example">
-        <thead><tr><th scope="col">Pages</th><th scope="col">Paper</th><th scope="col">Spine (in)</th><th scope="col">Full cover width (in)</th></tr></thead>
-        <tbody><tr><td>100</td><td>Cream</td><td class="ak-val">0.250</td><td class="ak-val">12.500</td></tr><tr><td>100</td><td>White</td><td class="ak-val">0.225</td><td class="ak-val">12.475</td></tr><tr><td>200</td><td>Cream</td><td class="ak-val">0.500</td><td class="ak-val">12.750</td></tr><tr><td>200</td><td>White</td><td class="ak-val">0.450</td><td class="ak-val">12.700</td></tr><tr><td>300</td><td>Cream</td><td class="ak-val">0.750</td><td class="ak-val">13.000</td></tr><tr><td>300</td><td>White</td><td class="ak-val">0.676</td><td class="ak-val">12.926</td></tr></tbody>
+        <thead><tr><th scope="col">Trim</th><th scope="col">Pages</th><th scope="col">Paper</th><th scope="col">Spine (in)</th><th scope="col">Full cover (in)</th><th scope="col">Canva (px @ 300 DPI)</th></tr></thead>
+        <tbody><tr><td>5.5 × 8.5 in</td><td>100</td><td>Cream</td><td class="ak-val">0.250</td><td class="ak-val">11.500 × 8.750</td><td class="ak-val">3450 × 2625</td></tr><tr><td>5.5 × 8.5 in</td><td>100</td><td>White</td><td class="ak-val">0.225</td><td class="ak-val">11.475 × 8.750</td><td class="ak-val">3443 × 2625</td></tr><tr><td>5.5 × 8.5 in</td><td>200</td><td>Cream</td><td class="ak-val">0.500</td><td class="ak-val">11.750 × 8.750</td><td class="ak-val">3525 × 2625</td></tr><tr><td>5.5 × 8.5 in</td><td>200</td><td>White</td><td class="ak-val">0.450</td><td class="ak-val">11.700 × 8.750</td><td class="ak-val">3510 × 2625</td></tr><tr><td>5.5 × 8.5 in</td><td>300</td><td>Cream</td><td class="ak-val">0.750</td><td class="ak-val">12.000 × 8.750</td><td class="ak-val">3600 × 2625</td></tr><tr><td>5.5 × 8.5 in</td><td>300</td><td>White</td><td class="ak-val">0.676</td><td class="ak-val">11.926 × 8.750</td><td class="ak-val">3578 × 2625</td></tr><tr><td>6 × 9 in</td><td>100</td><td>Cream</td><td class="ak-val">0.250</td><td class="ak-val">12.500 × 9.250</td><td class="ak-val">3750 × 2775</td></tr><tr><td>6 × 9 in</td><td>100</td><td>White</td><td class="ak-val">0.225</td><td class="ak-val">12.475 × 9.250</td><td class="ak-val">3743 × 2775</td></tr><tr><td>6 × 9 in</td><td>200</td><td>Cream</td><td class="ak-val">0.500</td><td class="ak-val">12.750 × 9.250</td><td class="ak-val">3825 × 2775</td></tr><tr><td>6 × 9 in</td><td>200</td><td>White</td><td class="ak-val">0.450</td><td class="ak-val">12.700 × 9.250</td><td class="ak-val">3810 × 2775</td></tr><tr><td>6 × 9 in</td><td>300</td><td>Cream</td><td class="ak-val">0.750</td><td class="ak-val">13.000 × 9.250</td><td class="ak-val">3900 × 2775</td></tr><tr><td>6 × 9 in</td><td>300</td><td>White</td><td class="ak-val">0.676</td><td class="ak-val">12.926 × 9.250</td><td class="ak-val">3878 × 2775</td></tr><tr><td>5 × 8 in</td><td>100</td><td>Cream</td><td class="ak-val">0.250</td><td class="ak-val">10.500 × 8.250</td><td class="ak-val">3150 × 2475</td></tr><tr><td>5 × 8 in</td><td>100</td><td>White</td><td class="ak-val">0.225</td><td class="ak-val">10.475 × 8.250</td><td class="ak-val">3143 × 2475</td></tr><tr><td>5 × 8 in</td><td>200</td><td>Cream</td><td class="ak-val">0.500</td><td class="ak-val">10.750 × 8.250</td><td class="ak-val">3225 × 2475</td></tr><tr><td>5 × 8 in</td><td>200</td><td>White</td><td class="ak-val">0.450</td><td class="ak-val">10.700 × 8.250</td><td class="ak-val">3210 × 2475</td></tr><tr><td>5 × 8 in</td><td>300</td><td>Cream</td><td class="ak-val">0.750</td><td class="ak-val">11.000 × 8.250</td><td class="ak-val">3300 × 2475</td></tr><tr><td>5 × 8 in</td><td>300</td><td>White</td><td class="ak-val">0.676</td><td class="ak-val">10.926 × 8.250</td><td class="ak-val">3278 × 2475</td></tr></tbody>
       </table>
     </div>
   </details>
@@ -178,7 +221,7 @@
   </details>
 
   <section class="ak-sources">
-    <p>Sources (last verified <time data-verified="2026-09-28" datetime="2026-09-28">2026-09-28</time>):</p>
+    <p>Sources (last verified <time data-verified="2026-11-18" datetime="2026-11-18">2026-11-18</time>):</p>
     <ul>
       <li><a href="https://kdp.amazon.com/en_US/help/topic/G201953020">KDP: Create a paperback cover</a>: full-cover size, spine text</li>
       <li><a href="https://kdp.amazon.com/en_US/help/topic/G5HDYGP4BXLX4RUW">KDP: Barcodes</a>: barcode area (2″ × 1.2″), at least 0.25″ from the spine and trim</li>
@@ -304,6 +347,11 @@ function drawProof(r) {
     art.append(line(x, y, x + (x < 0 ? -len : len), y));
   }
   art.append(rect(g.barcode, 'line'));
+  const lem = 0.25;
+  const safeBack = { x: g.back.x + lem, y: g.back.y + lem, w: g.back.w - lem - 0.0625, h: g.back.h - 2 * lem };
+  const safeFront = { x: g.front.x + 0.0625, y: g.front.y + lem, w: g.front.w - lem - 0.0625, h: g.front.h - 2 * lem };
+  art.append(el('rect', { x: safeBack.x, y: safeBack.y, width: safeBack.w, height: safeBack.h, class: 'line safe-zone', 'stroke-dasharray': '0.08 0.05', stroke: '#3182ce', 'stroke-width': '0.015', fill: 'none' }));
+  art.append(el('rect', { x: safeFront.x, y: safeFront.y, width: safeFront.w, height: safeFront.h, class: 'line safe-zone', 'stroke-dasharray': '0.08 0.05', stroke: '#3182ce', 'stroke-width': '0.015', fill: 'none' }));
   const size = Math.min(0.55, g.back.w / 9);
   const mid = (b) => [b.x + b.w / 2, b.y + b.h / 2];
   const label = (b, text) => { const [x, y] = mid(b); return el('text', { x, y, 'font-size': size, 'text-anchor': 'middle', 'dominant-baseline': 'middle' }, text); };
@@ -330,6 +378,9 @@ function render() {
   $('headline').replaceChildren(part(`${w.toFixed(3)} × ${h.toFixed(3)} in`), ' ', part(`(${(w * 25.4).toFixed(1)} × ${(h * 25.4).toFixed(1)} mm)`));
   $('wrap-w').textContent = fmt(w);
   $('wrap-h').textContent = fmt(h);
+  $('canva-w').textContent = `${Math.round(w * 300)} px`;
+  $('canva-h').textContent = `${Math.round(h * 300)} px`;
+  $('canva-size').textContent = `${Math.round(w * 300)} × ${Math.round(h * 300)} px`;
   $('spine').textContent = fmt(r.spine);
   $('panel').textContent = `${fmt(r.trim[0])} × ${fmt(r.trim[1])}`;
   $('spine-text').textContent = r.spineText ? 'Allowed (more than 79 pages)' : 'Not allowed (79 pages or fewer)';
@@ -340,16 +391,126 @@ function render() {
 
 function fillExample() {
   const rows = [];
-  for (const n of [100, 200, 300]) for (const [id, paper] of [['bw-cream', 'Cream'], ['bw-white', 'White']]) {
-    const r = coverResult(id, '6x9', String(n));
-    const tr = document.createElement('tr');
-    for (const [text, cls] of [[n, ''], [paper, ''], [r.spine.toFixed(3), 'ak-val'], [r.wrap[0].toFixed(3), 'ak-val']]) {
-      const td = tr.insertCell(); td.textContent = text; if (cls) td.className = cls;
+  for (const [trimId, label] of [['5.5x8.5', '5.5 × 8.5 in'], ['6x9', '6 × 9 in'], ['5x8', '5 × 8 in']]) {
+    for (const n of [100, 200, 300]) {
+      for (const [id, paper] of [['bw-cream', 'Cream'], ['bw-white', 'White']]) {
+        const r = coverResult(id, trimId, String(n));
+        const pxW = Math.round(r.wrap[0] * 300);
+        const pxH = Math.round(r.wrap[1] * 300);
+        const tr = document.createElement('tr');
+        for (const [text, cls] of [
+          [label, ''],
+          [n, ''],
+          [paper, ''],
+          [r.spine.toFixed(3), 'ak-val'],
+          [`${r.wrap[0].toFixed(3)} × ${r.wrap[1].toFixed(3)}`, 'ak-val'],
+          [`${pxW} × ${pxH}`, 'ak-val']
+        ]) {
+          const td = tr.insertCell(); td.textContent = text; if (cls) td.className = cls;
+        }
+        rows.push(tr);
+      }
     }
-    rows.push(tr);
   }
   $('example').tBodies[0].replaceChildren(...rows);
 }
+
+const setStatus = (msg) => {
+  $('copy-status').textContent = msg;
+  setTimeout(() => { if ($('copy-status').textContent === msg) $('copy-status').textContent = ''; }, 2000);
+};
+const copyText = (txt, label) => {
+  navigator.clipboard.writeText(txt).then(
+    () => setStatus(`Copied ${label} to clipboard`),
+    () => setStatus(`Could not copy automatically. Select: ${txt}`)
+  );
+};
+$('copy-w').addEventListener('click', () => {
+  const r = coverResult(ink.value, trim.value, pages.value);
+  if (!r.error) copyText(String(Math.round(r.wrap[0] * 300)), 'width');
+});
+$('copy-h').addEventListener('click', () => {
+  const r = coverResult(ink.value, trim.value, pages.value);
+  if (!r.error) copyText(String(Math.round(r.wrap[1] * 300)), 'height');
+});
+$('copy-both').addEventListener('click', () => {
+  const r = coverResult(ink.value, trim.value, pages.value);
+  if (!r.error) copyText(`${Math.round(r.wrap[0] * 300)} x ${Math.round(r.wrap[1] * 300)}`, 'dimensions');
+});
+
+$('download-guide').addEventListener('click', () => {
+  const r = coverResult(ink.value, trim.value, pages.value);
+  if (r.error) return;
+  const g = proofGeometry(r);
+  const [W, H] = g.viewBox;
+  const dpi = 300;
+  const canvas = document.createElement('canvas');
+  canvas.width = Math.round(W * dpi);
+  canvas.height = Math.round(H * dpi);
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  const toPx = (v) => Math.round(v * dpi);
+  const bPx = toPx(g.bleed);
+
+  ctx.fillStyle = 'rgba(255, 180, 180, 0.4)';
+  ctx.fillRect(0, 0, canvas.width, bPx);
+  ctx.fillRect(0, canvas.height - bPx, canvas.width, bPx);
+  ctx.fillRect(0, 0, bPx, canvas.height);
+  ctx.fillRect(canvas.width - bPx, 0, bPx, canvas.height);
+
+  ctx.strokeStyle = '#1a202c';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(toPx(g.trimBox.x), toPx(g.trimBox.y), toPx(g.trimBox.w), toPx(g.trimBox.h));
+
+  ctx.strokeStyle = '#e53e3e';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([15, 10]);
+  ctx.beginPath();
+  ctx.moveTo(toPx(g.spine.x), 0);
+  ctx.lineTo(toPx(g.spine.x), canvas.height);
+  ctx.moveTo(toPx(g.spine.x + g.spine.w), 0);
+  ctx.lineTo(toPx(g.spine.x + g.spine.w), canvas.height);
+  ctx.stroke();
+
+  ctx.strokeStyle = '#3182ce';
+  ctx.setLineDash([10, 8]);
+  const lem = toPx(0.375);
+  ctx.strokeRect(lem, lem, toPx(g.back.w) - toPx(0.25) - toPx(0.0625), canvas.height - 2 * lem);
+  ctx.strokeRect(toPx(g.front.x) + toPx(0.0625), lem, toPx(g.front.w) - toPx(0.25) - toPx(0.0625), canvas.height - 2 * lem);
+
+  ctx.setLineDash([]);
+  ctx.fillStyle = 'rgba(237, 242, 247, 0.85)';
+  ctx.fillRect(toPx(g.barcode.x), toPx(g.barcode.y), toPx(g.barcode.w), toPx(g.barcode.h));
+  ctx.strokeStyle = '#4a5568';
+  ctx.strokeRect(toPx(g.barcode.x), toPx(g.barcode.y), toPx(g.barcode.w), toPx(g.barcode.h));
+
+  ctx.fillStyle = '#2d3748';
+  ctx.font = 'bold 44px sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.fillText('BACK COVER', toPx(g.back.x + g.back.w / 2), toPx(g.back.y + g.back.h / 2));
+  ctx.fillText('FRONT COVER', toPx(g.front.x + g.front.w / 2), toPx(g.front.y + g.front.h / 2));
+
+  ctx.font = '28px sans-serif';
+  ctx.fillText('Barcode Area (2" x 1.2")', toPx(g.barcode.x + g.barcode.w / 2), toPx(g.barcode.y + g.barcode.h / 2));
+
+  if (g.spine.w >= 0.5) {
+    ctx.save();
+    ctx.translate(toPx(g.spine.x + g.spine.w / 2), toPx(g.spine.y + g.spine.h / 2));
+    ctx.rotate(-Math.PI / 2);
+    ctx.fillText('SPINE', 0, 0);
+    ctx.restore();
+  }
+
+  const link = document.createElement('a');
+  link.download = `kdp-cover-guide-${trim.value}-${pages.value}p-${ink.value}.png`;
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+});
 
 ink.addEventListener('change', () => { showKdpLabel(); fillTrims(); setLimits(); render(); });
 trim.addEventListener('change', () => { setLimits(); render(); });

@@ -7,7 +7,7 @@ const u = (q) => new URL(`https://resources.authorkit.pro/isbn-india/${q}`);
 test('tagged arrival becomes a row; query before hash keeps the path clean', () => {
   assert.deepEqual(
     arrivalRow(u('?utm_source=YouTube&utm_campaign=kdp-vs-rrrna-isbn&utm_content=primary_tool#kdp-vs-rrrna'), 'Mozilla/5.0', 'IN'),
-    { source: 'youtube', campaign: 'kdp-vs-rrrna-isbn', content: 'primary_tool', path: '/isbn-india/', country: 'IN' }
+    { host: 'resources.authorkit.pro', source: 'youtube', campaign: 'kdp-vs-rrrna-isbn', content: 'primary_tool', path: '/isbn-india/', country: 'IN' }
   );
 });
 

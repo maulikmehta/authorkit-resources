@@ -1,7 +1,9 @@
 /**
  * Counts arrivals from links we tagged (YouTube descriptions, posts) by
  * recording one row when a page is requested with utm_source. Writes to
- * `arrivals` (migrations/0001_arrivals.sql); the hub's fetch-authorkit.mjs reads it.
+ * `arrivals` in D1 `authorkit_arrivals` (migrations/0001_arrivals.sql); the hub's
+ * fetch-authorkit.mjs reads it. authorkit.pro runs a copy of this file
+ * (obsidian-book-pipeline/functions/_middleware.js) against the same database.
  *
  * Stores no IP, no user agent and no visit id. Untagged requests are not
  * recorded. Runs after the response is ready, so a failed write never
@@ -20,6 +22,7 @@ export function arrivalRow(url, userAgent, country) {
   const source = tag(url.searchParams.get('utm_source'));
   if (!source || BOT.test(userAgent || '')) return null;
   return {
+    host: url.hostname.slice(0, 100),
     source,
     campaign: tag(url.searchParams.get('utm_campaign')),
     content: tag(url.searchParams.get('utm_content')),
@@ -35,8 +38,8 @@ export async function onRequest(context) {
     const row = arrivalRow(new URL(request.url), request.headers.get('user-agent'), request.cf?.country);
     if (row) {
       context.waitUntil(
-        env.DB.prepare('INSERT INTO arrivals (ts, source, campaign, content, path, country) VALUES (?, ?, ?, ?, ?, ?)')
-          .bind(Math.floor(Date.now() / 1000), row.source, row.campaign, row.content, row.path, row.country)
+        env.DB.prepare('INSERT INTO arrivals (ts, host, source, campaign, content, path, country) VALUES (?, ?, ?, ?, ?, ?, ?)')
+          .bind(Math.floor(Date.now() / 1000), row.host, row.source, row.campaign, row.content, row.path, row.country)
           .run()
           .catch((err) => console.error('arrival:', err))
       );

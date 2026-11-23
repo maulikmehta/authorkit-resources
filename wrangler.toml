@@ -1,0 +1,13 @@
+name = "authorkit-resources"
+pages_build_output_dir = "public"
+compatibility_date = "2026-09-22"
+
+# Arrivals from tagged links (functions/_middleware.js). Until this block is
+# filled in, the middleware finds no DB and records nothing.
+# 1. wrangler d1 create authorkit_resources_db
+# 2. Paste the database_id it prints below and uncomment the block.
+# 3. wrangler d1 execute authorkit_resources_db --remote --file migrations/0001_arrivals.sql
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "authorkit_resources_db"
+# database_id = ""

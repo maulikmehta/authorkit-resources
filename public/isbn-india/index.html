@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://resources.authorkit.pro/isbn-india/">
 <link rel="stylesheet" href="/shared/style.css">
 <!-- seo -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'sha256-cNZLnpqGbpB8ptxrbuUSWUyKeWRT+yaOzYw4kxEpBO8='; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AuthorKit Resources">
 <meta property="og:title" content="ISBN in India: Free RRRNA Registration, Status Tracking &amp; KDP Rules">
@@ -99,6 +99,11 @@
     <h1>ISBN in India: how to get a free ISBN</h1>
     <p>In India, ISBNs come free from the Raja Rammohun Roy National Agency for ISBN (RRRNA), whose About Us page says: "in India ISBN is provided free of cost". Here is how an author applies, and how that fits with KDP's free ISBN.</p>
   </header>
+
+  <section class="ak-tool" id="checklist" aria-label="Checklist">
+    <div id="items"><!-- prerender:items --><div class="ak-field ak-field--check"><label for="chk-category"><input type="checkbox" id="chk-category"><span>Select the self published author category</span></label><p class="ak-hint">Apply under the category for authors who publish their own work independently.</p><p class="ak-hint">Source: “an individual who independently publishes their work without the involvement of an established third-party publisher.” <a href="https://isbn.gov.in/Home/ViewManual?fileName=SelfPublishedAuthor5df90f7a-e92f-40a1-a57f-6f17d9eff2b8.pdf">RRRNA: How to Apply — Self Published by Author</a></p></div><div class="ak-field ak-field--check"><label for="chk-documents"><input type="checkbox" id="chk-documents"><span>Prepare applicant identity and address documents</span></label><p class="ak-hint">Check the document requirements shown when selecting your applicant type on the portal.</p><p class="ak-hint">Source: “can be seen when choosing Applicant and Publisher type while registering in the Portal” <a href="https://isbn.gov.in/Home/ViewManual?fileName=Faqsaf175205-54c5-4501-a09e-284f4f161809.pdf">RRRNA: FAQs</a></p></div><div class="ak-field ak-field--check"><label for="chk-no-changes-after-submitting"><input type="checkbox" id="chk-no-changes-after-submitting"><span>Review title details before submitting</span></label><p class="ak-hint">Make sure all details are complete and correct because you cannot edit them later.</p><p class="ak-hint">Source: “no alterations can be made under any circumstances” <a href="https://isbn.gov.in/Home/ViewManual?fileName=SelfPublishedAuthor5df90f7a-e92f-40a1-a57f-6f17d9eff2b8.pdf">RRRNA: How to Apply — Self Published by Author</a></p></div><div class="ak-field ak-field--check"><label for="chk-one-isbn-per-format"><input type="checkbox" id="chk-one-isbn-per-format"><span>Request a separate ISBN for each format</span></label><p class="ak-hint">Hardcover, paperback and digital editions each require their own identifier.</p><p class="ak-hint">Source: “different formats need different ISBNs in order, for example, that a customer who wants to buy a book in hardback rather than paperback can be confident that they will receive the correct format.” <a href="https://isbn.gov.in/Home/ViewManual?fileName=Faqsaf175205-54c5-4501-a09e-284f4f161809.pdf">RRRNA: FAQs</a></p></div><div class="ak-field ak-field--check"><label for="chk-final-title-verso-page"><input type="checkbox" id="chk-final-title-verso-page"><span>Upload your final title verso page</span></label><p class="ak-hint">Include the copyright page or book cover so the application details can be verified against the book.</p><p class="ak-hint">Source: “to ensure that the details in the application match the book accurately.” <a href="https://isbn.gov.in/Home/ViewManual?fileName=SelfPublishedAuthor5df90f7a-e92f-40a1-a57f-6f17d9eff2b8.pdf">RRRNA: How to Apply — Self Published by Author</a></p></div><div class="ak-field ak-field--check"><label for="chk-translation"><input type="checkbox" id="chk-translation"><span>Provide English or Hindi translation if required</span></label><p class="ak-hint">Books in languages other than Hindi and English need a Hindi or English translation.</p><p class="ak-hint">Source: “for our verification purposes only.” <a href="https://isbn.gov.in/Home/ViewManual?fileName=SelfPublishedAuthor5df90f7a-e92f-40a1-a57f-6f17d9eff2b8.pdf">RRRNA: How to Apply — Self Published by Author</a></p></div><div class="ak-field ak-field--check"><label for="chk-matching-details-in-kdp"><input type="checkbox" id="chk-matching-details-in-kdp"><span>Match book details between your ISBN and KDP</span></label><p class="ak-hint">Enter identical title, author and publisher metadata in KDP to prevent publishing blocks.</p><p class="ak-hint">Source: “must enter the same details (i.e. book title, author name, publisher) in KDP that you used to register the ISBN” <a href="https://kdp.amazon.com/en_US/help/topic/G201834170">KDP: What is an ISBN and Imprint?</a></p></div><div class="ak-field ak-field--check"><label for="chk-barcode"><input type="checkbox" id="chk-barcode"><span>Generate your barcode separately</span></label><p class="ak-hint">The ISBN is an identifier number and does not come with a barcode image from the agency.</p><p class="ak-hint">Source: “is not the Authorized Organization to provide the Barcode for ISBN” <a href="https://isbn.gov.in/Home/ViewManual?fileName=Faqsaf175205-54c5-4501-a09e-284f4f161809.pdf">RRRNA: FAQs</a></p></div><!-- /prerender:items --></div>
+    <p><span id="progress" role="status" aria-live="polite">0 of 8 checked</span> <button id="clear" type="button" class="ak-btn">Clear ticks</button> <button id="download-checklist" type="button" class="ak-btn">Download checklist</button></p>
+  </section>
 
   <section class="ak-section ak-prose">
     <h2>Getting one from RRRNA</h2>
@@ -233,5 +238,65 @@
     </span>
   </div>
 </footer>
+<script type="module">
+import { ITEMS, checklistText, progress } from '/isbn-india/checklist.js';
+
+const $ = (id) => document.getElementById(id);
+const KEY = 'ak-isbn-india-ticks';
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch { /* storage blocked: ticks last for this visit */ }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch { /* storage blocked */ } };
+
+function showProgress() {
+  const p = progress(done);
+  $('progress').textContent = `${p.done} of ${p.total} checked`;
+}
+
+function el(tag, text, cls) {
+  const n = document.createElement(tag);
+  n.textContent = text;
+  if (cls) n.className = cls;
+  return n;
+}
+
+$('items').replaceChildren(...ITEMS.map((item) => {
+  const box = document.createElement('input');
+  box.type = 'checkbox';
+  box.id = `chk-${item.id}`;
+  box.checked = done.has(item.id);
+  box.addEventListener('change', () => {
+    if (box.checked) done.add(item.id); else done.delete(item.id);
+    save(); showProgress();
+  });
+  const label = document.createElement('label');
+  label.htmlFor = box.id;
+  label.append(box, el('span', item.title));
+  const link = el('a', item.sourceTitle);
+  link.href = item.source;
+  const src = el('p', '', 'ak-hint');
+  src.append(`Source: \u201c${item.quote}\u201d `, link);
+  const field = document.createElement('div');
+  field.className = 'ak-field ak-field--check';
+  field.append(label, el('p', item.detail, 'ak-hint'), src);
+  return field;
+}));
+
+$('clear').addEventListener('click', () => {
+  done.clear(); save(); showProgress();
+  for (const b of document.querySelectorAll('#items input')) b.checked = false;
+});
+
+$('download-checklist').addEventListener('click', () => {
+  const blob = new Blob([checklistText(ITEMS)], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'isbn-india-checklist.txt';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+showProgress();
+</script>
 </body>
 </html>

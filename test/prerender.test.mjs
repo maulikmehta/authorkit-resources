@@ -12,5 +12,7 @@ test('calculator pages carry their default results in static HTML (run npm run p
     // The checklist's margins wait for the author's page count; the calculators start filled.
     if (!p.startsWith('kdp-preflight')) assert.doesNotMatch(html, /class="ak-val" id="[\w-]+"><\/td>/, `${p} has an empty result cell`);
     else assert.match(html, /id="chk-page-count"/, 'checklist items missing');
+    if (p.startsWith('isbn-india')) assert.match(html, /id="chk-category"/, 'isbn checklist items missing');
+    if (p.startsWith('kdp-from-india')) assert.match(html, /id="chk-marketplaces-formats"/, 'kdp checklist items missing');
   }
 });

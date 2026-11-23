@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://resources.authorkit.pro/kdp-from-india/">
 <link rel="stylesheet" href="/shared/style.css">
 <!-- seo -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://static.cloudflareinsights.com 'sha256-vjS2kyzN3nnyseKuxOSnpqRgl5jGkjCZbwqcyr9Bl4Q='; connect-src 'self' https://cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="AuthorKit Resources">
 <meta property="og:title" content="Self-Publishing on Amazon KDP from India: Where It Sells, Tax, Payments">
@@ -100,6 +100,11 @@
     <p>What an author living in India needs to know about where KDP sells, how the tax interview and payments work, and what to ask a Chartered Accountant.</p>
   </header>
   <p class="ak-draft" role="note">This is not tax or legal advice.</p>
+
+  <section class="ak-tool" id="checklist" aria-label="Checklist">
+    <div id="items"><!-- prerender:items --><div class="ak-field ak-field--check"><label for="chk-marketplaces-formats"><input type="checkbox" id="chk-marketplaces-formats"><span>Check marketplace availability for print distribution</span></label><p class="ak-hint">Verify where your paperback can be sold because print distribution is not available in every marketplace.</p><p class="ak-hint">Source: “amazon.com.br, amazon.com.in, and amazon.com.mx do not support paperback and hardcover distribution.” <a href="https://kdp.amazon.com/en_US/help/topic/G201834280">KDP: Paperback and hardcover marketplaces</a></p></div><div class="ak-field ak-field--check"><label for="chk-supported-languages"><input type="checkbox" id="chk-supported-languages"><span>Confirm format eligibility for your book language</span></label><p class="ak-hint">Check whether your language is supported for print or restricted to digital editions.</p><p class="ak-hint">Source: “eBook only” <a href="https://kdp.amazon.com/en_US/help/topic/G200673300">KDP: Supported languages</a></p></div><div class="ak-field ak-field--check"><label for="chk-tax-interview"><input type="checkbox" id="chk-tax-interview"><span>Complete the tax interview in your KDP account</span></label><p class="ak-hint">KDP withholds US tax from some royalties. Your tax interview shows which rate KDP applies to you.</p><p class="ak-hint">Source: “are subject to 30% US tax withholding” <a href="https://kdp.amazon.com/en_US/help/topic/G201274690">KDP: Royalty tax information</a></p></div><div class="ak-field ak-field--check"><label for="chk-treaty-rate"><input type="checkbox" id="chk-treaty-rate"><span>Check the treaty rate your tax interview gives you</span></label><p class="ak-hint">The India-US tax treaty caps US tax on royalties. Confirm which rate KDP applies to you.</p><p class="ak-hint">Source: “shall not exceed” <a href="https://www.irs.gov/pub/irs-trty/india.pdf">IRS: India tax treaty, Article 12</a></p></div><div class="ak-field ak-field--check"><label for="chk-payment-method"><input type="checkbox" id="chk-payment-method"><span>Set up electronic direct deposit for royalty payouts</span></label><p class="ak-hint">Choose electronic bank transfer to receive payouts without waiting to cross a minimum earnings threshold.</p><p class="ak-hint">Source: “you'll be paid electronically in full no matter the amount accrued.” <a href="https://kdp.amazon.com/en_US/help/topic/G201207800">KDP: Payment thresholds</a></p></div><div class="ak-field ak-field--check"><label for="chk-ca-foreign-tax-credit"><input type="checkbox" id="chk-ca-foreign-tax-credit"><span>Review foreign tax withholding credit under Form 67 with your CA</span></label><p class="ak-hint">Consult your chartered accountant about claiming credit for American withholding tax using Form 67 on your Indian return.</p><p class="ak-hint">Source: “a resident taxpayer who has credit for the amount of any foreign tax paid in a country outside India” <a href="https://www.incometax.gov.in/iec/foportal/help/statutory-forms/popular-form/form67-um">Income Tax Department: Form 67</a></p></div><div class="ak-field ak-field--check"><label for="chk-ca-gst-ebooks"><input type="checkbox" id="chk-ca-gst-ebooks"><span>Ask your CA how GST applies to your ebook sales</span></label><p class="ak-hint">Ebooks have their own GST entry, separate from printed books.</p><p class="ak-hint">Source: “Supply consisting only of e-book” <a href="https://www.gstcouncil.gov.in/sites/default/files/2024-05/download_2024-05-17t160210.063.pdf">GST Council: Notification 13/2018-Central Tax (Rate)</a></p></div><!-- /prerender:items --></div>
+    <p><span id="progress" role="status" aria-live="polite">0 of 7 checked</span> <button id="clear" type="button" class="ak-btn">Clear ticks</button> <button id="download-checklist" type="button" class="ak-btn">Download checklist</button></p>
+  </section>
 
   <section class="ak-section ak-prose">
     <h2>Who this is for</h2>
@@ -227,5 +232,65 @@
     </span>
   </div>
 </footer>
+<script type="module">
+import { ITEMS, checklistText, progress } from '/kdp-from-india/checklist.js';
+
+const $ = (id) => document.getElementById(id);
+const KEY = 'ak-kdp-india-ticks';
+let done = new Set();
+try { done = new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch { /* storage blocked: ticks last for this visit */ }
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch { /* storage blocked */ } };
+
+function showProgress() {
+  const p = progress(done);
+  $('progress').textContent = `${p.done} of ${p.total} checked`;
+}
+
+function el(tag, text, cls) {
+  const n = document.createElement(tag);
+  n.textContent = text;
+  if (cls) n.className = cls;
+  return n;
+}
+
+$('items').replaceChildren(...ITEMS.map((item) => {
+  const box = document.createElement('input');
+  box.type = 'checkbox';
+  box.id = `chk-${item.id}`;
+  box.checked = done.has(item.id);
+  box.addEventListener('change', () => {
+    if (box.checked) done.add(item.id); else done.delete(item.id);
+    save(); showProgress();
+  });
+  const label = document.createElement('label');
+  label.htmlFor = box.id;
+  label.append(box, el('span', item.title));
+  const link = el('a', item.sourceTitle);
+  link.href = item.source;
+  const src = el('p', '', 'ak-hint');
+  src.append(`Source: \u201c${item.quote}\u201d `, link);
+  const field = document.createElement('div');
+  field.className = 'ak-field ak-field--check';
+  field.append(label, el('p', item.detail, 'ak-hint'), src);
+  return field;
+}));
+
+$('clear').addEventListener('click', () => {
+  done.clear(); save(); showProgress();
+  for (const b of document.querySelectorAll('#items input')) b.checked = false;
+});
+
+$('download-checklist').addEventListener('click', () => {
+  const blob = new Blob([checklistText(ITEMS)], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kdp-from-india-checklist.txt';
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+});
+
+showProgress();
+</script>
 </body>
 </html>

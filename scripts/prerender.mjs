@@ -9,6 +9,8 @@ import { fmt, INK_SHORT } from '../public/shared/ui.js';
 import { coverResult } from '../public/cover-calculator/cover.js';
 import { royaltyResult } from '../public/kdp-royalty-calculator/royalty.js';
 import { ITEMS } from '../public/kdp-preflight-checklist/checklist.js';
+import { ITEMS as ISBN_ITEMS } from '../public/isbn-india/checklist.js';
+import { ITEMS as KDP_INDIA_ITEMS } from '../public/kdp-from-india/checklist.js';
 import { copyrightPage } from '../public/copyright-page-generator/copyright.js';
 
 const PUB = fileURLToPath(new URL('../public/', import.meta.url));
@@ -115,7 +117,26 @@ function copyright(html) {
   return between(html, 'example', r.lines.map((l) => `<p>${esc(l)}</p>`).join(''));
 }
 
-const PAGES_OUT = { 'cover-calculator/index.html': cover, 'kdp-royalty-calculator/index.html': royalty, 'kdp-preflight-checklist/index.html': preflight, 'copyright-page-generator/index.html': copyright };
+function checklistHtml(items) {
+  return items.map((i) => `<div class="ak-field ak-field--check"><label for="chk-${i.id}"><input type="checkbox" id="chk-${i.id}"><span>${esc(i.title)}</span></label>`
+    + `<p class="ak-hint">${esc(i.detail)}</p><p class="ak-hint">Source: \u201c${esc(i.quote)}\u201d <a href="${esc(i.source)}">${esc(i.sourceTitle)}</a></p></div>`).join('');
+}
+
+// Writes a checklist page's items and progress line into its static HTML.
+const checklistPage = (items) => (html) => {
+  const re = /(<!-- prerender:items -->)[\s\S]*?(<!-- \/prerender:items -->)/;
+  if (!re.test(html)) throw new Error('no prerender:items markers');
+  return fill(html.replace(re, (_, a, b) => a + checklistHtml(items) + b), 'progress', `0 of ${items.length} checked`);
+};
+
+const PAGES_OUT = {
+  'cover-calculator/index.html': cover,
+  'kdp-royalty-calculator/index.html': royalty,
+  'kdp-preflight-checklist/index.html': preflight,
+  'copyright-page-generator/index.html': copyright,
+  'isbn-india/index.html': checklistPage(ISBN_ITEMS),
+  'kdp-from-india/index.html': checklistPage(KDP_INDIA_ITEMS),
+};
 
 export function render() {
   return Object.fromEntries(Object.entries(PAGES_OUT).map(([p, f]) => [p, f(readFileSync(PUB + p, 'utf8'))]));

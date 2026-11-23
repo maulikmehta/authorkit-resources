@@ -23,4 +23,4 @@
 ## Publishing from India
 
 - [Publishing on KDP from India](https://resources.authorkit.pro/kdp-from-india/): Where KDP sells, how the tax interview and payments work, and what to ask a Chartered Accountant.
-- [ISBN in India](https://resources.authorkit.pro/isbn-india/): How to apply to RRRNA for a free ISBN, KDP's free ISBN vs your own, and one ISBN per format.
+- [ISBN in India](https://resources.authorkit.pro/isbn-india/): How to apply to RRRNA for a free ISBN, track application status ('Pending for approval by RRRNA'), KDP's free ISBN vs your own, and format rules.

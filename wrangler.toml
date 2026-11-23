@@ -1,0 +1,9 @@
+name = "authorkit-resources"
+pages_build_output_dir = "public"
+compatibility_date = "2026-09-22"
+
+# Arrivals from tagged links (functions/_middleware.js). Schema: migrations/0001_arrivals.sql.
+[[d1_databases]]
+binding = "DB"
+database_name = "authorkit_arrivals"
+database_id = "4568d322-65e7-432b-8691-1d3d421caaa7"
